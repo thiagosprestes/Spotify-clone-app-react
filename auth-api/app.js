@@ -7,7 +7,7 @@
  * https://developer.spotify.com/web-api/authorization-guide/#authorization_code_flow
  */
 
-import user_data from 'user_data.js'
+const user_data = require('./user_data');
 
 var express = require('express'); // Express web server framework
 var request = require('request'); // "Request" library

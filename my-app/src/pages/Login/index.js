@@ -1,28 +1,10 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
 import './styles.css';
 
 import logo from '../../assets/spotify-clone-app-logo.png';
 
-import api from '../../services/api';
-
-import getHashParams from '../../utils/getHashParams';
-
 function Login() {
-    const token = getHashParams().access_token;
-
-    localStorage.setItem('acess_token', token);
-
-    useEffect(() => {
-        async function load() {
-            const response = await api.get("/artists/163tK9Wjr9P9DmM0AVK7lm/top-tracks?country=BR")
-
-            console.log(response.data.tracks[0].name)
-        }
-
-        load()
-    }, [])
-
     return (
         <>
             <div className="header">
@@ -31,9 +13,11 @@ function Login() {
                 </a>
             </div>
             <div className="content">
-                <button>
-                    <a href="http://localhost:8888/login">Fazer login no Spotify</a>
-                </button>
+                <a href="http://localhost:8888/login">
+                    <button>
+                        Fazer login no Spotify
+                    </button>
+                </a>
                 <div className="login-info">
                     Ao clicar no botão acima você será redirecionado para a página de Login do Spotify
                 </div>

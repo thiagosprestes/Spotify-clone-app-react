@@ -1,6 +1,8 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 
+import Sidebar from './components/Sidebar';
+
 import Login from './pages/Login';
 import Home from './pages/Home';
 
@@ -23,10 +25,13 @@ function PrivateRoute({ component: Component, ...rest }) {
 
 const Routes = () => (
     <BrowserRouter>
+        <div id="app">
+        {token && <Sidebar />}
         <Switch>
-            <Route exact path="/login" component={Login} />
+            <Route exact path="/login" component={Login} />            
             <PrivateRoute path="/" component={Home} />
         </Switch>
+        </div>
     </BrowserRouter>
 )
 

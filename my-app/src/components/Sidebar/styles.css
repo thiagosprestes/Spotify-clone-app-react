@@ -1,0 +1,33 @@
+#sidebar {
+    background-color: #040404;
+    width: 230px;
+}
+
+#sidebar img {
+    padding: 22px 25px 15px 25px;
+    width: 180px;
+}
+
+#sidebar ul {
+    list-style: none;
+    padding: 0 10px;
+}
+
+#sidebar .menu-item {
+    display: flex;
+    align-items: center;
+    padding: 5px 16px;
+    border-radius: 3px;
+    color: #b3b3b3;
+    font-weight: bold;
+    font-size: 15px;
+    transition: .2s;
+}
+
+#sidebar .menu-item:hover {
+    color: #fff;
+}
+
+#sidebar .menu-item .item-text {      
+    margin-left: 15px;
+}

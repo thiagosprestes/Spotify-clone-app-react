@@ -14,11 +14,11 @@ function Home() {
         history.push('/login');
     }
     return (
-        <>
+        <div>
             <h1>AAAAAA</h1>
             <Link to="/login"><button>Login</button></Link>
             <button onClick={logout}>Sair</button>
-        </>
+        </div>
     )
 }
 

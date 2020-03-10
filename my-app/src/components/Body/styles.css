@@ -3,3 +3,8 @@
     flex-direction: row;
     align-items: flex-start;
 }
+
+#app main {
+    margin-left: 230px;
+    width: 100%;
+}

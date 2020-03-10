@@ -2,9 +2,11 @@ import React, { useState, useEffect } from 'react';
 
 import { NavLink } from 'react-router-dom';
 
-import { MdHome, MdLibraryMusic, MdPerson } from 'react-icons/md';
+import { MdHome, MdPerson, MdPlaylistPlay, MdMusicNote, MdAlbum } from 'react-icons/md';
 
-import { FiSearch } from 'react-icons/fi';
+import { FiSearch, FiClock } from 'react-icons/fi';
+
+import { FaHeart, FaMicrophone } from 'react-icons/fa';
 
 import './styles.css';
 
@@ -48,7 +50,7 @@ function Sidebar() {
                     </NavLink>
                 </li>
                 <li className="menu-item">
-                    <NavLink className="item-link" to="/collection">
+                    <NavLink className="item-link" to="/profile">
                         <div className="item-icon">
                             <MdPerson size="2em" />
                         </div>
@@ -62,33 +64,33 @@ function Sidebar() {
                 <span>Sua biblioteca</span>
                 <ul>
                 <li className="menu-item">
-                    <NavLink exact className="item-link" to="/">
+                    <NavLink exact className="item-link" to="/genre/recently-played">
                         <div className="item-icon">
-                            <MdHome size="2em" />
+                            <FiClock size="2em" />
                         </div>
                         <div className="item-text">Recentes</div>
                     </NavLink>
                 </li>
                 <li className="menu-item">
-                    <NavLink exact className="item-link" to="/">
+                    <NavLink exact className="item-link" to="/collections/tracks">
                         <div className="item-icon">
-                            <MdHome size="2em" />
+                            <FaHeart size="2em" />
                         </div>
                         <div className="item-text">Músicas curtidas</div>
                     </NavLink>
                 </li>
                 <li className="menu-item">
-                    <NavLink exact className="item-link" to="/">
+                    <NavLink exact className="item-link" to="/collections/playlists">
                         <div className="item-icon">
-                            <MdHome size="2em" />
+                            <MdPlaylistPlay size="2em" />
                         </div>
                         <div className="item-text">Playlists</div>
                     </NavLink>
                 </li>
                 <li className="menu-item">
-                    <NavLink className="item-link" to="/search">
+                    <NavLink className="item-link" to="/collections/podcasts">
                         <div className="item-icon">
-                            <FiSearch size="2em" />
+                            <FaMicrophone size="2em" />
                         </div>
                         <div className="item-text">
                             Podcasts
@@ -96,9 +98,9 @@ function Sidebar() {
                     </NavLink>
                 </li>
                 <li className="menu-item">
-                    <NavLink className="item-link" to="/collection">
+                    <NavLink className="item-link" to="/collections/artists">
                         <div className="item-icon">
-                            <MdPerson size="2em" />
+                            <MdMusicNote size="2em" />
                         </div>
                         <div className="item-text">
                             Artistas
@@ -106,9 +108,9 @@ function Sidebar() {
                     </NavLink>
                 </li>
                 <li className="menu-item">
-                    <NavLink className="item-link" to="/collection">
+                    <NavLink className="item-link" to="/collections/albums">
                         <div className="item-icon">
-                            <MdPerson size="2em" />
+                            <MdAlbum size="2em" />
                         </div>
                         <div className="item-text">
                             Álbuns

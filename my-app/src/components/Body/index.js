@@ -3,6 +3,7 @@ import React from 'react';
 import './styles.css';
 
 import Sidebar from '../../components/Sidebar';
+import Header from '../../components/Header';
 
 function Body(props) {
     return(
@@ -11,6 +12,7 @@ function Body(props) {
                 <Sidebar />
             </aside>
             <main>
+                <Header />
                 {props.children}
             </main>
         </div>

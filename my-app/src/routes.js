@@ -31,8 +31,14 @@ const Routes = () => (
             <Route path="/login" component={Login} />     
             <Body>
                 <PrivateRoute exact path="/" component={Home} />
-                <PrivateRoute path="/search" component={Search} />
-                <PrivateRoute path="/collection" component={Collection} />
+                <PrivateRoute path="/search" component={Search} />      
+                <PrivateRoute path="/profile" component={Collection} />          
+                <PrivateRoute path="/genre/recently-played" component={Collection} />
+                <PrivateRoute path="/collection/tracks" component={Collection} />
+                <PrivateRoute path="/collection/playlists" component={Collection} />
+                <PrivateRoute path="/collection/podcasts" component={Collection} />
+                <PrivateRoute path="/collection/artists" component={Collection} />
+                <PrivateRoute path="/collection/albums" component={Collection} />
             </Body>
         </Switch>
     </BrowserRouter>

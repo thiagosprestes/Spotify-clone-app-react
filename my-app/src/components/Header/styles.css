@@ -1,0 +1,9 @@
+#header {
+    background-color: #000;
+    color: #FFF;
+    display: flex;
+}
+
+#header .user {
+    float: right;
+}

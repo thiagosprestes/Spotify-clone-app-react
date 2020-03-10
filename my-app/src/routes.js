@@ -5,6 +5,8 @@ import Body from './components/Body';
 
 import Login from './pages/Login';
 import Home from './pages/Home';
+import Search from './pages/Search';
+import Collection from './pages/Collection';
 
 import getHashParams from './utils/getHashParams';
 
@@ -26,9 +28,11 @@ function PrivateRoute({ component: Component, ...rest }) {
 const Routes = () => (
     <BrowserRouter>
         <Switch>
-            <Route exact path="/login" component={Login} />     
+            <Route path="/login" component={Login} />     
             <Body>
-                <PrivateRoute path="/" component={Home} />
+                <PrivateRoute exact path="/" component={Home} />
+                <PrivateRoute path="/search" component={Search} />
+                <PrivateRoute path="/collection" component={Collection} />
             </Body>
         </Switch>
     </BrowserRouter>

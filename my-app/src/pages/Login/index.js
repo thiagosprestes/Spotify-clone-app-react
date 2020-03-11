@@ -6,7 +6,7 @@ import logo from '../../assets/spotify-clone-app-logo.png';
 
 function Login() {
     return (
-        <>
+        <div id="login">
             <div className="header">
                 <a href="#" className="spotify-logo">
                     <img src={logo} alt="Logo" />
@@ -22,7 +22,7 @@ function Login() {
                     Ao clicar no botão acima você será redirecionado para a página de Login do Spotify
                 </div>
             </div>
-        </>
+        </div>
     )
 }
 

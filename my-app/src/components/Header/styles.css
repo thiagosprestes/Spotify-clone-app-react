@@ -1,9 +1,12 @@
 #header {
-    background-color: #000;
+    background-color: rgba(0, 0, 0, 0.9);
     color: #FFF;
     display: flex;
+    justify-content: flex-end;
+    padding: 20px;
 }
 
 #header .user {
-    float: right;
+    font-weight: bold;
+    font-size: 14px;
 }

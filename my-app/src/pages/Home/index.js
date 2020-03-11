@@ -1,23 +1,25 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
-import { Link, useHistory } from 'react-router-dom';
+import './styles.css';
 
-import getHashParams from '../../utils/getHashParams';
+import api from '../../services/api';
 
 function Home() {
-    const [ token, setToken ] = useState(getHashParams().access_token);
+    const [ newReleases, setNewReleases ] = useState([]);
 
-    const history = useHistory();
+    useEffect(() => {
+        async function load() {
+            const response = await api.get('/browse/new-releases')
+
+            setNewReleases(response.data.albums.items)
+        }
+
+        load()
+    }, [])
     
-    function logout() {
-        setToken(null);
-        history.push('/login');
-    }
     return (
         <div>
             <h1>AAAAAA</h1>
-            <Link to="/login"><button>Login</button></Link>
-            <button onClick={logout}>Sair</button>
         </div>
     )
 }

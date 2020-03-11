@@ -7,4 +7,10 @@
 #app main {
     margin-left: 230px;
     width: 100%;
+    background-color: #121212;
+    color: #fff;
+}
+
+#app main > div {
+    padding: 30px;
 }

@@ -4,22 +4,55 @@ import './styles.css';
 
 import api from '../../services/api';
 
+import HomeItems from '../../components/HomeItems';
+
 function Home() {
     const [ newReleases, setNewReleases ] = useState([]);
+    const [ categories, setCategories ] = useState([]);
+    const [ playlists, setPlaylists ] = useState([]);
+
+    const [ load, setLoad ] = useState(true);
+
+    function endpoint(url, data) {
+        api.get(url).then(data).finally(() => {
+            setLoad(false)
+        }) 
+    }
 
     useEffect(() => {
-        async function load() {
-            const response = await api.get('/browse/new-releases')
-
-            setNewReleases(response.data.albums.items)
+        async function loadReleases() {
+            await endpoint('/browse/new-releases?country=BR&limit=5', (response) => {
+                setNewReleases(response.data.albums.items)
+            })
         }
 
-        load()
+        async function loadCategories() {
+            await endpoint('/browse/categories?country=br&limit=5', (response) => {
+                setCategories(response.data.categories.items)
+            })
+        }
+
+        async function loadPlaylists() {
+            await endpoint('browse/featured-playlists?country=br&limit=5', (response) => {
+                setPlaylists(response.data.playlists.items)
+            }) 
+        }
+
+        loadReleases()
+        loadCategories()
+        loadPlaylists()
     }, [])
-    
+
     return (
-        <div>
-            <h1>AAAAAA</h1>
+        <div id="home">
+            {load && <h1>Carregando</h1>}
+            {!load && (
+                <>
+                    <HomeItems itemTitle="Novos lançamentos" itemData={newReleases} />
+                    <HomeItems itemTitle="Novos lançamentos" itemDataCategories={categories} />
+                    <HomeItems itemTitle="Playlists em alta" itemData={playlists} />
+                </>
+            )}
         </div>
     )
 }

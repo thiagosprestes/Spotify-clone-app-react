@@ -8,9 +8,9 @@ function Login() {
     return (
         <div id="login">
             <div className="header">
-                <a href="#" className="spotify-logo">
+                <div className="spotify-logo">
                     <img src={logo} alt="Logo" />
-                </a>
+                </div>
             </div>
             <div className="content">
                 <a href="http://localhost:8888/login">

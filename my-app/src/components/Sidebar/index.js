@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 
 import { NavLink } from 'react-router-dom';
 
@@ -12,20 +12,7 @@ import './styles.css';
 
 import logo from '../../assets/spotify-clone-app-logo-white.png';
 
-import api from '../../services/api';
-
 function Sidebar() {
-    const [ recently, setRecently ] = useState([])
-
-    useEffect(() => {
-        async function load() {
-            const response = await api.get('/me/player/recently-played?limit=10')
-
-            setRecently(response.data.items)
-        }
-
-        load()
-    }, [])
 
     return(
         <div id="sidebar">

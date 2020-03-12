@@ -6,6 +6,8 @@ import api from '../../services/api';
 
 import HomeItems from '../../components/HomeItems';
 
+import UserRecentlyPlayed from '../../components/UserRecentlyPlayed';
+
 function Home() {
     const [ newReleases, setNewReleases ] = useState([]);
     const [ categories, setCategories ] = useState([]);
@@ -45,12 +47,13 @@ function Home() {
 
     return (
         <div id="home">
-            {load && <h1>Carregando</h1>}
+            {load && <h1 className="loading">Carregando...</h1>}
             {!load && (
                 <>
                     <HomeItems itemTitle="Novos lançamentos" itemData={newReleases} />
-                    <HomeItems itemTitle="Novos lançamentos" itemDataCategories={categories} />
+                    <HomeItems itemTitle="Categorias em alta" itemDataCategories={categories} />
                     <HomeItems itemTitle="Playlists em alta" itemData={playlists} />
+                    <UserRecentlyPlayed />
                 </>
             )}
         </div>

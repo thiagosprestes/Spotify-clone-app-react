@@ -10,8 +10,16 @@
     width: 100%;
     background-color: #121212;
     color: #fff;
+    min-height: 100%;
 }
 
 #app main > div {
     padding: 30px;
+}
+
+.loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
 }

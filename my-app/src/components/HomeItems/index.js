@@ -1,20 +1,29 @@
 import React from 'react';
 
+import './styles.css'
+
 function homeItems({ itemTitle, itemData, itemDataCategories}) {
     return(
         <>
-            <h1>{itemTitle}</h1>
-            <div className="categories items">
+            <h2>{itemTitle}</h2>
+            <div className="items">
                 {itemDataCategories !== undefined && itemDataCategories.map(data => (                    
-                    <div key={data.name} className="category item-info">
-                        <div className="category-cover item-cover" style={{backgroundImage: `url(${data.icons[0].url})`}}></div>
-                        <span className="category-name item-name">{data.name}</span>
+                    <div key={data.name} className="item-info">
+                        <div className="item-cover" style={{backgroundImage: `url(${data.icons[0].url})`}}></div>
+                        <span className="item-name">{data.name}</span>
                     </div> 
                 ))}
                 {itemData !== undefined && itemData.map(data => (                    
-                    <div key={data.name} className="category item-info">
-                        <div className="category-cover item-cover" style={{backgroundImage: `url(${data.images[0].url})`}}></div>
-                        <span className="category-name item-name">{data.name}</span>
+                    <div key={data.name} className="item-info">
+                        <div className="item-cover" style={{backgroundImage: `url(${data.images[0].url})`}}></div>
+                        <span className="item-name">{data.name}</span>
+                        {data.artists !== undefined && 
+                            <div className="artists-name">
+                                {data.artists.map(artist => (
+                                    <span key={artist.id}>{artist.name}</span>
+                                ))}
+                            </div>
+                        }
                     </div> 
                 ))}
             </div>

@@ -31,9 +31,11 @@ function UserRecentlyPlayed() {
                     {recentlyPlayed.map(data => (
                         <tr key={data.played_at}>
                             <td>{data.track.name}</td>
-                            {data.track.artists.map(artist => (
-                                <td key={artist.id}>{artist.name}</td>
-                            ))}
+                            <td>
+                                {data.track.artists.map(artist => (                            
+                                    <span>{artist.name}</span>                            
+                                ))}
+                            </td>
                         </tr>      
                     ))}
             </tbody>

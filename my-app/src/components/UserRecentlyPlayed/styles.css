@@ -8,7 +8,6 @@
 
 #recently-played table {
     border-collapse: collapse;
-    table-layout: fixed;
     width: 100%;
 }
 
@@ -17,6 +16,10 @@
     text-overflow: ellipsis;
     white-space: nowrap;
     padding: 10px 30px 10px 0;
+}
+
+#recently-played table tr td span + span::before{
+    content: ", ";
 }
 
 #recently-played table tr {

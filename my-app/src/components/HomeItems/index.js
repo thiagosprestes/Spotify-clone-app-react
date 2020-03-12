@@ -1,6 +1,8 @@
 import React from 'react';
 
-import './styles.css'
+import { Link } from 'react-router-dom';
+
+import './styles.css';
 
 function homeItems({ itemTitle, itemData, itemDataCategories}) {
     return(
@@ -15,8 +17,10 @@ function homeItems({ itemTitle, itemData, itemDataCategories}) {
                 ))}
                 {itemData !== undefined && itemData.map(data => (                    
                     <div key={data.name} className="item-info">
-                        <div className="item-cover" style={{backgroundImage: `url(${data.images[0].url})`}}></div>
-                        <span className="item-name">{data.name}</span>
+                        <Link to={`/album/id=${data.id}`}>   
+                            <div className="item-cover" style={{backgroundImage: `url(${data.images[0].url})`}}></div>
+                            <span className="item-name">{data.name}</span>
+                        </Link>
                         {data.artists !== undefined && 
                             <div className="artists-name">
                                 {data.artists.map(artist => (

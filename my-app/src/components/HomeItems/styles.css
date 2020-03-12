@@ -15,6 +15,7 @@
     height: 12rem;
     background-size: cover;
     background-position: 50%;
+    margin-bottom: 10px;
 }
 
 .items .item-info .item-name {

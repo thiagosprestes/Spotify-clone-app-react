@@ -1,0 +1,47 @@
+#album {
+    display: flex;
+}
+
+#album .album-info .album-title {
+    text-align: center;
+}
+
+#album .album-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 23%;
+}
+
+#album .album-info .album-image {
+    height: 15rem;
+    width: 15rem;
+    background-size: contain;
+    background-position: 50%;
+    background-repeat: no-repeat;
+    margin-bottom: 10px;
+}
+
+#album .album-info span {
+    color: #c4c4c4;
+    font-size: 14px;
+}
+
+#album .album-info .album-artists {
+    margin-top: 5px;
+}
+
+#album .album-info .album-artists span + span::before {
+    content: ", ";
+}
+
+#album .album-info .album-year {
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+}
+
+#album .album-info .album-year span + span::before {
+    content: "-";
+    margin: 0 5px;
+}

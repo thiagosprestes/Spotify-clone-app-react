@@ -28,7 +28,7 @@ function UserTopArtists() {
             <h2>Seus artistas favoritos</h2>
             <ul>
                 {topArtists.map(data => (
-                    <li>
+                    <li key={data.id}>
                         <div className="artist-image" style={{backgroundImage: `url(${data.images[2].url})`}}></div>
                         <span>{data.name}</span>
                     </li>      

@@ -8,6 +8,8 @@ import HomeItems from '../../components/HomeItems';
 
 import UserRecentlyPlayed from '../../components/UserRecentlyPlayed';
 
+import UserTopArtists from '../../components/UserTopArtists';
+
 function Home() {
     const [ newReleases, setNewReleases ] = useState([]);
     const [ categories, setCategories ] = useState([]);
@@ -53,7 +55,10 @@ function Home() {
                     <HomeItems itemTitle="Novos lançamentos" itemData={newReleases} />
                     <HomeItems itemTitle="Categorias em alta" itemDataCategories={categories} />
                     <HomeItems itemTitle="Playlists em alta" itemData={playlists} />
-                    <UserRecentlyPlayed />
+                    <div className="user-top-lists">
+                        <UserRecentlyPlayed />
+                        <UserTopArtists />
+                    </div>                    
                 </>
             )}
         </div>

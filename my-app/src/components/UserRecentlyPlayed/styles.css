@@ -1,3 +1,28 @@
+#recently-played {
+    width: 50%;
+}
+
 #recently-played h2 {
     margin-bottom: 20px;
+}
+
+#recently-played table {
+    border-collapse: collapse;
+    table-layout: fixed;
+    width: 100%;
+}
+
+#recently-played table tr td {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding: 10px 30px 10px 0;
+}
+
+#recently-played table tr {
+    border-bottom: 1px solid #282828;
+}
+
+#recently-played table tr:last-child {
+    border: none;
 }

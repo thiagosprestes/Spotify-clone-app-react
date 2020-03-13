@@ -4,7 +4,7 @@
     box-sizing: border-box;
 }
 
-html, body {
+html, body, input {
     font-family: circular-spotify-ui,Helvetica Neue,Helvetica,Arial,sans-serif;
     font-size: 16px;
     height: 100%;

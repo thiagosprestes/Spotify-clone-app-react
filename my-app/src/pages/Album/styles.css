@@ -29,6 +29,14 @@
 
 #album .album-info .album-artists {
     margin-top: 5px;
+    text-align: center;
+}
+
+#album .album-info .album-artists span:hover {
+    color: #fff;
+    text-decoration: underline;
+    text-underline-offset: 5px;
+    cursor: pointer;
 }
 
 #album .album-info .album-artists span + span::before {
@@ -44,4 +52,53 @@
 #album .album-info .album-year span + span::before {
     content: "-";
     margin: 0 5px;
+}
+
+#album .album-tracks {
+    margin-left: 30px;
+    width: 100%;
+}
+
+#album .album-tracks .copyright {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    font-size: 12px;
+    color: #888;
+    padding-left: 15px;
+}
+
+#album .album-tracks .track {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    transition: .2s;
+}
+
+#album .album-tracks .track:hover {
+    background-color: #282828;
+}
+
+#album .album-tracks .track-artists {
+    color: #888;
+    font-size: 13px;
+    margin-top: 5px;
+}
+
+#album .album-tracks .track-artists span:hover {
+    color: #fff;
+    text-decoration: underline;
+    text-underline-offset: 5px;
+    cursor: pointer;
+}
+
+#album .album-tracks .track-artists span + span::before {
+    content: ", ";
+}
+
+#album .album-tracks .track-artists .track-duration {
+    font-weight: bold;
+    font-size: 15px;
 }

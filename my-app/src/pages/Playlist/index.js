@@ -10,7 +10,7 @@ import { FaSpotify, FaPlay, FaRegHeart, FaShareAlt } from 'react-icons/fa';
 
 import { MdMusicNote } from 'react-icons/md';
 
-function Album() {
+function Playlist() {
     const [ album, setAlbum ] = useState([]);
     const [ albumImage, setAlbumImage ] = useState([]);
     const [ artists, setArtists ] = useState([]);
@@ -19,11 +19,11 @@ function Album() {
 
     const [ load, setLoad ] = useState(true)
 
-    const id = useParams().albumId;    
+    const id = useParams().playlistId;    
 
     useEffect(() => {
         async function load() {
-            await api.get(`albums/${id}`)
+            await api.get(`/playlists/${id}?market=br&fields=images%2Chref%2Cname%2Cowner(!href%2Cexternal_urls)%2Ctracks.items(added_by.id%2Ctrack(name%2Chref%2Calbum(name%2Chref)))`)
             .then(response => {
                 setAlbum(response.data)
                 setAlbumImage(response.data.images[0].url);
@@ -111,4 +111,4 @@ function Album() {
     )
 }
 
-export default Album;
+export default Playlist;

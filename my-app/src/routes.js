@@ -8,6 +8,7 @@ import Home from './pages/Home';
 import Search from './pages/Search';
 import Collection from './pages/Collection';
 import Album from './pages/Album';
+import Playlist from './pages/Playlist';
 
 import getHashParams from './utils/getHashParams';
 
@@ -41,6 +42,7 @@ const Routes = () => (
                 <PrivateRoute path="/collection/artists" component={Collection} />
                 <PrivateRoute path="/collection/albums" component={Collection} />
                 <Route path="/album/id=:albumId" component={Album} />
+                <Route path="/playlist/id=:playlistId" component={Playlist} />
             </Body>
         </Switch>
     </BrowserRouter>

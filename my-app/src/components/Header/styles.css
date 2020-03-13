@@ -4,6 +4,12 @@
     display: flex;
     justify-content: flex-end;
     padding: 20px;
+    position: fixed;
+    top: 0;
+    left: 230px;
+    right: 0;
+    height: 54px;
+    z-index: 1000;
 }
 
 #header .user {

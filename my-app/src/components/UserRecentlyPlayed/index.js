@@ -33,7 +33,7 @@ function UserRecentlyPlayed() {
                             <td>{data.track.name}</td>
                             <td>
                                 {data.track.artists.map(artist => (                            
-                                    <span>{artist.name}</span>                            
+                                    <span key={artist.id}>{artist.name}</span>                            
                                 ))}
                             </td>
                         </tr>      

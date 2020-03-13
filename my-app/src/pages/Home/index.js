@@ -52,9 +52,9 @@ function Home() {
             {load && <h1 className="loading">Carregando...</h1>}
             {!load && (
                 <>
-                    <HomeItems itemTitle="Novos lançamentos" itemData={newReleases} />
-                    <HomeItems itemTitle="Categorias em alta" itemDataCategories={categories} />
-                    <HomeItems itemTitle="Playlists em alta" itemData={playlists} />
+                    <HomeItems itemType="album" itemTitle="Novos lançamentos" itemData={newReleases} />
+                    <HomeItems itemType="category" itemTitle="Categorias em alta" itemDataCategories={categories} />
+                    <HomeItems itemType="playlist" itemTitle="Playlists em alta" itemData={playlists} />
                     <div className="user-top-lists">
                         <UserRecentlyPlayed />
                         <UserTopArtists />

@@ -13,8 +13,14 @@
     min-height: 100%;
 }
 
+#app main #header {
+    padding: 20px 20px;
+    margin-top: 0;
+}
+
 #app main > div {
     padding: 30px;
+    margin-top: 55px;
 }
 
 .loading {

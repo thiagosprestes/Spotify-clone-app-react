@@ -152,6 +152,10 @@
     content: ", ";
 }
 
+#album .album-tracks .track .track-info .track-artists .track-album::before {
+    content: none;
+}
+
 #album .album-tracks .track .track-duration {
     font-weight: bold;
     font-size: 15px;

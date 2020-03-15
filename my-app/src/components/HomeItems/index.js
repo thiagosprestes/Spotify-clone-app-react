@@ -11,8 +11,10 @@ function homeItems({ itemType, itemTitle, itemData, itemDataCategories}) {
             <div className="items">
                 {itemDataCategories !== undefined && itemType == 'category' && itemDataCategories.map(data => (                    
                     <div key={data.name} className="item-info">
-                        <div className="item-cover" style={{backgroundImage: `url(${data.icons[0].url})`}}></div>
-                        <span className="item-name">{data.name}</span>
+                        <Link to={`/genre/id=${data.id}`}>
+                            <div className="item-cover" style={{backgroundImage: `url(${data.icons[0].url})`}}></div>
+                            <span className="item-name">{data.name}</span>
+                        </Link>
                     </div> 
                 ))}
                 {itemData !== undefined && itemType == 'album' && itemData.map(data => (                    

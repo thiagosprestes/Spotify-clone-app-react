@@ -53,7 +53,7 @@ function Home() {
             {!load && (
                 <>
                     <HomeItems itemType="album" itemTitle="Novos lançamentos" itemData={newReleases} />
-                    <HomeItems itemType="category" itemTitle="Categorias em alta" itemDataCategories={categories} />
+                    <HomeItems itemType="category" itemTitle="Gêneros em alta" itemDataCategories={categories} />
                     <HomeItems itemType="playlist" itemTitle="Playlists em alta" itemData={playlists} />
                     <div className="user-top-lists">
                         <UserRecentlyPlayed />

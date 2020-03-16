@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
+import { Link } from 'react-router-dom';
+
 import './styles.css';
 
 import api from '../../services/api';
@@ -30,7 +32,9 @@ function UserTopArtists() {
                 {topArtists.map(data => (
                     <li key={data.id}>
                         <div className="artist-image" style={{backgroundImage: `url(${data.images[2].url})`}}></div>
-                        <span>{data.name}</span>
+                        <Link to={`artist/id=${data.id}`}>
+                            <span>{data.name}</span>
+                        </Link>
                     </li>      
                 ))}
             </ul>

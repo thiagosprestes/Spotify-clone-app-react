@@ -12,8 +12,6 @@
 
 .items .item-info .item-cover {
     width: 100%;
-    height: 12rem;
-    background-size: cover;
     background-position: 50%;
     margin-bottom: 10px;
 }

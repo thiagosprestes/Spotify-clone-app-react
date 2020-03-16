@@ -32,10 +32,6 @@
 }
 
 #categories .category-item .category-image {
-    height: 12rem;
-    width: 12rem;
-    background-repeat: no-repeat;
-    background-size: cover;
     background-position: 50%;
     margin-bottom: 10px;
 }

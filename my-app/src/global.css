@@ -30,3 +30,101 @@ button {
 #root {
     height: 100%;
 }
+
+.container {
+    padding: 30px;
+}
+
+/* Tracks */
+
+.tracks {
+    width: 100%;
+}
+
+.tracks .track {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.tracks .track-image {
+    height: 3rem;
+    width: 3rem;
+    background-position: center;
+    background-size: cover;
+    margin-right: 15px;
+}
+
+.tracks .track {
+    width: 100%;
+    display: flex;
+    padding: 15px;
+    transition: .2s;
+}
+
+.tracks .track .note-icon, .play-icon {
+    margin-right: 15px;
+}
+
+.tracks .track .play-icon {
+    display: none;
+}
+
+.tracks .track .track-info {
+    flex: 1;
+}
+
+.tracks .track:hover {
+    background-color: #282828;
+}
+
+.tracks .track:hover .note-icon {
+    display: none;
+}
+
+.tracks .track:hover .play-icon {
+    display: block;
+}
+
+.tracks .track .track-info .track-artists {
+    color: #888;
+    font-size: 13px;
+    margin-top: 5px;
+}
+
+.tracks .track .track-info .track-artists span:hover {
+    color: #fff;
+    text-decoration: underline;
+    text-underline-offset: 5px;
+    cursor: pointer;
+}
+
+.tracks .track .track-info .track-artists span + span::before {
+    content: ", ";
+}
+
+.tracks .track .track-duration {
+    font-weight: bold;
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+}
+
+.copyright {
+    display: flex;
+    flex-direction: column;
+    margin-left: 47px;
+    margin-top: 20px;
+    font-size: 12px;
+    color: #c4c4c4;
+}
+
+/* Cover */
+
+.cover {
+    width: 12rem;
+    height: 12rem;
+    background-position: 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
+}

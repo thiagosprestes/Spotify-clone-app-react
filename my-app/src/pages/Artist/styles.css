@@ -1,0 +1,82 @@
+#artist header {
+    padding: 0;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 0 20%;
+}
+
+#artist .artist-info {
+    padding: 40px 0 0 30px;
+    display: flex;
+}
+
+#artist .artist-info .artist-bio {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-size: 14px;
+}
+
+#artist .artist-info .artist-bio .type {
+    text-transform: capitalize;
+}
+
+#artist .artist-info .artist-image {
+    margin-right: 10px;
+}
+
+#artist .artist-info .artist-bio .artist-name {
+    font-size: 20px;
+    font-weight: bold;
+    margin: 8px 0;
+}
+
+#artist .options {
+    display: flex;
+    align-items: center;
+    margin-left: 30px;
+}
+
+#artist .options .like, .share {
+    margin-left: 10px;
+}
+
+#artist .top-tracks h2 {
+    margin-bottom: 20px;
+}
+
+#artist .top-tracks .top-tracks-item {
+    padding: 5px 15px;
+}
+
+#artist .albums {
+    margin-top: 40px;    
+}
+
+#artist .albums h2 {
+    margin-bottom: 20px;
+}
+
+#artist .albums .album-info {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 20px;
+}
+
+#artist .albums .album-info a {
+    text-align: center;
+}
+
+#artist .albums .album-info .album-cover {
+    transition: .2s;
+}
+
+#artist .albums .album-info .album-cover:hover {
+    filter: brightness(.3);
+}
+
+#artist .albums .album-info span {
+    font-size: 20px;
+    font-size: 14px;
+    font-weight: bold;
+}

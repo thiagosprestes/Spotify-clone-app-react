@@ -6,17 +6,16 @@ import './styles.css';
 
 import api from '../../services/api';
 
-import { FaSpotify, FaPlay, FaRegHeart, FaShareAlt } from 'react-icons/fa';
+import { FaPlay, FaRegHeart, FaShareAlt } from 'react-icons/fa';
 
 import { MdMusicNote } from 'react-icons/md';
+import SpotifyButton from '../../components/SpotifyButton';
 
 function Playlist() {
     const [ playlist, setPlaylist ] = useState([]);
     const [ playlistImage, setPlaylistImage ] = useState([]);
-    const [ artists, setArtists ] = useState({});
     const [ owner, setOwner ] = useState({});
     const [ tracks, setTracks ] = useState([]);
-    const [ copyrights, setCopyrights ] = useState([]);
 
     const [ load, setLoad ] = useState(true)
 
@@ -45,19 +44,14 @@ function Playlist() {
         <>
         {load && <h2 className="loading">Carregando...</h2>} 
         {!load && 
-            <div id="album">            
+            <div id="album" className="container">            
                 <div className="album-info">
-                    <div className="album-image" style={{backgroundImage: `url(${playlistImage})`}}></div>
+                    <div className="album-image cover" style={{backgroundImage: `url(${playlistImage})`}}></div>
                     <h2 className="album-title">{playlist.name}</h2>
                     <div className="album-artists">
-                        <span>{artists.display_name}</span>
+                        <span>{owner.display_name}</span>
                     </div>
-                    <div className="spotify-link">
-                        <a href={`https://open.spotify.com/playlist/${id}`} target="_blank">
-                            <FaSpotify size="1.5em" />
-                            Spotify
-                        </a>
-                    </div>
+                    <SpotifyButton id={id} type="playlist" />
                     <div className="album-options">
                         <FaRegHeart size="1.8em" />
                         <FaShareAlt size="1.8em" />
@@ -66,7 +60,7 @@ function Playlist() {
                         <span>{tracks.length} músicas</span>
                     </div>
                 </div>
-                <div className="album-tracks">
+                <div className="album-tracks tracks">
                     {tracks.map(data => (
                         <div key={data.track.name} className="track">
                         <div className="note-icon">

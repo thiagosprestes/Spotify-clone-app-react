@@ -12,7 +12,7 @@ function homeItems({ itemType, itemTitle, itemData, itemDataCategories}) {
                 {itemDataCategories !== undefined && itemType == 'category' && itemDataCategories.map(data => (                    
                     <div key={data.name} className="item-info">
                         <Link to={`/genre/id=${data.id}`}>
-                            <div className="item-cover" style={{backgroundImage: `url(${data.icons[0].url})`}}></div>
+                            <div className="item-cover cover" style={{backgroundImage: `url(${data.icons[0].url})`}}></div>
                             <span className="item-name">{data.name}</span>
                         </Link>
                     </div> 
@@ -20,7 +20,7 @@ function homeItems({ itemType, itemTitle, itemData, itemDataCategories}) {
                 {itemData !== undefined && itemType == 'album' && itemData.map(data => (                    
                     <div key={data.name} className="item-info">
                         <Link to={`/album/id=${data.id}`}>   
-                            <div className="item-cover" style={{backgroundImage: `url(${data.images[0].url})`}}></div>
+                            <div className="item-cover cover" style={{backgroundImage: `url(${data.images[0].url})`}}></div>
                             <span className="item-name">{data.name}</span>
                         </Link>
                         {data.artists !== undefined && 
@@ -36,7 +36,7 @@ function homeItems({ itemType, itemTitle, itemData, itemDataCategories}) {
                 {itemData !== undefined && itemType == 'playlist' && itemData.map(data => (                    
                     <div key={data.name} className="item-info">
                         <Link to={`/playlist/id=${data.id}`}>   
-                            <div className="item-cover" style={{backgroundImage: `url(${data.images[0].url})`}}></div>
+                            <div className="item-cover cover" style={{backgroundImage: `url(${data.images[0].url})`}}></div>
                             <span className="item-name">{data.name}</span>
                         </Link>
                         {data.artists !== undefined && 

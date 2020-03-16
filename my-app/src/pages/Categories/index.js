@@ -63,7 +63,7 @@ function Categories() {
     }    
 
     return(
-        <div id="categories">
+        <div id="categories" className="container">
             {load && <h1 className="loading">Carregando...</h1>}
             {!load && 
                 <>                
@@ -84,7 +84,7 @@ function Categories() {
                             <React.Fragment key={data.id}>
                                 <Link to={`/playlist/id=${data.id}`}>
                                     <div className="category-item">
-                                        <div className="category-image" style={{backgroundImage: `url(${data.images[0].url})`}}></div>
+                                        <div className="category-image cover" style={{backgroundImage: `url(${data.images[0].url})`}}></div>
                                         <div className="category-info">
                                             <span className="category-name">{data.name}</span>
                                             <span className="category-description">{data.description}</span>

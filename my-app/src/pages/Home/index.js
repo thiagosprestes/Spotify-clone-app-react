@@ -48,7 +48,7 @@ function Home() {
     }, [])
 
     return (
-        <div id="home">
+        <div id="home" className="container">
             {load && <h1 className="loading">Carregando...</h1>}
             {!load && (
                 <>

@@ -6,9 +6,11 @@ import './styles.css';
 
 import api from '../../services/api';
 
-import { FaSpotify, FaPlay, FaRegHeart, FaShareAlt } from 'react-icons/fa';
+import { FaPlay, FaRegHeart, FaShareAlt } from 'react-icons/fa';
 
 import { MdMusicNote } from 'react-icons/md';
+
+import SpotifyButton from '../../components/SpotifyButton';
 
 function Album() {
     const [ album, setAlbum ] = useState([]);
@@ -45,21 +47,16 @@ function Album() {
         <>
         {load && <h2 className="loading">Carregando...</h2>} 
         {!load && 
-            <div id="album">            
+            <div id="album" className="container">            
                 <div className="album-info">
-                    <div className="album-image" style={{backgroundImage: `url(${albumImage})`}}></div>
+                    <div className="album-image cover" style={{backgroundImage: `url(${albumImage})`}}></div>
                     <h2 className="album-title">{album.name}</h2>
                     <div className="album-artists">
                         {artists.map(a => (
                             <span key={a.name}>{a.name}</span>
                         ))}
                     </div>
-                    <div className="spotify-link">
-                        <a href={`https://open.spotify.com/album/${album.id}`} target="_blank">
-                            <FaSpotify size="1.5em" />
-                            Spotify
-                        </a>
-                    </div>
+                    <SpotifyButton id={album.id} type="album" />
                     <div className="album-options">
                         <FaRegHeart size="1.8em" />
                         <FaShareAlt size="1.8em" />
@@ -74,7 +71,7 @@ function Album() {
                         }
                     </div>
                 </div>
-                <div className="album-tracks">
+                <div className="album-tracks tracks">
                     {tracks.map(data => (
                         <div key={data.id} className="track">
                             <div className="note-icon">

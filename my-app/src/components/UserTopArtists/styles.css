@@ -36,4 +36,12 @@
     font-weight: bold;
     font-size: 14px;
     margin-left: 20px;
+    color: #ccc;
+}
+
+#top-artists ul li span:hover {
+    font-weight: bold;
+    font-size: 14px;
+    margin-left: 20px;
+    color: #fff;
 }

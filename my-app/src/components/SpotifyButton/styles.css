@@ -1,0 +1,25 @@
+.spotify-link {
+    margin: 15px 0;
+}
+
+.spotify-link a {
+    display: inline-flex;
+    align-items: center;
+    border: 3px solid #fff;
+    padding: 15px;
+    border-radius: 50px;
+    transition: .2s;
+    font-weight: bold;
+    font-size: 16px;
+    color: #fff;
+}
+
+.spotify-link a svg {
+    margin-right: 5px;
+}
+
+.spotify-link a:hover {
+    background-color: #1DB954;
+    border-color: #1DB954;
+    color: #000;
+}

@@ -10,6 +10,7 @@ import Collection from './pages/Collection';
 import Album from './pages/Album';
 import Playlist from './pages/Playlist';
 import Categories from './pages/Categories';
+import Artist from './pages/Artist';
 
 import getHashParams from './utils/getHashParams';
 
@@ -45,6 +46,7 @@ const Routes = () => (
                 <Route path="/album/id=:albumId" component={Album} />
                 <Route path="/playlist/id=:playlistId" component={Playlist} />
                 <Route path="/genre/id=:categoryId" component={Categories} />
+                <Route path="/artist/id=:artistId" component={Artist} />
             </Body>
         </Switch>
     </BrowserRouter>

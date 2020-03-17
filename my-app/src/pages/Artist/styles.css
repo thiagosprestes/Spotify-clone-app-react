@@ -41,12 +41,16 @@
     margin-left: 10px;
 }
 
-#artist .top-tracks h2 {
+#artist .tracks-artists .top-tracks h2 {
     margin-bottom: 20px;
 }
 
-#artist .top-tracks .top-tracks-item {
+#artist .tracks-artists .top-tracks .top-tracks-item {
     padding: 5px 15px;
+}
+
+#artist .tracks-artists {
+    display: flex;
 }
 
 #artist .albums {
@@ -69,6 +73,7 @@
 
 #artist .albums .album-info .album-cover {
     transition: .2s;
+    margin-bottom: 10px;
 }
 
 #artist .albums .album-info .album-cover:hover {
@@ -79,4 +84,34 @@
     font-size: 20px;
     font-size: 14px;
     font-weight: bold;
+}
+
+#artist .related-artists {
+    width: 40%;
+    margin-left: 50px;
+}
+
+#artist .related-artists h2 {
+    margin-bottom: 30px;
+}
+
+#artist .related-artists .related-artist a {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    font-weight: bold;
+    color: #ccc;
+    margin-bottom: 25px;
+}
+
+#artist .related-artists .related-artist a:hover {
+    color: #fff;
+}
+
+#artist .related-artists .related-artist .related-artist-cover {
+    height: 2rem;
+    width: 2rem;
+    background-size: cover;
+    border-radius: 50%;
+    margin-right: 10px;
 }

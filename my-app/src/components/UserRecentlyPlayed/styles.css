@@ -16,9 +16,14 @@
     text-overflow: ellipsis;
     white-space: nowrap;
     padding: 10px 30px 10px 0;
+    color: #ccc;
 }
 
-#recently-played table tr td span + span::before{
+#recently-played table tr td a:hover {
+    color: #FFF;
+}
+
+#recently-played table tr td a + a::before{
     content: ", ";
 }
 

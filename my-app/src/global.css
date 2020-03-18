@@ -27,6 +27,12 @@ button {
     cursor: pointer;
 }
 
+input {
+    border: 0;
+    padding: 10px;
+    font-size: 14px;
+}
+
 #root {
     height: 100%;
 }
@@ -99,7 +105,7 @@ button {
     cursor: pointer;
 }
 
-.tracks .track .track-info .track-artists span + span::before {
+.tracks .track .track-info .track-artists a + a::before {
     content: ", ";
 }
 
@@ -127,4 +133,12 @@ button {
     background-position: 50%;
     background-repeat: no-repeat;
     background-size: cover;
+}
+
+/* Grid template  */
+
+.grid-template {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 20px;
 }

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 import './styles.css';
 
@@ -23,7 +23,7 @@ function Playlist() {
 
     useEffect(() => {
         async function load() {
-            await api.get(`/playlists/${id}?market=br&fields=images%2Chref%2Cname%2Cowner(!href%2Cexternal_urls)%2Ctracks.items(added_by.id%2Ctrack(artists%2Cduration_ms%2Cname%2Chref%2Calbum(name%2Chref)))`)
+            await api.get(`/playlists/${id}?market=br&fields=images%2Chref%2Cname%2Cowner(!href%2Cexternal_urls)%2Ctracks.items(added_by.id%2Ctrack(artists%2Cduration_ms%2Cname%2Chref%2Calbum(name%2Chref%2Cid)))`)
             .then(response => {
                 setPlaylist(response.data)
                 setPlaylistImage(response.data.images[0].url);
@@ -49,7 +49,9 @@ function Playlist() {
                     <div className="album-image cover" style={{backgroundImage: `url(${playlistImage})`}}></div>
                     <h2 className="album-title">{playlist.name}</h2>
                     <div className="album-artists">
-                        <span>{owner.display_name}</span>
+                        <Link to={`/user/${owner.id}`}>
+                            <span>{owner.display_name}</span>
+                        </Link>
                     </div>
                     <SpotifyButton id={id} type="playlist" />
                     <div className="album-options">
@@ -74,8 +76,12 @@ function Playlist() {
                             <span className="track-name">{data.track.name}</span>
                             <div className="track-artists">                                    
                                 {data.track.artists.map(artist => (
-                                    <span>{artist.name}</span>
-                                ))} - <span className="track-album">{data.track.album.name}</span>
+                                    <Link to={`/artist/id=${artist.id}`} key={artist.id}>
+                                        <span>{artist.name}</span>
+                                    </Link>
+                                ))} - <Link to={`/album/id=${data.track.album.id}`}>
+                                        <span className="track-album">{data.track.album.name}</span>
+                                    </Link>
                             </div> 
                         </div>
                         <div className="track-duration">

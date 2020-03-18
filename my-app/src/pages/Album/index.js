@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 import './styles.css';
 
@@ -52,8 +52,10 @@ function Album() {
                     <div className="album-image cover" style={{backgroundImage: `url(${albumImage})`}}></div>
                     <h2 className="album-title">{album.name}</h2>
                     <div className="album-artists">
-                        {artists.map(a => (
-                            <span key={a.name}>{a.name}</span>
+                        {artists.map(artist => (
+                            <Link to={`/artist/id=${artist.id}`} key={artist.id}>
+                                <span>{artist.name}</span>
+                            </Link>
                         ))}
                     </div>
                     <SpotifyButton id={album.id} type="album" />
@@ -85,7 +87,9 @@ function Album() {
                                 <span className="track-name">{data.name}</span>
                                 <div className="track-artists">                                    
                                     {data.artists.map(artist => (
-                                        <span key={artist.id}>{artist.name}</span>
+                                        <Link to={`/artist/id=${artist.id}`} key={artist.id}>
+                                            <span>{artist.name}</span>
+                                        </Link>
                                     ))}
                                 </div> 
                             </div>

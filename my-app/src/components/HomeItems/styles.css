@@ -28,6 +28,11 @@
     color: #CCC;
 }
 
-.items .item-info .artists-name span + span::before {
+.items .item-info .artists-name a + a::before {
     content: ", ";
+}
+
+.items .item-info .artists-name a span:hover{
+    color: #fff;
+    text-decoration: underline;
 }

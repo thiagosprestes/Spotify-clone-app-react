@@ -40,7 +40,7 @@
     cursor: pointer;
 }
 
-#album .album-info .album-artists span + span::before {
+#album .album-info .album-artists a + a::before {
     content: ", ";
 }
 
@@ -49,7 +49,7 @@
     justify-content: center;
 }
 
-#album .album-info .album-year span + span::before {
+#album .album-info .album-year a + a::before {
     content: "-";
     margin: 0 5px;
 }

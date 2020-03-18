@@ -13,6 +13,8 @@ function homeItems({ itemType, itemTitle, itemData, itemDataCategories}) {
                     <div key={data.name} className="item-info">
                         <Link to={`/genre/id=${data.id}`}>
                             <div className="item-cover cover" style={{backgroundImage: `url(${data.icons[0].url})`}}></div>
+                        </Link>
+                        <Link to={`/artist/id=${data.id}`}>
                             <span className="item-name">{data.name}</span>
                         </Link>
                     </div> 
@@ -26,7 +28,9 @@ function homeItems({ itemType, itemTitle, itemData, itemDataCategories}) {
                         {data.artists !== undefined && 
                             <div className="artists-name">
                                 {data.artists.map(artist => (
-                                    <span key={artist.id}>{artist.name}</span>
+                                    <Link to={`/artist/id=${artist.id}`} key={artist.id}>
+                                        <span>{artist.name}</span>
+                                    </Link>
                                 ))}
                             </div>
                         }
@@ -42,7 +46,9 @@ function homeItems({ itemType, itemTitle, itemData, itemDataCategories}) {
                         {data.artists !== undefined && 
                             <div className="artists-name">
                                 {data.artists.map(artist => (
-                                    <span key={artist.id}>{artist.name}</span>
+                                    <Link to={`/artist/id=${data.id}`} key={artist.id}>
+                                        <span>{artist.name}</span>
+                                    </Link>
                                 ))}
                             </div>
                         }

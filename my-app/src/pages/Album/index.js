@@ -12,6 +12,8 @@ import { MdMusicNote } from 'react-icons/md';
 
 import SpotifyButton from '../../components/SpotifyButton';
 
+import defaultImage from '../../assets/default-image.jpg';
+
 function Album() {
     const [ album, setAlbum ] = useState([]);
     const [ albumImage, setAlbumImage ] = useState([]);
@@ -49,7 +51,7 @@ function Album() {
         {!load && 
             <div id="album" className="container">            
                 <div className="album-info">
-                    <div className="album-image cover" style={{backgroundImage: `url(${albumImage})`}}></div>
+                    <div className="album-image cover" style={{backgroundImage: `url(${albumImage == null ? defaultImage : albumImage})`}}></div>
                     <h2 className="album-title">{album.name}</h2>
                     <div className="album-artists">
                         {artists.map(artist => (

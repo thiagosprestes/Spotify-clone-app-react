@@ -12,6 +12,8 @@ import { FaRegHeart, FaShareAlt, FaPlay } from 'react-icons/fa';
 
 import { MdMusicNote } from 'react-icons/md';
 
+import defaultImage from '../../assets/default-image.jpg';
+
 function Artist() {
     const [ artist, setArtist ] = useState([]);
     const [ artistImage, setArtistImage ] = useState([]);
@@ -85,7 +87,7 @@ function Artist() {
             {load && <h1 className="loading">Carregando...</h1>}
             {!load && 
                 <>
-                    <header style={{backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 0.2), #121212), url(${artistImage})`}}>
+                    <header style={{backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 0.2), #121212), url(${artistImage == null ? defaultImage : artistImage})`}}>
                         <div className="artist-info">
                             <div className="artist-image cover" style={{backgroundImage: `url(${artistImage})`}}></div>
                             <div className="artist-bio">

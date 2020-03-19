@@ -8,6 +8,8 @@ import api from '../../services/api';
 
 import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
 
+import defaultImage from '../../assets/default-image.jpg';
+
 function Categories() {
     const [ category, setCategory ] = useState([]);
     const [ prev, setPrev ] = useState('');
@@ -84,7 +86,7 @@ function Categories() {
                             <React.Fragment key={data.id}>
                                 <Link to={`/playlist/id=${data.id}`}>
                                     <div className="category-item">
-                                        <div className="category-image cover" style={{backgroundImage: `url(${data.images[0].url})`}}></div>
+                                        <div className="category-image cover" style={{backgroundImage: `url(${data.images == 0 ? defaultImage : data.images[0].url})`}}></div>
                                         <div className="category-info">
                                             <span className="category-name">{data.name}</span>
                                             <span className="category-description">{data.description}</span>

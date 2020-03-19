@@ -8,6 +8,7 @@
 #artist .artist-info {
     padding: 40px 0 0 30px;
     display: flex;
+    flex-direction: row;
 }
 
 #artist .artist-info .artist-bio {

@@ -8,7 +8,7 @@ import './styles.css';
 
 import api from '../../services/api';
 
-import defaultImage from '../../assets/spotify-clone-app-default-image.jpg';
+import defaultImage from '../../assets/default-image.jpg';
 
 function Search() {
     const [ searchTerm, setSearchTerm ] = useState('');

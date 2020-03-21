@@ -87,7 +87,7 @@ function Profile() {
                             </div>
                         </div>
                         <div className="tracks-list">
-                            <table>
+                            <table className="tracks-table">
                                 <thead align="left">
                                     <tr>
                                         <th>#</th>
@@ -144,7 +144,7 @@ function Profile() {
                             </div>
                             <div className="recently-list">
                                 {recently.map(data => (
-                                    <div className="track" key={data.track.id}>
+                                    <div className="track" key={data.played_at}>
                                         <div className="track-cover cover" style={{backgroundImage: `url(${data.track.album.images[0].url})`}}></div>
                                         <span>{data.track.name}</span>
                                     </div>

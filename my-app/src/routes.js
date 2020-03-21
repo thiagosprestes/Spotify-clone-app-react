@@ -15,6 +15,10 @@ import Profile from './pages/Profile';
 import Recently from './pages/Recently';
 import Liked from './pages/Liked';
 
+import UserPlaylists from './pages/UserPlaylists';
+import UserArtists from './pages/UserArtists';
+import UserAlbums from './pages/UserAlbums';
+
 import getHashParams from './utils/getHashParams';
 
 const token = getHashParams().access_token;
@@ -42,10 +46,10 @@ const Routes = () => (
                 <PrivateRoute path="/profile" component={Profile} />          
                 <PrivateRoute path="/recently-played" component={Recently} />
                 <PrivateRoute path="/collection/tracks" component={Liked} />
-                <PrivateRoute path="/collection/playlists" component={Collection} />
+                <PrivateRoute path="/collection/playlists" component={UserPlaylists} />
                 <PrivateRoute path="/collection/podcasts" component={Collection} />
-                <PrivateRoute path="/collection/artists" component={Collection} />
-                <PrivateRoute path="/collection/albums" component={Collection} />
+                <PrivateRoute path="/collection/artists" component={UserArtists} />
+                <PrivateRoute path="/collection/albums" component={UserAlbums} />
                 <Route path="/album/id=:albumId" component={Album} />
                 <Route path="/playlist/id=:playlistId" component={Playlist} />
                 <Route path="/genre/id=:categoryId" component={Categories} />

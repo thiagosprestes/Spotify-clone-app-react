@@ -33,7 +33,7 @@ function Recently() {
                     <h2>Tocadas recentemente</h2>
                     <div className="grid-template">
                         {recently.map(data => (
-                            <div className="track">
+                            <div className="track" key={data.played_at}>
                                 <div className="cover" style={{backgroundImage: `url(${data.track.album.images[0].url})`}}></div>
                                 <span className="track-name">{data.track.name}</span>
                                 <div className="artist-and-album">

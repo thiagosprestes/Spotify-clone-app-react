@@ -39,34 +39,6 @@
     margin-bottom: 30px;
 }
 
-#profile .tracks .tracks-list table {
-    width: 100%;
-    margin-top: 20px;
-    border-collapse: collapse;
-    color: #ccc;
-}
-
-#profile .tracks .tracks-list table thead tr th {
-    padding: 15px 0;
-    color: #fff;
-}
-
-#profile .tracks .tracks-list table tbody tr td {
-    padding: 20px 0;
-}
-
-#profile .tracks .tracks-list table tbody tr td:hover {
-    color: #fff;
-}
-
-#profile .tracks .tracks-list .track-info {
-    border-bottom: 1px solid #282828;
-}
-
-#profile .tracks .tracks-list .track-info:last-child {
-    border: 0;
-}
-
 #profile .artists-and-recently {
     display: flex;
 }

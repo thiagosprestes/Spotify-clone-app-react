@@ -142,3 +142,32 @@ input {
     grid-template-columns: repeat(5, 1fr);
     gap: 20px;
 }
+
+/* Table */
+.tracks-table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+    color: #ccc;
+}
+
+.tracks-table thead tr th {
+    padding: 15px 0;
+    color: #fff;
+}
+
+.tracks-table tbody tr td {
+    padding: 20px 0;
+}
+
+.tracks-table tbody tr td:hover {
+    color: #fff;
+}
+
+.tracks-table .track-info {
+    border-bottom: 1px solid #282828;
+}
+
+.tracks-table .track-info:last-child {
+    border: 0;
+}

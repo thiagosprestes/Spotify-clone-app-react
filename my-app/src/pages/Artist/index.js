@@ -49,9 +49,14 @@ function Artist() {
     useEffect(() => {
         async function loadArtist() {
             await endpoint(`/artists/${id}`, (response) => {
-                setArtist(response.data);
-                setArtistImage(response.data.images[0].url);
+                setArtist(response.data);                
                 setArtistFollowers(response.data.followers.total);
+
+                if (response.data.images != 0) {
+                    setArtistImage(response.data.images[0].url);   
+                } else {
+                    setArtistImage(defaultImage);
+                }
             })
         }
 

@@ -12,6 +12,8 @@ import Playlist from './pages/Playlist';
 import Categories from './pages/Categories';
 import Artist from './pages/Artist';
 import Profile from './pages/Profile';
+import Recently from './pages/Recently';
+import Liked from './pages/Liked';
 
 import getHashParams from './utils/getHashParams';
 
@@ -38,8 +40,8 @@ const Routes = () => (
                 <PrivateRoute exact path="/" component={Home} />
                 <PrivateRoute path="/search" component={Search} />      
                 <PrivateRoute path="/profile" component={Profile} />          
-                <PrivateRoute path="/genre/recently-played" component={Collection} />
-                <PrivateRoute path="/collection/tracks" component={Collection} />
+                <PrivateRoute path="/recently-played" component={Recently} />
+                <PrivateRoute path="/collection/tracks" component={Liked} />
                 <PrivateRoute path="/collection/playlists" component={Collection} />
                 <PrivateRoute path="/collection/podcasts" component={Collection} />
                 <PrivateRoute path="/collection/artists" component={Collection} />

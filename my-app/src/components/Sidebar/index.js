@@ -51,7 +51,7 @@ function Sidebar() {
                 <span>Sua biblioteca</span>
                 <ul>
                 <li className="menu-item">
-                    <NavLink exact className="item-link" to="/genre/recently-played">
+                    <NavLink exact className="item-link" to="/recently-played">
                         <div className="item-icon">
                             <FiClock size="2em" />
                         </div>
@@ -59,7 +59,7 @@ function Sidebar() {
                     </NavLink>
                 </li>
                 <li className="menu-item">
-                    <NavLink exact className="item-link" to="/collections/tracks">
+                    <NavLink exact className="item-link" to="/collection/tracks">
                         <div className="item-icon">
                             <FaHeart size="2em" />
                         </div>
@@ -67,7 +67,7 @@ function Sidebar() {
                     </NavLink>
                 </li>
                 <li className="menu-item">
-                    <NavLink exact className="item-link" to="/collections/playlists">
+                    <NavLink exact className="item-link" to="/collection/playlists">
                         <div className="item-icon">
                             <MdPlaylistPlay size="2em" />
                         </div>
@@ -75,17 +75,7 @@ function Sidebar() {
                     </NavLink>
                 </li>
                 <li className="menu-item">
-                    <NavLink className="item-link" to="/collections/podcasts">
-                        <div className="item-icon">
-                            <FaMicrophone size="2em" />
-                        </div>
-                        <div className="item-text">
-                            Podcasts
-                        </div>
-                    </NavLink>
-                </li>
-                <li className="menu-item">
-                    <NavLink className="item-link" to="/collections/artists">
+                    <NavLink className="item-link" to="/collection/artists">
                         <div className="item-icon">
                             <MdMusicNote size="2em" />
                         </div>
@@ -95,7 +85,7 @@ function Sidebar() {
                     </NavLink>
                 </li>
                 <li className="menu-item">
-                    <NavLink className="item-link" to="/collections/albums">
+                    <NavLink className="item-link" to="/collection/albums">
                         <div className="item-icon">
                             <MdAlbum size="2em" />
                         </div>

@@ -1,0 +1,43 @@
+#recently {
+    display: flex;
+    flex-direction: column;
+}
+
+#recently h2 {
+    margin-bottom: 20px;
+}
+
+#recently .track {
+    text-align: center;
+}
+
+#recently .track .cover {
+    margin-bottom: 10px;
+}
+
+#recently .track .track-name {
+    font-weight: bold;
+    font-size: 14px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+}
+
+#recently .track .artist-and-album {
+    margin-top: 5px;
+    display: flex;
+    flex-direction: column;
+}
+
+#recently .track .artist-and-album span {
+    font-size: 13px;
+    margin-bottom: 5px;
+    color: #ccc;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+}

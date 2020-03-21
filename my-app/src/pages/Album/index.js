@@ -14,6 +14,8 @@ import SpotifyButton from '../../components/SpotifyButton';
 
 import defaultImage from '../../assets/default-image.jpg';
 
+import millisToMinutesAndSeconds from '../../utils/millisToMinutesAndSeconds';
+
 function Album() {
     const [ album, setAlbum ] = useState([]);
     const [ albumImage, setAlbumImage ] = useState([]);
@@ -96,9 +98,7 @@ function Album() {
                                 </div> 
                             </div>
                             <div className="track-duration">
-                                {`
-                                    ${Math.floor(data.duration_ms / 60000)}:${((data.duration_ms % 60000) / 1000).toFixed(0) == 60 ? (((data.duration_ms % 60000) / 1000).toFixed(0) + 1) + ':00' : (((data.duration_ms % 60000) / 1000).toFixed(0) < 10 ? "0" : "") + ((data.duration_ms % 60000) / 1000).toFixed(0)} 
-                                `}
+                                {millisToMinutesAndSeconds(data.duration_ms)}
                             </div>                           
                         </div>
                     ))}

@@ -82,9 +82,13 @@
 }
 
 #artist .albums .album-info span {
-    font-size: 20px;
     font-size: 14px;
     font-weight: bold;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
 }
 
 #artist .related-artists {

@@ -14,6 +14,8 @@ import { MdMusicNote } from 'react-icons/md';
 
 import defaultImage from '../../assets/default-image.jpg';
 
+import millisToMinutesAndSeconds from '../../utils/millisToMinutesAndSeconds';
+
 function Artist() {
     const [ artist, setArtist ] = useState([]);
     const [ artistImage, setArtistImage ] = useState([]);
@@ -123,9 +125,7 @@ function Artist() {
                                         <span className="track-name">{data.name}</span>
                                     </div>
                                     <div className="track-duration">
-                                        {`
-                                            ${Math.floor(data.duration_ms / 60000)}:${((data.duration_ms % 60000) / 1000).toFixed(0) == 60 ? (((data.duration_ms % 60000) / 1000).toFixed(0) + 1) + ':00' : (((data.duration_ms % 60000) / 1000).toFixed(0) < 10 ? "0" : "") + ((data.duration_ms % 60000) / 1000).toFixed(0)} 
-                                        `}
+                                        {millisToMinutesAndSeconds(data.duration_ms)}
                                     </div>                       
                                 </div>
                             ))}

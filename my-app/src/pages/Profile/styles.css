@@ -2,6 +2,7 @@
     display: flex;
     align-items: center;
     flex-direction: column;
+    margin-bottom: 50px;
 }
 
 #profile .header .user-picture {
@@ -11,4 +12,117 @@
 
 #profile .header .username {
     font-weight: bold;
+    text-transform: capitalize;
+    font-size: 30px;
+}
+
+#profile .options-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+#profile .options-header .options span {
+    margin-left: 10px;
+    color: #ccc;
+    font-weight: bold;
+}
+
+#profile .options-header .options span:hover {
+    color: #fff;
+    cursor: pointer;
+}
+
+#profile .tracks {
+    margin-bottom: 30px;
+}
+
+#profile .tracks .tracks-list table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+    color: #ccc;
+}
+
+#profile .tracks .tracks-list table thead tr th {
+    padding: 15px 0;
+    color: #fff;
+}
+
+#profile .tracks .tracks-list table tbody tr td {
+    padding: 20px 0;
+}
+
+#profile .tracks .tracks-list table tbody tr td:hover {
+    color: #fff;
+}
+
+#profile .tracks .tracks-list .track-info {
+    border-bottom: 1px solid #282828;
+}
+
+#profile .tracks .tracks-list .track-info:last-child {
+    border: 0;
+}
+
+#profile .artists-and-recently {
+    display: flex;
+}
+
+#profile .artists-and-recently .artists {
+    display: flex;
+    flex-direction: column;
+}
+
+#profile .artists-and-recently .artists .artists-list .artist {
+    display: flex;
+    align-items: center;
+    padding: 15px 0;
+    border-bottom: 1px solid #282828;
+}
+
+#profile .artists-and-recently .artists .artists-list .artist:last-child {
+    border: 0;
+}
+
+#profile .artists-and-recently .artists .artists-list .artist .artist-cover {
+    height: 3rem;
+    width: 3em;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+#profile .artists-and-recently .artists .artists-list .artist span {
+    font-weight: bold;
+    color: #ccc;
+}
+
+#profile .artists-and-recently .artists .artists-list .artist span:hover {
+    color: #fff;
+}
+
+#profile .artists-and-recently .recently-played {
+    margin-left: 30px;
+    width: 30%;
+}
+
+#profile .artists-and-recently .recently-played .recently-list .track {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+#profile .artists-and-recently .recently-played .recently-list .track span {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    max-width: 50%;
+}
+
+#profile .artists-and-recently .recently-played .recently-list .track .track-cover {
+    width: 4rem;
+    height: 4rem;
+    margin-right: 10px;
 }

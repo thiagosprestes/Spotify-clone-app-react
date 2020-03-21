@@ -9,7 +9,10 @@ import api from '../../services/api';
 import { FaPlay, FaRegHeart, FaShareAlt } from 'react-icons/fa';
 
 import { MdMusicNote } from 'react-icons/md';
+
 import SpotifyButton from '../../components/SpotifyButton';
+
+import millisToMinutesAndSeconds from '../../utils/millisToMinutesAndSeconds';
 
 function Playlist() {
     const [ playlist, setPlaylist ] = useState([]);
@@ -79,17 +82,13 @@ function Playlist() {
                                     <Link to={`/artist/id=${artist.id}`} key={artist.id}>
                                         <span>{artist.name}</span>
                                     </Link>
-                                ))} - <Link to={`/album/id=${data.track.album.id}`}>
+                                ))}<Link to={`/album/id=${data.track.album.id}`}>
                                         <span className="track-album">{data.track.album.name}</span>
                                     </Link>
                             </div> 
                         </div>
                         <div className="track-duration">
-                            <span>
-                                {`
-                                    ${Math.floor(data.track.duration_ms / 60000)}:${((data.track.duration_ms % 60000) / 1000).toFixed(0) == 60 ? (((data.track.duration_ms % 60000) / 1000).toFixed(0) + 1) + ':00' : (((data.track.duration_ms % 60000) / 1000).toFixed(0) < 10 ? "0" : "") + ((data.track.duration_ms % 60000) / 1000).toFixed(0)} 
-                                `}
-                            </span>
+                            <span>{millisToMinutesAndSeconds(data.track.duration_ms)}</span>
                         </div>                           
                     </div>
                     ))}

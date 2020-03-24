@@ -2,10 +2,3 @@
     margin-top: 50px;
     text-align: center;
 }
-
-#liked-tracks .load-more button {
-    background-color: rgba(0, 0, 0, 0);
-    border: 3px solid #FFF;
-    color: #FFF;   
-    text-transform: capitalize;
-}

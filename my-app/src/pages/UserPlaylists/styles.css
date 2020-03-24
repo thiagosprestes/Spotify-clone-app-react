@@ -1,0 +1,27 @@
+#playlists h2 {
+    margin-bottom: 20px;
+}
+
+#playlists .item {
+    text-align: center;
+}
+
+#playlists .item .name-and-description {
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+}
+
+#playlists .item .name-and-description .name {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+#playlists .item .name-and-description .description {
+    color: #ccc;
+}
+
+.load-more {
+    text-align: center;
+    margin-top: 50px;
+}

@@ -171,3 +171,10 @@ input {
 .tracks-table .track-info:last-child {
     border: 0;
 }
+
+.load-more button {
+    background-color: rgba(0, 0, 0, 0);
+    border: 3px solid #FFF;
+    color: #FFF;   
+    text-transform: capitalize;
+}

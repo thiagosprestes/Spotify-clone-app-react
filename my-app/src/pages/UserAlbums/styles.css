@@ -1,0 +1,36 @@
+#albums h2 {
+    margin-bottom: 20px;
+}
+
+#albums .item {
+    text-align: center;
+}
+
+#albums .item {
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+}
+
+#albums .item .cover {
+    margin-bottom: 8px;
+}
+
+#albums .item .name {
+    font-weight: bold;
+}
+
+#albums .item .artist {
+    color: #ccc;
+    font-size: 14px;
+    margin-top: 8px;
+}
+
+#albums .item .artist:hover {
+    text-decoration: underline;
+}
+
+.load-more {
+    text-align: center;
+    margin-top: 50px;
+}

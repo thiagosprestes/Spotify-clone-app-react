@@ -1,0 +1,31 @@
+#artists .item .artist-cover {
+    border-radius: 50%;
+}
+
+#artists h2 {
+    margin-bottom: 20px;
+}
+
+#artists .item {
+    text-align: center;
+}
+
+#artists .item .name-and-description {
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+}
+
+#artists .item .name-and-description .name {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+#artists .item .name-and-description .description {
+    color: #ccc;
+}
+
+.load-more {
+    text-align: center;
+    margin-top: 50px;
+}

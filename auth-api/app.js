@@ -48,7 +48,7 @@ app.get('/login', function(req, res) {
   res.cookie(stateKey, state);
 
   // your application requests authorization
-  var scope = 'user-read-private user-read-email user-read-recently-played user-top-read user-library-read playlist-read-private user-follow-read';
+  var scope = 'user-read-private user-read-email playlist-read-private user-library-read user-library-modify user-top-read playlist-read-collaborative playlist-modify-public playlist-modify-private user-follow-read user-read-playback-state user-read-currently-playing user-modify-playback-state user-read-recently-played user-follow-modify';
   res.redirect('https://accounts.spotify.com/authorize?' +
     querystring.stringify({
       response_type: 'code',

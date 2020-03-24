@@ -8,7 +8,7 @@ import SpotifyButton from '../../components/SpotifyButton';
 
 import api from '../../services/api';
 
-import { FaRegHeart, FaShareAlt, FaPlay } from 'react-icons/fa';
+import { FaPlay } from 'react-icons/fa';
 
 import { MdMusicNote } from 'react-icons/md';
 
@@ -25,6 +25,8 @@ function Artist() {
     const [ topTracks, setTopTracks ] = useState([]);
 
     const [ albums, setAlbums ] = useState([]);
+
+    const [ following, setFollowing ] = useState('');
 
     const [ load, setLoad ] = useState(true);
 
@@ -78,16 +80,38 @@ function Artist() {
             })
         }
 
+        async function verifyFollowing() {
+            await endpoint(`/me/following/contains?type=artist&ids=${id}`, (response) => {
+                setFollowing(response.data[0]);
+            })
+        }
+
         loadArtist();
         loadTopTracks();
         loadAlbums();
         loadRelatedArtists();
+
+        verifyFollowing()
 
         document.body.scrollTop = 0;
         document.documentElement.scrollTop = 0;
 
         setLoad(true);
     }, [id])
+
+    async function follow() {
+        await api.put(`/me/following?type=artist&ids=${id}`)
+        .then(() => {
+            setFollowing(true);
+        })
+    }
+
+    async function unfollow() {
+        await api.delete(`/me/following?type=artist&ids=${id}`)
+        .then(() => {
+            setFollowing(false);
+        })
+    }
 
     return(
         <div id="artist">
@@ -109,8 +133,16 @@ function Artist() {
                         </div>
                         <div className="options">
                             <SpotifyButton id={artist.id} type="artist" />  
-                            <FaRegHeart size="1.8em" className="like" />
-                            <FaShareAlt size="1.8em" className="share" />
+                            {!following && 
+                                <button className="follow" onClick={follow}>
+                                    Seguir
+                                </button>
+                            }
+                            {following && 
+                                <button className="unfollow" onClick={unfollow}>
+                                    Deixar de seguir
+                                </button>
+                            }
                         </div>
                     </header>
                     <div className="container">

@@ -7,16 +7,18 @@ import './styles.css';
 import api from '../../services/api';
 
 function Header() {
-    const [ user, setUser ] = useState('')
+    const [ user, setUser ] = useState('');
 
     useEffect(() => {
         async function load() {
-            const response = await api.get('/me')
+            const response = await api.get('/me');
 
-            setUser(response.data.display_name)
+            setUser(response.data.display_name);
+
+            localStorage.setItem('user', response.data.display_name);
         }
 
-        load()
+        load();
     }, [])
 
     return(

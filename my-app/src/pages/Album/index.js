@@ -6,7 +6,7 @@ import './styles.css';
 
 import api from '../../services/api';
 
-import { FaPlay, FaRegHeart, FaShareAlt } from 'react-icons/fa';
+import { FaPlay, FaRegHeart, FaShareAlt, FaHeart } from 'react-icons/fa';
 
 import { MdMusicNote } from 'react-icons/md';
 
@@ -22,6 +22,8 @@ function Album() {
     const [ artists, setArtists ] = useState([]);
     const [ tracks, setTracks ] = useState([]);
     const [ copyrights, setCopyrights ] = useState([]);
+
+    const [ save, setSave ] = useState('');
 
     const [ load, setLoad ] = useState(true)
 
@@ -41,11 +43,33 @@ function Album() {
                 setLoad(false);
             })
         }
+
+        async function verifySaved() {
+            await api.get(`/me/albums/contains?ids=${id}`)
+            .then((response) => {
+                setSave(response.data[0])
+            })
+        }
         
         load()
+        verifySaved()
     }, [])
 
     const date = new Date(album.release_date)
+
+    async function saveAlbum() {
+        await api.put(`/me/albums?ids=${id}`)
+        .then(() => {
+            setSave(true)
+        })
+    }
+
+    async function removeAlbum() {
+        await api.delete(`/me/albums?ids=${id}`)
+        .then(() => {
+            setSave(false)
+        })
+    }
 
     return(
         <>
@@ -64,7 +88,8 @@ function Album() {
                     </div>
                     <SpotifyButton id={album.id} type="album" />
                     <div className="album-options">
-                        <FaRegHeart size="1.8em" />
+                        {!save && <FaRegHeart onClick={saveAlbum} size="1.8em" />}
+                        {save && <FaHeart onClick={removeAlbum} size="1.8em" color="#1DB954" />}
                         <FaShareAlt size="1.8em" />
                     </div>
                     <div className="album-year">

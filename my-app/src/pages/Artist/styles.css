@@ -38,7 +38,22 @@
     margin-left: 30px;
 }
 
-#artist .options .like, .share {
+#artist .options button {
+    margin-left: 10px;
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0);
+    border: 3px solid #fff;
+    letter-spacing: 1px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    transition: 0.1s;
+}
+
+#artist .options button:hover {
+    transform: scale(1.06);
+}
+
+#artist .options .share {
     margin-left: 10px;
 }
 

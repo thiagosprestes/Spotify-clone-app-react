@@ -8,7 +8,7 @@ function homeItems({ itemType, itemTitle, itemData, itemDataCategories}) {
     return(
         <>
             <h2>{itemTitle}</h2>
-            <div className="items">
+            <div className="items grid-template">
                 {itemDataCategories !== undefined && itemType == 'category' && itemDataCategories.map(data => (                    
                     <div key={data.name} className="item-info">
                         <Link to={`/genre/id=${data.id}`}>

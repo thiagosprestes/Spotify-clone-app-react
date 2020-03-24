@@ -16,3 +16,9 @@
     font-weight: bold;
     font-size: 14px;
 }
+
+@media (max-width: 500px) {
+    #header {
+        left: 0;
+    }
+}

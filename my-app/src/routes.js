@@ -6,7 +6,6 @@ import Body from './components/Body';
 import Login from './pages/Login';
 import Home from './pages/Home';
 import Search from './pages/Search';
-import Collection from './pages/Collection';
 import Album from './pages/Album';
 import Playlist from './pages/Playlist';
 import Categories from './pages/Categories';
@@ -18,6 +17,8 @@ import Liked from './pages/Liked';
 import UserPlaylists from './pages/UserPlaylists';
 import UserArtists from './pages/UserArtists';
 import UserAlbums from './pages/UserAlbums';
+
+import User from './pages/User';
 
 import getHashParams from './utils/getHashParams';
 
@@ -47,13 +48,13 @@ const Routes = () => (
                 <PrivateRoute path="/recently-played" component={Recently} />
                 <PrivateRoute path="/collection/tracks" component={Liked} />
                 <PrivateRoute path="/collection/playlists" component={UserPlaylists} />
-                <PrivateRoute path="/collection/podcasts" component={Collection} />
                 <PrivateRoute path="/collection/artists" component={UserArtists} />
                 <PrivateRoute path="/collection/albums" component={UserAlbums} />
                 <Route path="/album/id=:albumId" component={Album} />
                 <Route path="/playlist/id=:playlistId" component={Playlist} />
                 <Route path="/genre/id=:categoryId" component={Categories} />
                 <Route path="/artist/id=:artistId" component={Artist} />
+                <Route path="/user/:userId" component={User} />
             </Body>
         </Switch>
     </BrowserRouter>

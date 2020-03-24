@@ -42,7 +42,7 @@ function UserRecentlyPlayed() {
                             </td>
                         </tr>      
                     ))}
-            </tbody>
+                </tbody>
             </table>
         </div>
     )

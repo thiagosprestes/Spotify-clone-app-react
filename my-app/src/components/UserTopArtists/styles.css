@@ -44,3 +44,10 @@
     font-size: 14px;
     color: #fff;
 }
+
+@media (max-width: 500px) {
+    #top-artists {
+        margin: 20px 0;
+        width: 100%;
+    }    
+}

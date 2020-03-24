@@ -28,3 +28,14 @@
     justify-content: center;
     height: 100vh;
 }
+
+
+@media (max-width: 500px) {
+    #app aside {
+        display: none;
+    }
+
+    #app main {
+        margin: 0;
+    }
+}

@@ -6,7 +6,7 @@ import './styles.css';
 
 import api from '../../services/api';
 
-import { FaPlay, FaRegHeart, FaShareAlt } from 'react-icons/fa';
+import { FaPlay, FaHeart, FaRegHeart, FaShareAlt } from 'react-icons/fa';
 
 import { MdMusicNote } from 'react-icons/md';
 
@@ -19,10 +19,11 @@ function Playlist() {
     const [ playlistImage, setPlaylistImage ] = useState([]);
     const [ owner, setOwner ] = useState({});
     const [ tracks, setTracks ] = useState([]);
+    const [ save, setSave ] = useState('');
 
     const [ load, setLoad ] = useState(true)
 
-    const id = useParams().playlistId;    
+    const id = useParams().playlistId;
 
     useEffect(() => {
         async function load() {
@@ -37,11 +38,31 @@ function Playlist() {
                 setLoad(false);
             })
         }
+
+        async function verifySaved() {
+            await api.get(`/playlists/${id}/followers/contains?ids=${localStorage.getItem('user')}`)
+            .then((response) => {
+                setSave(response.data[0])
+            })
+        }
         
+        verifySaved();
         load()
     }, [])
 
-    const date = new Date(playlist.release_date)
+    async function savePlaylist() {
+        await api.put(`/playlists/${id}/followers`)
+        .then(() => {
+            setSave(true)
+        })
+    }
+
+    async function removePlaylist() {
+        await api.delete(`/playlists/${id}/followers`)
+        .then(() => {
+            setSave(false)
+        })
+    }
 
     return(
         <>
@@ -58,7 +79,8 @@ function Playlist() {
                     </div>
                     <SpotifyButton id={id} type="playlist" />
                     <div className="album-options">
-                        <FaRegHeart size="1.8em" />
+                        {!save && <FaRegHeart onClick={savePlaylist} size="1.8em" />}
+                        {save && <FaHeart onClick={removePlaylist} size="1.8em" color="#1DB954" />}
                         <FaShareAlt size="1.8em" />
                     </div>
                     <div className="album-year">

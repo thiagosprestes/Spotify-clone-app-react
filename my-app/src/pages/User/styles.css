@@ -1,0 +1,64 @@
+#profile .header {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 50px;
+}
+
+#profile .header .user-picture {
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+
+#profile .header .username {
+    font-weight: bold;
+    text-transform: capitalize;
+    font-size: 30px;
+}
+
+#profile .options-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+#profile .options-header .options span {
+    margin-left: 10px;
+    color: #ccc;
+    font-weight: bold;
+}
+
+#profile .options-header .options span:hover {
+    color: #fff;
+    cursor: pointer;
+}
+
+#profile h2 {
+    margin-bottom: 20px;
+}
+
+#profile .item {
+    text-align: center;
+}
+
+#profile .item .name-and-description {
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+}
+
+#profile .item .name-and-description .name {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+#profile .item .name-and-description .description {
+    color: #ccc;
+}
+
+.load-more {
+    text-align: center;
+    margin-top: 50px;
+}

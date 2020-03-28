@@ -17,29 +17,25 @@ function Liked() {
 
     const [ load, setLoad ] = useState(true);
 
-    useEffect(() => {
-        async function loadTracks() {
-            await api.get('/me/tracks?market=br&limit=50')
-            .then((response) => {
-                setTracks(response.data.items);
-                setNext(response.data.next);
-            })
-            .finally(() => {
-                setLoad(false);
-            })
-        }
+    async function loadTracks() {
+        const response = await api.get('/me/tracks?market=br&limit=50');
 
+        setTracks(response.data.items);
+        setNext(response.data.next);
+
+        setLoad(false);
+    }
+
+    useEffect(() => {
         loadTracks();
-    }, [])
+    }, []);
 
     async function loadMore() {
-        const removeEndpointURL = next.replace('https://api.spotify.com/v1', '')
+        const removeEndpointURL = next.replace('https://api.spotify.com/v1', '');
 
-        await api.get(removeEndpointURL)
-        .then((response) => {
-            setTracks(tracks.concat(response.data.items));            
-        })
+        const response = await api.get(removeEndpointURL);
 
+        setTracks([...tracks, ...response.data.items]);            
     }
 
     return (

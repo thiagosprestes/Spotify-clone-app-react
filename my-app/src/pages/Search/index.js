@@ -13,25 +13,22 @@ import defaultImage from '../../assets/default-image.jpg';
 function Search() {
     const [ searchTerm, setSearchTerm ] = useState('');
     const [ artists, setArtists ] = useState([]);
-    const [ tracks, setTracks ] = useState([]);
     const [ albums, setAlbums ] = useState([]);
     const [ playlists, setPlaylists ] = useState([]);
 
-    useEffect(() => {
-        async function load() {
-            await api.get(`/search?q=${searchTerm}&type=album%2Cartist%2Cplaylist%2Ctrack&market=br`)
-            .then((response) => {
-                setArtists(response.data.artists.items);
-                setTracks(response.data.tracks.items);
-                setAlbums(response.data.albums.items);
-                setPlaylists(response.data.playlists.items);
-            })
-        }
+    async function load() {
+        const response = await api.get(`/search?q=${searchTerm}&type=album%2Cartist%2Cplaylist%2Ctrack&market=br`);
 
+        setArtists(response.data.artists.items);
+        setAlbums(response.data.albums.items);
+        setPlaylists(response.data.playlists.items);
+    }
+
+    useEffect(() => {
         if (searchTerm) {
             load();
         }
-    }, [searchTerm])
+    }, [searchTerm]);
 
     return(
         <div id="search" className="container">

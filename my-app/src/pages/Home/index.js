@@ -17,35 +17,35 @@ function Home() {
 
     const [ load, setLoad ] = useState(true);
 
-    function endpoint(url, data) {
-        api.get(url).then(data).finally(() => {
-            setLoad(false)
-        }) 
+    async function loadReleases() {
+        const response = await api.get('/browse/new-releases?country=BR&limit=5');
+
+        setNewReleases(response.data.albums.items);
+
+        setLoad(false);
+    }
+
+    async function loadCategories() {
+        const response = await api.get('/browse/categories?country=br&limit=5');
+
+        setCategories(response.data.categories.items);
+
+        setLoad(false);
+    }
+
+    async function loadPlaylists() {
+        const response = await api.get('browse/featured-playlists?country=br&limit=5');
+
+        setPlaylists(response.data.playlists.items); 
+
+        setLoad(false);
     }
 
     useEffect(() => {
-        async function loadReleases() {
-            await endpoint('/browse/new-releases?country=BR&limit=5', (response) => {
-                setNewReleases(response.data.albums.items)
-            })
-        }
-
-        async function loadCategories() {
-            await endpoint('/browse/categories?country=br&limit=5', (response) => {
-                setCategories(response.data.categories.items)
-            })
-        }
-
-        async function loadPlaylists() {
-            await endpoint('browse/featured-playlists?country=br&limit=5', (response) => {
-                setPlaylists(response.data.playlists.items)
-            }) 
-        }
-
-        loadReleases()
-        loadCategories()
-        loadPlaylists()
-    }, [])
+        loadReleases();
+        loadCategories();
+        loadPlaylists();
+    }, []);
 
     return (
         <div id="home" className="container">

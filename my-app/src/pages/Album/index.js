@@ -25,50 +25,53 @@ function Album() {
 
     const [ save, setSave ] = useState('');
 
-    const [ load, setLoad ] = useState(true)
+    const [ load, setLoad ] = useState(true);
 
     const id = useParams().albumId;    
 
-    useEffect(() => {
-        async function load() {
-            await api.get(`albums/${id}`)
-            .then(response => {
-                setAlbum(response.data)
-                setAlbumImage(response.data.images[0].url);
-                setArtists(response.data.artists)
-                setTracks(response.data.tracks.items)
-                setCopyrights(response.data.copyrights)
-            })
-            .finally(() => {
-                setLoad(false);
-            })
-        }
-
-        async function verifySaved() {
-            await api.get(`/me/albums/contains?ids=${id}`)
-            .then((response) => {
-                setSave(response.data[0])
-            })
-        }
+    async function loadAlbum() {
+        const response = await api.get(`albums/${id}`);
         
-        load()
-        verifySaved()
-    }, [])
+        setAlbum(response.data);
+        setAlbumImage(response.data.images[0].url);
+        setArtists(response.data.artists);
+        setTracks(response.data.tracks.items);
+        setCopyrights(response.data.copyrights);
+        
+        setLoad(false);
+    }
 
-    const date = new Date(album.release_date)
+    async function verifySaved() {
+        const response = await api.get(`/me/albums/contains?ids=${id}`);
+
+        setSave(response.data[0]);
+    }
+
+    useEffect(() => {        
+        loadAlbum();
+        verifySaved();
+    }, []);
+
+    const date = new Date(album.release_date);
 
     async function saveAlbum() {
-        await api.put(`/me/albums?ids=${id}`)
-        .then(() => {
-            setSave(true)
-        })
+        try {
+            await api.put(`/me/albums?ids=${id}`);
+    
+            setSave(true);
+        } catch (error) {
+            alert("Ocorreu um erro ao salvar o àlbum.");
+        }
     }
 
     async function removeAlbum() {
-        await api.delete(`/me/albums?ids=${id}`)
-        .then(() => {
-            setSave(false)
-        })
+        try {
+            await api.delete(`/me/albums?ids=${id}`);
+
+            setSave(false);
+        } catch (error) {
+            alert("Ocorreu um erro ao remover o àlbum da sua biblioteca");
+        }
     }
 
     return(

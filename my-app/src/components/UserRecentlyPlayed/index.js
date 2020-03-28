@@ -9,21 +9,15 @@ import api from '../../services/api';
 function UserRecentlyPlayed() {
     const [ recentlyPlayed, setRecentlyPlayed ] = useState([]);
 
-    const [ load, setLoad ] = useState(true)
+    async function handleLoad() {
+        const response = await api.get('/me/player/recently-played?limit=10');
+
+        setRecentlyPlayed(response.data.items);
+    }
 
     useEffect(() => {
-        async function handleLoad() {
-            await api.get('/me/player/recently-played?limit=10')
-            .then(response => {
-                setRecentlyPlayed(response.data.items)
-            })
-            .finally(() => {
-                setLoad(false)
-            })
-        }
-
-        handleLoad()
-    }, [])
+        handleLoad();
+    }, []);
 
     return (
         <div id="recently-played">

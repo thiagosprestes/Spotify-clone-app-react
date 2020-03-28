@@ -9,21 +9,15 @@ import api from '../../services/api';
 function UserTopArtists() {
     const [ topArtists, setTopArtists ] = useState([]);
 
-    const [ load, setLoad ] = useState(true)
+    async function handleLoad() {
+        await api.get('/me/top/artists?limit=5');
+
+        setTopArtists(response.data.items);
+    }
 
     useEffect(() => {
-        async function handleLoad() {
-            await api.get('/me/top/artists?limit=5')
-            .then(response => {
-                setTopArtists(response.data.items)
-            })
-            .finally(() => {
-                setLoad(false)
-            })
-        }
-
-        handleLoad()
-    }, [])
+        handleLoad();
+    }, []);
 
     return (
         <div id="top-artists">

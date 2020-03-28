@@ -11,19 +11,17 @@ function Recently() {
 
     const [ load, setLoad ] = useState(true);
 
-    useEffect(() => {
-        async function loadRecently() {
-            await api.get('/me/player/recently-played?limit=50')
-            .then(response => {
-                setRecently(response.data.items)
-            })
-            .finally(() => {
-                setLoad(false)
-            })
-        }
+    async function loadRecently() {
+        const response = await api.get('/me/player/recently-played?limit=50');
 
+        setRecently(response.data.items);
+        
+        setLoad(false);
+    }
+
+    useEffect(() => {
         loadRecently();
-    }, [])
+    }, []);
 
     return(
         <>

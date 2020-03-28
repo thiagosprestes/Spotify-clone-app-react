@@ -42,56 +42,60 @@ function Artist() {
     
     const artistsFilter = relatedArtists.slice(0, 10);
 
-    function endpoint(url, data) {
-        api.get(url).then(data).finally(() => {
-            setLoad(false);
-        }) 
+    async function loadArtist() {
+        const response = await api.get(`/artists/${id}`);
+
+        setArtist(response.data);                
+        setArtistFollowers(response.data.followers.total);
+
+        if (response.data.images != 0) {
+            setArtistImage(response.data.images[0].url);   
+        } else {
+            setArtistImage(defaultImage);
+        }
+
+        setLoad(false);
+    }
+
+    async function loadTopTracks() {
+        const response = await api.get(`/artists/${id}/top-tracks?country=br&limit=50`);
+
+        setTopTracks(response.data.tracks);
+
+        setLoad(false);
+    }
+
+    async function loadAlbums() {
+        const response = await api.get(`/artists/${id}/albums?include_groups=album%2Csingle%2Cappears_on%2Ccompilation&market=br&limit=50`);
+
+        setAlbums(response.data.items);
+
+        setLoad(false);
+    }
+
+    async function loadRelatedArtists() {
+        const response = await api.get(`/artists/${id}/related-artists`);
+
+        setRelatedArtists(response.data.artists);
+
+        setLoad(false);
+    }
+
+    async function verifyFollowing() {
+        await api.get(`/me/following/contains?type=artist&ids=${id}`);
+        
+        setFollowing(response.data[0]);
+
+        setLoad(false);
     }
 
     useEffect(() => {
-        async function loadArtist() {
-            await endpoint(`/artists/${id}`, (response) => {
-                setArtist(response.data);                
-                setArtistFollowers(response.data.followers.total);
-
-                if (response.data.images != 0) {
-                    setArtistImage(response.data.images[0].url);   
-                } else {
-                    setArtistImage(defaultImage);
-                }
-            })
-        }
-
-        async function loadTopTracks() {
-            await endpoint(`/artists/${id}/top-tracks?country=br&limit=50`, (response) => {
-                setTopTracks(response.data.tracks);
-            })
-        }
-
-        async function loadAlbums() {
-            await endpoint(`/artists/${id}/albums?include_groups=album%2Csingle%2Cappears_on%2Ccompilation&market=br&limit=50`, (response) => {
-                setAlbums(response.data.items);
-            })
-        }
-
-        async function loadRelatedArtists() {
-            await endpoint(`/artists/${id}/related-artists`, (response) => {
-                setRelatedArtists(response.data.artists);
-            })
-        }
-
-        async function verifyFollowing() {
-            await endpoint(`/me/following/contains?type=artist&ids=${id}`, (response) => {
-                setFollowing(response.data[0]);
-            })
-        }
-
         loadArtist();
         loadTopTracks();
         loadAlbums();
         loadRelatedArtists();
 
-        verifyFollowing()
+        verifyFollowing();
 
         document.body.scrollTop = 0;
         document.documentElement.scrollTop = 0;
@@ -100,17 +104,15 @@ function Artist() {
     }, [id])
 
     async function follow() {
-        await api.put(`/me/following?type=artist&ids=${id}`)
-        .then(() => {
-            setFollowing(true);
-        })
+        await api.put(`/me/following?type=artist&ids=${id}`);
+
+        setFollowing(true);
     }
 
     async function unfollow() {
-        await api.delete(`/me/following?type=artist&ids=${id}`)
-        .then(() => {
-            setFollowing(false);
-        })
+        await api.delete(`/me/following?type=artist&ids=${id}`);
+    
+        setFollowing(false);
     }
 
     return(

@@ -14,29 +14,26 @@ function UserAlbums() {
 
     const [ load, setLoad ] = useState(true);
 
+    async function loadAlbums() {
+        const response = await api.get('/me/albums?limit=50');
+
+        setAlbums(response.data.items);
+        setNext(response.data.next);
+
+        setLoad(false);
+    }
+
     useEffect(() => {
-        async function loadAlbums() {
-            await api.get('/me/albums?limit=50')
-            .then((response) => {
-                setAlbums(response.data.items);
-                setNext(response.data.next);
-            })
-            .finally(() => {
-                setLoad(false)
-            })
-        }
-
         loadAlbums();
-    }, [])
+    }, []);
 
-    function loadMore() {
+    async function loadMore() {
         const endpointURL = next.replace('https://api.spotify.com/v1', '');
 
-        api.get(endpointURL)
-        .then((response) => {
-            setAlbums(albums.concat(response.data.items));
-            setNext(response.data.next);
-        })
+        const response = await api.get(endpointURL);
+        
+        setAlbums(albums.concat(response.data.items));
+        setNext(response.data.next);
     }
 
     return(

@@ -9,17 +9,17 @@ import api from '../../services/api';
 function Header() {
     const [ user, setUser ] = useState('');
 
+    async function loadUser() {
+        const response = await api.get('/me');
+
+        setUser(response.data.display_name);
+
+        localStorage.setItem('user', response.data.display_name);
+    }
+
     useEffect(() => {
-        async function load() {
-            const response = await api.get('/me');
-
-            setUser(response.data.display_name);
-
-            localStorage.setItem('user', response.data.display_name);
-        }
-
-        load();
-    }, [])
+        loadUser();
+    }, []);
 
     return(
         <div id="header">

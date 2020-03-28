@@ -14,29 +14,26 @@ function UserPlaylists() {
 
     const [ load, setLoad ] = useState(true);
 
+    async function loadPlaylists() {
+        const response = await api.get('/me/playlists?limit=50');
+
+        setPlaylists([...playlists, ...response.data.items]);
+        setNext(response.data.next);
+
+        setLoad(false);
+    }
+    
     useEffect(() => {
-        async function loadPlaylists() {
-            await api.get('/me/playlists?limit=50')
-            .then((response) => {
-                setPlaylists(response.data.items);
-                setNext(response.data.next);
-            })
-            .finally(() => {
-                setLoad(false)
-            })
-        }
-
         loadPlaylists();
-    }, [])
+    }, []);
 
-    function loadMore() {
+    async function loadMore() {
         const endpointURL = next.replace('https://api.spotify.com/v1', '');
 
-        api.get(endpointURL)
-        .then((response) => {
-            setPlaylists(playlists.concat(response.data.items));
-            setNext(response.data.next);
-        })
+        const response = await api.get(endpointURL);
+
+        setPlaylists([...playlists, ...response.data.items]);
+        setNext(response.data.next);
     }
 
     return(

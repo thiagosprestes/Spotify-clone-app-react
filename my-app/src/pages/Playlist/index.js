@@ -21,47 +21,50 @@ function Playlist() {
     const [ tracks, setTracks ] = useState([]);
     const [ save, setSave ] = useState('');
 
-    const [ load, setLoad ] = useState(true)
+    const [ load, setLoad ] = useState(true);
 
     const id = useParams().playlistId;
 
-    useEffect(() => {
-        async function load() {
-            await api.get(`/playlists/${id}?market=br&fields=images%2Chref%2Cname%2Cowner(!href%2Cexternal_urls)%2Ctracks.items(added_by.id%2Ctrack(artists%2Cduration_ms%2Cname%2Chref%2Calbum(name%2Chref%2Cid)))`)
-            .then(response => {
-                setPlaylist(response.data)
-                setPlaylistImage(response.data.images[0].url);
-                setOwner(response.data.owner)                
-                setTracks(response.data.tracks.items)
-            })
-            .finally(() => {
-                setLoad(false);
-            })
-        }
+    async function loadPlaylist() {
+        const response = await api.get(`/playlists/${id}?market=br&fields=images%2Chref%2Cname%2Cowner(!href%2Cexternal_urls)%2Ctracks.items(added_by.id%2Ctrack(artists%2Cduration_ms%2Cname%2Chref%2Calbum(name%2Chref%2Cid)))`);
 
-        async function verifySaved() {
-            await api.get(`/playlists/${id}/followers/contains?ids=${localStorage.getItem('user')}`)
-            .then((response) => {
-                setSave(response.data[0])
-            })
-        }
+        setPlaylist(response.data);
+        setPlaylistImage(response.data.images[0].url);
+        setOwner(response.data.owner);                
+        setTracks(response.data.tracks.items);
         
+        setLoad(false);
+    }
+
+    async function verifySaved() {
+        const response = await api.get(`/playlists/${id}/followers/contains?ids=${localStorage.getItem('user')}`);
+
+        setSave(response.data[0]);
+    }
+
+    useEffect(() => {
         verifySaved();
-        load()
-    }, [])
+        loadPlaylist();
+    }, []);
 
     async function savePlaylist() {
-        await api.put(`/playlists/${id}/followers`)
-        .then(() => {
-            setSave(true)
-        })
+        try {
+            await api.put(`/playlists/${id}/followers`);
+
+            setSave(true);
+        } catch (error) {
+            alert("Ocorreu um erro ao salvar a playlist");
+        }
     }
 
     async function removePlaylist() {
-        await api.delete(`/playlists/${id}/followers`)
-        .then(() => {
-            setSave(false)
-        })
+        try {
+            await api.delete(`/playlists/${id}/followers`);
+        
+            setSave(false);
+        } catch (error) {
+            alert("Ocorreu um erro ao remover a playlist da sua biblioteca");
+        }
     }
 
     return(

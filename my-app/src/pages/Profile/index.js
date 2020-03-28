@@ -24,49 +24,50 @@ function Profile() {
 
     const [ load, setLoad ] = useState(true);
 
-    function endpoint(url, data) {
-        api.get(url).then(data)
-        .finally(() => {
-            setLoad(false)
-        })
+    async function loadUser() {
+        const response = await api.get(`/me`);
+
+        setUser(response.data);
+
+        setLoad(false);
+    }
+
+    async function loadRecently() {
+        const response = await api.get('/me/player/recently-played?limit=10');
+
+        setRecently(response.data.items);
+
+        setLoad(false);
     }
 
     useEffect(() => {
-        async function loadUser() {
-            await endpoint(`/me`, (response) => {
-                setUser(response.data);
-            })
-        }
-
-        async function loadRecently() {
-            await endpoint('/me/player/recently-played?limit=10', (response) => {
-                setRecently(response.data.items)
-            })
-        }
-
         loadUser();
         loadRecently();
     }, [])
 
-    useEffect(() => {
-        async function loadTracks() {
-            await endpoint(`/me/top/tracks?time_range=${tracksTerm}&limit=10`, (response) => {
-                setTracks(response.data.items);
-            })
-        }
+    async function loadTracks() {
+        const response = await api.get(`/me/top/tracks?time_range=${tracksTerm}&limit=10`);
 
-        loadTracks()
-    }, [tracksTerm])
+        setTracks(response.data.items);
+
+        setLoad(false);
+    }
 
     useEffect(() => {
-        async function loadArtists() {
-            await endpoint(`/me/top/artists?time_range=${artistsTerm}&limit=10`, (response) => {
-                setArtists(response.data.items);
-            })
-        }
+        loadTracks();
+    }, [tracksTerm]);
 
-        loadArtists()
-    }, [artistsTerm])
+    async function loadArtists() {
+        const response = await api.get(`/me/top/artists?time_range=${artistsTerm}&limit=10`);
+
+        setArtists(response.data.items);
+        
+        setLoad(false);
+    }
+
+    useEffect(() => {
+        loadArtists();
+    }, [artistsTerm]);
 
     return(
         <>

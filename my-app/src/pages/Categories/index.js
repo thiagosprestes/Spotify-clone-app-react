@@ -19,49 +19,43 @@ function Categories() {
 
     const id = useParams().categoryId;
 
+    async function loadCategory() {
+        const response = await api.get(`/browse/categories/${id}/playlists?country=br&limit=50`);
+
+        setCategory(response.data.playlists.items);
+
+        setPrev(response.data.playlists.previous);
+        setNext(response.data.playlists.next);
+    
+        setLoad(false);
+    }
+
     useEffect(() => {
-        async function load() {
-            await api.get(`/browse/categories/${id}/playlists?country=br&limit=50`)
-            .then(response => {
-                setCategory(response.data.playlists.items);
-
-                setPrev(response.data.playlists.previous);
-                setNext(response.data.playlists.next);
-            })
-            .finally(() => {
-                setLoad(false);
-            })
-        }
-
-        load();
-    }, [])
+        loadCategory();
+    }, []);
 
     async function loadPrevious() {
         const replacedEndpointURL = prev.replace('https://api.spotify.com/v1', '');
 
-        await api.get(replacedEndpointURL)
-        .then(response => {
-            setCategory(response.data.playlists.items);
-            setPrev(response.data.playlists.previous);
-            setNext(response.data.playlists.next);
-        })
-        .finally(() => {
-            setLoad(false);
-        })
+        const response = await api.get(replacedEndpointURL);
+
+        setCategory(response.data.playlists.items);
+        setPrev(response.data.playlists.previous);
+        setNext(response.data.playlists.next);
+
+        setLoad(false);
     }
 
     async function loadNext() {
         const replacedEndpointURL = next.replace('https://api.spotify.com/v1', '');
 
-        await api.get(replacedEndpointURL)
-        .then(response => {
-            setCategory(response.data.playlists.items);
-            setPrev(response.data.playlists.previous);
-            setNext(response.data.playlists.next);
-        })
-        .finally(() => {
-            setLoad(false);
-        })
+        const response = await api.get(replacedEndpointURL);
+
+        setCategory(response.data.playlists.items);
+        setPrev(response.data.playlists.previous);
+        setNext(response.data.playlists.next);
+        
+        setLoad(false);
     }    
 
     return(

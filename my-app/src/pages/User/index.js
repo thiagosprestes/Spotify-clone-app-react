@@ -19,40 +19,36 @@ function User() {
 
     const id = useParams().userId;
 
-    function endpoint(url, data) {
-        api.get(url).then(data)
-        .finally(() => {
-            setLoad(false)
-        })
+    async function loadUser() {
+        const response = await api.get(`/users/${id}`);
+
+        setUser(response.data);
+        setUserPicture(response.data.images[0].url);
+
+        setLoad(false);
+    }
+
+    async function loadPlaylists() {
+        const response = await api.get(`/users/${id}/playlists?limit=50`);
+
+        setPlaylists(response.data.items)
+        setNext(response.data.next);
+
+        setLoad(false);
     }
 
     useEffect(() => {
-        async function loadUser() {
-            await endpoint(`/users/${id}`, (response) => {
-                setUser(response.data);
-                setUserPicture(response.data.images[0].url)
-            })
-        }
-
-        async function loadPlaylists() {
-            await endpoint(`/users/${id}/playlists?limit=50`, (response) => {
-                setPlaylists(response.data.items)
-                setNext(response.data.next);
-            })
-        }
-
         loadUser();
         loadPlaylists();
-    }, [])
+    }, []);
 
     async function loadMore() {
         const endpointURL = next.replace('https://api.spotify.com/v1', '');
 
-        await api.get(endpointURL)
-        .then((response) => {
-            setPlaylists(playlists.concat(response.data.items))
-            setNext(response.data.next);
-        })
+        const response = await api.get(endpointURL);
+
+        setPlaylists(playlists.concat(response.data.items));
+        setNext(response.data.next);
     }
 
     return(

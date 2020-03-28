@@ -6,7 +6,7 @@ import { MdHome, MdPerson, MdPlaylistPlay, MdMusicNote, MdAlbum } from 'react-ic
 
 import { FiSearch, FiClock } from 'react-icons/fi';
 
-import { FaHeart, FaMicrophone } from 'react-icons/fa';
+import { FaHeart } from 'react-icons/fa';
 
 import './styles.css';
 

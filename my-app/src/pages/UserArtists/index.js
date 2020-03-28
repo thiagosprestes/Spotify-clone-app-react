@@ -14,29 +14,26 @@ function UserArtists() {
 
     const [ load, setLoad ] = useState(true);
 
+    async function loadArtists() {
+        const response = await api.get('/me/following?type=artist&limit=50')
+
+        setArtists(response.data.artists.items);
+        setNext(response.data.artists.next);
+        
+        setLoad(false)
+    }
+
     useEffect(() => {
-        async function loadPlaylists() {
-            await api.get('/me/following?type=artist&limit=50')
-            .then((response) => {
-                setArtists(response.data.artists.items);
-                setNext(response.data.artists.next);
-            })
-            .finally(() => {
-                setLoad(false)
-            })
-        }
+        loadArtists();
+    }, []);
 
-        loadPlaylists();
-    }, [])
-
-    function loadMore() {
+    async function loadMore() {
         const endpointURL = next.replace('https://api.spotify.com/v1', '');
 
-        api.get(endpointURL)
-        .then((response) => {
-            setArtists(artists.concat(response.data.artists.items));
-            setNext(response.data.artists.next);
-        })
+        const response = await api.get(endpointURL)
+
+        setArtists([...artists, ...response.data.artists.items]);
+        setNext(response.data.artists.next);
     }
 
     return(

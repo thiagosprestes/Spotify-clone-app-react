@@ -4,6 +4,7 @@ import './styles.css';
 
 import Sidebar from '../../components/Sidebar';
 import Header from '../../components/Header';
+import Player from '../../components/Player';
 
 function Body(props) {
     return(
@@ -15,6 +16,9 @@ function Body(props) {
                 <Header />
                 {props.children}
             </main>
+            <footer>
+                <Player />
+            </footer>
         </div>
     )
 }

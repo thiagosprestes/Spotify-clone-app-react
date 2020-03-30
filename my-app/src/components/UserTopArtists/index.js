@@ -10,7 +10,7 @@ function UserTopArtists() {
     const [ topArtists, setTopArtists ] = useState([]);
 
     async function handleLoad() {
-        await api.get('/me/top/artists?limit=5');
+        const response = await api.get('/me/top/artists?limit=5');
 
         setTopArtists(response.data.items);
     }

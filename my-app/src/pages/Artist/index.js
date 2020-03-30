@@ -82,7 +82,7 @@ function Artist() {
     }
 
     async function verifyFollowing() {
-        await api.get(`/me/following/contains?type=artist&ids=${id}`);
+        const response = await api.get(`/me/following/contains?type=artist&ids=${id}`);
         
         setFollowing(response.data[0]);
 

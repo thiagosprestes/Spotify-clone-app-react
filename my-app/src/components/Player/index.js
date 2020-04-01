@@ -6,13 +6,11 @@ import './styles.css';
 
 import api from '../../services/api';
 
-import { FaRegPlayCircle } from 'react-icons/fa';
+import { FaSpotify } from 'react-icons/fa';
 
-import { IoIosSkipBackward, IoIosSkipForward } from 'react-icons/io';
+import AudioPlayer from 'react-h5-audio-player';
 
-import { MdDevicesOther } from 'react-icons/md';
-
-import { AiOutlineSound } from 'react-icons/ai';
+import 'react-h5-audio-player/lib/styles.css';
 
 export default function Player() {
     const [ lastPlayed, setLastPlayed ] = useState([]);
@@ -35,37 +33,29 @@ export default function Player() {
         <div id="player">
             {lastPlayed.map(data => (
                 <>
-                <div className="track" key={data.track.id}>
-                    <Link to={`/album/id=${data.track.album.id}`}>
-                        <div className="cover track-cover" style={{backgroundImage: `url(${data.track.album.images[0].url})`}}></div>
-                    </Link>
-                    <div className="track-info">
+                    <div className="track-data">
                         <Link to={`/album/id=${data.track.album.id}`}>
-                            <span className="track-name">{data.track.name}</span>
+                            <div className="track-cover cover" style={{backgroundImage: `url(${data.track.album.images[0].url})`}}></div>
                         </Link>
-                        <Link to={`/artist/id=${data.track.artists[0].id}`}>
-                            <span className="track-artist">{data.track.artists[0].name}</span>
-                        </Link>                    
+                        <div className="track-info">
+                            <Link to={`/album/id=${data.track.album.id}`}>
+                                <span className="track-name">{data.track.name}</span>
+                            </Link>
+                            {data.track.artists.map(artist => (
+                                <Link to={`/artist/id=${artist.id}`}>
+                                    <span className="track-artist">{artist.name}</span>
+                                </Link>
+                            ))}
+                        </div>
                     </div>
-                </div>
-                <div className="player-control">
-                <div className="player-controls">
-                    <IoIosSkipBackward size="1.2rem" />
-                    <FaRegPlayCircle size="1.8rem" className="play-pause" />
-                    <IoIosSkipForward size="1.2rem" />
-                </div>
-                <div className="progress-bar">
-                    
-                </div>
-            </div>
-            
-            <div className="options">
-                <MdDevicesOther size="1.5rem" />
-                <AiOutlineSound size="1.2rem" />
-            </div>
-            </>
+                    <div className="track-slider">
+                        <AudioPlayer src={data.track.preview_url} customAdditionalControls={[]} layout="stacked-reverse" />
+                    </div>
+                    <div className="options">
+                        <button className="spotify"><FaSpotify size="1.5rem" />Ouvir no spotify</button>
+                    </div>
+                </>
             ))}
-            
         </div>
     );
 }

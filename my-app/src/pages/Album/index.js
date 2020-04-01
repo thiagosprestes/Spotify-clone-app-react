@@ -77,8 +77,8 @@ function Album() {
     return(
         <>
         {load && <h2 className="loading">Carregando...</h2>} 
-        {!load && 
-            <div id="album" className="container">            
+        {!load &&             
+            <div id="album" className="container">       
                 <div className="album-info">
                     <div className="album-image cover" style={{backgroundImage: `url(${albumImage == null ? defaultImage : albumImage})`}}></div>
                     <h2 className="album-title">{album.name}</h2>

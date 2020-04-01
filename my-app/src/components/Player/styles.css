@@ -8,39 +8,43 @@
     justify-content: space-between;
 }
 
-#player .track {
+#player .track-data {
     display: flex;
     align-items: center;
 }
 
-#player .track .track-cover {
+#player .track-data .track-cover {
     width: 3.5rem;
     height: 3.5rem;
     margin: 15px;
 }
 
-#player .track .track-info {
+#player .track-data .track-info {
     display: flex;
     flex-direction: column;
 }
 
-#player .track .track-info .track-name {
+#player .track-data .track-info .track-name {
     color: #FFF;
     font-size: 14px;
     margin-bottom: 5px;
 }
 
-#player .track .track-info .track-name:hover {
+#player .track-data .track-info .track-name:hover {
     text-decoration: underline;
     text-underline-offset: 4px;
 }
 
-#player .track .track-info .track-artist {
+#player .track-data .track-info .track-artist {
     color: #c3c3c3;
     font-size: 13px;
 }
 
-#player .track .track-info .track-artist:hover {
+#player .track-data .track-info .track-artist + .track-artist {
+    content: ", ";
+}
+
+#player .track-data .track-info .track-artist:hover {
     color: #fff;
 }
 
@@ -60,12 +64,12 @@
 
 #player .player-control .progress-bar {
     background-color: #404040;
-border-radius: 2px;
-display: -webkit-box;
-display: -ms-flexbox;
-display: flex;
-height: 4px;
-width: 100%;
+    border-radius: 2px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    height: 4px;
+    width: 100%;
 }
 
 #player .player-control .player-controls .play-pause {
@@ -84,10 +88,40 @@ width: 100%;
     align-items: center;
 }
 
-#player .options svg + svg {
-    margin: 15px;
+#player .options .spotify {
+    display: flex;
+    align-items: center;
+    background: transparent;
+    color: #fff;
+    border: 2px solid #FFF;
+    transition: .2s;
 }
 
-#player svg:hover {
-    color: #FFF;
+#player .options .spotify:hover {
+    transform: scale(1.06);
+    background-color: #1DB954;
+    border-color: #1DB954;
+    color: #000;
+}
+
+#player .options .spotify svg {
+    margin-right: 5px;
+}
+
+#player .track-slider {
+    width: 50%;
+}
+
+#player .track-slider .rhap_container {
+    background-color: transparent;
+    box-shadow: none;
+}
+
+#player .track-slider .rhap_time {
+    color: inherit;
+    font-size: 14px;
+}
+
+#player .track-slider .rhap_progress-indicator {
+    background: #fff;
 }

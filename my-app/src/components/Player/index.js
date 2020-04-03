@@ -32,7 +32,7 @@ export default function Player() {
     return(
         <div id="player">
             {lastPlayed.map(data => (
-                <>
+                <React.Fragment key={data.track.id}>
                     <div className="track-data">
                         <Link to={`/album/id=${data.track.album.id}`}>
                             <div className="track-cover cover" style={{backgroundImage: `url(${data.track.album.images[0].url})`}}></div>
@@ -42,7 +42,7 @@ export default function Player() {
                                 <span className="track-name">{data.track.name}</span>
                             </Link>
                             {data.track.artists.map(artist => (
-                                <Link to={`/artist/id=${artist.id}`}>
+                                <Link to={`/artist/id=${artist.id}`} key={artist.id}>
                                     <span className="track-artist">{artist.name}</span>
                                 </Link>
                             ))}
@@ -52,9 +52,11 @@ export default function Player() {
                         <AudioPlayer src={data.track.preview_url} customAdditionalControls={[]} layout="stacked-reverse" />
                     </div>
                     <div className="options">
-                        <button className="spotify"><FaSpotify size="1.5rem" />Ouvir no spotify</button>
+                        <a className="spotify" href={`https://open.spotify.com/album/${data.track.album.id}`} target="_blank" rel="noopener noreferrer">
+                            <FaSpotify size="1.5rem" />Ouvir no spotify
+                        </a>
                     </div>
-                </>
+                </React.Fragment>
             ))}
         </div>
     );

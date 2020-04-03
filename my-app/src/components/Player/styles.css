@@ -95,6 +95,14 @@
     color: #fff;
     border: 2px solid #FFF;
     transition: .2s;
+    font-weight: bold;
+    padding: 20px;
+    border-radius: 500px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 14px;
+    line-height: 1;
+    cursor: pointer;
 }
 
 #player .options .spotify:hover {

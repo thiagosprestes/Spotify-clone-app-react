@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-import { NavLink } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
 import './styles.css';
 
@@ -8,6 +8,8 @@ import api from '../../services/api';
 
 function Header() {
     const [ user, setUser ] = useState('');
+
+    const history = useHistory();
 
     async function loadUser() {
         const response = await api.get('/me');
@@ -21,13 +23,28 @@ function Header() {
         loadUser();
     }, []);
 
+    function logout() {
+        localStorage.removeItem('user');
+        history.push('/login');
+    }
+
     return(
         <div id="header">
-            <div className="user">
-                <NavLink to="/profile">
+            <div className="user-menu">
+                <div className="user">
                     {user}
-                </NavLink>
-            </div>
+                </div>
+                <div className="user-content">
+                    <ul>
+                        <li>
+                            <Link to="/profile">Perfil</Link>
+                        </li>
+                        <li onClick={logout}>
+                            <Link>Sair</Link>
+                        </li>
+                    </ul>
+                </div>
+            </div>            
         </div>
     )
 }

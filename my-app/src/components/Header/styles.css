@@ -12,9 +12,50 @@
     z-index: 1000;
 }
 
+#header .user-menu .user {
+    text-align: right;
+}
+
+#header .user-menu .user-content {
+    display: none;
+    background-color: #282828;
+    color: #b3b3b3;
+    font-size: 14px;
+    min-width: 160px;
+    text-align: left;
+}
+
+#header .user-menu:hover .user-content {
+    display: block;
+}
+
+#header .user-menu .user-content ul {
+    list-style: none;
+}
+
+#header .user-menu .user-content ul li {
+    padding: 10px 20px;
+}
+
+#header .user-menu .user-content ul li:hover {
+    color: #fff;
+    background-color: #333;
+}
+
+#header .user-menu .user-content ul li + li {
+    border-top: 1px solid #ccc;
+}
+
 #header .user {
     font-weight: bold;
     font-size: 14px;
+}
+
+#header .logout {
+    background: transparent;
+    color: #FFF;
+    border: 4px solid #fff;
+    padding: 10px 20px;
 }
 
 @media (max-width: 500px) {

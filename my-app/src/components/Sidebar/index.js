@@ -13,7 +13,6 @@ import './styles.css';
 import logo from '../../assets/spotify-clone-app-logo-white.png';
 
 function Sidebar() {
-
     return(
         <div id="sidebar">
             <img src={logo} alt="logo" />

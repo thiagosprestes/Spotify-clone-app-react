@@ -10,9 +10,11 @@ import defaultImage from '../../assets/default-image.jpg';
 
 import millisToMinutesAndSeconds from '../../utils/millisToMinutesAndSeconds';
 
+import previewPlayerData from '../../utils/previewPlayerData';
+
 import { FaPlay, FaRegHeart, FaShareAlt } from 'react-icons/fa';
 
-import { useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 function Profile() {
     const [ user, setUser ] = useState([]);
@@ -26,7 +28,7 @@ function Profile() {
 
     const [ load, setLoad ] = useState(true);
 
-    const dispatch = useDispatch();
+    const trackData = useSelector(state => state.data);
 
     async function loadUser() {
         const response = await api.get(`/me`);
@@ -73,10 +75,6 @@ function Profile() {
         loadArtists();
     }, [artistsTerm]);
 
-    function previewPlayerData(track, albumImage, artists) {
-        dispatch({ type: 'PLAY_TRACK',  trackInfo: [track], trackImage: albumImage , trackArtists: artists})
-    }
-    
     return(
         <>
             {load && <h2 className="loading">Carregando...</h2>}
@@ -108,7 +106,7 @@ function Profile() {
                                 </thead>
                                 <tbody>
                                     {tracks.map(track => (
-                                        <tr className="track-info" key={track.id}>
+                                        <tr className={`track-info ${trackData != '' && trackData.track.name == track.name ? 'track-active' : '' }`} key={track.id}>
                                             <td>
                                                 <span onClick={() => previewPlayerData(track, track.album.images[0].url, track.artists)}>
                                                     <FaPlay />

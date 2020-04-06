@@ -132,4 +132,13 @@
 
 #player .track-slider .rhap_progress-indicator {
     background: #fff;
+    display: none;
+}
+
+#player .track-slider .rhap_progress-container:hover .rhap_progress-indicator {
+    display: block;
+}
+
+#player .track-slider .rhap_progress-container:hover .rhap_progress-filled {
+    background-color: #1DB954;
 }

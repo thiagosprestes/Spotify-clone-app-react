@@ -10,12 +10,14 @@ import api from '../../services/api';
 
 import millisToMinutesAndSeconds from '../../utils/millisToMinutesAndSeconds';
 
-import { useDispatch } from 'react-redux';
+import previewPlayerData from '../../utils/previewPlayerData';
+
+import { useSelector } from 'react-redux';
 
 function UserRecentlyPlayed() {
     const [ recentlyPlayed, setRecentlyPlayed ] = useState([]);
 
-    const dispatch = useDispatch();
+    const trackData = useSelector(state => state.data);
 
     async function handleLoad() {
         const response = await api.get('/me/player/recently-played?limit=10');
@@ -27,17 +29,13 @@ function UserRecentlyPlayed() {
         handleLoad();
     }, []);
 
-    function previewPlayerData(track, albumImage, artists) {
-        dispatch({ type: 'PLAY_TRACK',  trackInfo: [track], trackImage: albumImage , trackArtists: artists})
-    }
-
     return (
         <div id="recently-played">
             <h2>Tocadas recentemente</h2>
             <table>
                 <tbody>
                     {recentlyPlayed.map(data => (
-                        <tr key={data.played_at}>
+                        <tr key={data.played_at} className={trackData != '' && trackData.track.name == data.track.name ? 'track-active' : ''}>
                             <td>
                                 <span onClick={() => previewPlayerData(data.track, data.track.album.images[0].url, data.track.artists)}>
                                     <FaPlay />
@@ -56,7 +54,7 @@ function UserRecentlyPlayed() {
                                 ))}
                             </td>
                             <td>
-                                {millisToMinutesAndSeconds(data.track.duration_ms)}
+                                <span>{millisToMinutesAndSeconds(data.track.duration_ms)}</span>
                             </td>
                         </tr>      
                     ))}

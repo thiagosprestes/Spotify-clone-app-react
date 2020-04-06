@@ -36,12 +36,12 @@ export default function Player() {
     
     return(
         <div id="player">
-            {trackData != '' && trackData.track.map(data => (
-                <React.Fragment key={data.id}>
+            {trackData != '' &&  (
+                <>
                     <div className="track-data">
                         <div className="track-cover cover" style={{backgroundImage: `url(${trackData.image})`}}></div>
                         <div className="track-info">
-                            <span className="track-name">{data.name}</span>
+                            <span className="track-name">{trackData.track.name}</span>
                             {trackData.artists.map(artist => (
                                 <Link to={`/artist/id=${artist.id}`} key={artist.id}>
                                     <span className="track-artist">{artist.name}</span>
@@ -50,15 +50,15 @@ export default function Player() {
                         </div>
                     </div>
                     <div className="track-slider">
-                        <AudioPlayer src={data.preview_url} customAdditionalControls={[]} layout="stacked-reverse" autoPlay volume={0.5} />
+                        <AudioPlayer src={trackData.track.preview} customAdditionalControls={[]} layout="stacked-reverse" autoPlay volume={0.5} showDownloadProgress={false} />
                     </div>
                     <div className="options">
-                        <a className="spotify" href={`https://open.spotify.com/track/${data.id}`} target="_blank" rel="noopener noreferrer">
+                        <a className="spotify" href={`https://open.spotify.com/track/${trackData.track.id}`} target="_blank" rel="noopener noreferrer">
                             <FaSpotify size="1.5rem" />Ouvir no spotify
                         </a>
                     </div>
-                </React.Fragment>
-            ))}
+                </>
+            )}
             {trackData == '' && lastPlayed.map(data => (
                 <React.Fragment key={data.track.id}>
                     <div className="track-data">
@@ -77,7 +77,7 @@ export default function Player() {
                         </div>
                     </div>
                     <div className="track-slider">
-                        <AudioPlayer src={data.track.preview_url} customAdditionalControls={[]} layout="stacked-reverse" volume={0.5} />
+                        <AudioPlayer src={data.track.preview_url} customAdditionalControls={[]} layout="stacked-reverse" volume={0.5} showDownloadProgress={false} />
                     </div>
                     <div className="options">
                         <a className="spotify" href={`https://open.spotify.com/track/${data.track.id}`} target="_blank" rel="noopener noreferrer">

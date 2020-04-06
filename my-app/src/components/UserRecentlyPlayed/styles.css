@@ -39,3 +39,11 @@
 #recently-played table tr:last-child {
     border: none;
 }
+
+.track-active span {
+    color: #1ED760;
+}
+
+#recently-played table .track-active td span:hover {
+    color: #1ED760;
+}

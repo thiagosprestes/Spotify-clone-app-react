@@ -6,7 +6,7 @@
 }
 
 #profile h2 {
-    margin-bottom: 0;
+    margin-bottom: 0 !important;
 }
 
 #profile .header .user-picture {

@@ -16,7 +16,9 @@ import defaultImage from '../../assets/default-image.jpg';
 
 import millisToMinutesAndSeconds from '../../utils/millisToMinutesAndSeconds';
 
-import { useDispatch } from 'react-redux';
+import previewPlayerData from '../../utils/previewPlayerData';
+
+import { useSelector } from 'react-redux';
 
 function Artist() {
     const [ artist, setArtist ] = useState([]);
@@ -41,10 +43,10 @@ function Artist() {
     const appears_on = albums.filter(data => data.album_group == 'appears_on');
 
     const compilation = albums.filter(data => data.album_group == 'compilation');
-
-    const dispatch = useDispatch();
     
     const artistsFilter = relatedArtists.slice(0, 10);
+
+    const trackData = useSelector(state => state.data);
 
     async function loadArtist() {
         const response = await api.get(`/artists/${id}`);
@@ -119,10 +121,6 @@ function Artist() {
         setFollowing(false);
     }
 
-    function previewPlayerData(track, albumImage, artists) {
-        dispatch({ type: 'PLAY_TRACK',  trackInfo: [track], trackImage: albumImage , trackArtists: artists})
-    }
-
     return(
         <div id="artist">
             {load && <h1 className="loading">Carregando...</h1>}
@@ -160,7 +158,12 @@ function Artist() {
                             <div className="top-tracks tracks">
                             <h2>Populares</h2>
                             {topTracks.map(data => (
-                                <div key={data.id} className="track top-tracks-item">
+                                <div key={data.id} className={
+                                    `track top-tracks-item ${
+                                    trackData != '' && 
+                                    trackData.track.name == data.name ? 
+                                    'track-active' : ''}`
+                                }>
                                     <div className="note-icon">
                                         <MdMusicNote size="1em" />
                                     </div>

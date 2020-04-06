@@ -6,14 +6,12 @@ import './styles.css';
 
 import api from '../../services/api';
 
-import { useDispatch } from 'react-redux';
+import previewPlayerData from '../../utils/previewPlayerData';
 
 function Recently() {
     const [ recently, setRecently ] = useState([]);
 
     const [ load, setLoad ] = useState(true);
-
-    const dispatch = useDispatch();
 
     async function loadRecently() {
         const response = await api.get('/me/player/recently-played?limit=50');
@@ -26,10 +24,6 @@ function Recently() {
     useEffect(() => {
         loadRecently();
     }, []);
-
-    function previewPlayerData(track, albumImage, artists) {
-        dispatch({ type: 'PLAY_TRACK',  trackInfo: [track], trackImage: albumImage , trackArtists: artists})
-    }
 
     return(
         <>

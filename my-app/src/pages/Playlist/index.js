@@ -14,7 +14,9 @@ import SpotifyButton from '../../components/SpotifyButton';
 
 import millisToMinutesAndSeconds from '../../utils/millisToMinutesAndSeconds';
 
-import { useDispatch } from 'react-redux';
+import previewPlayerData from '../../utils/previewPlayerData';
+
+import { useSelector } from 'react-redux';
 
 function Playlist() {
     const [ playlist, setPlaylist ] = useState([]);
@@ -27,10 +29,10 @@ function Playlist() {
 
     const id = useParams().playlistId;
 
-    const dispatch = useDispatch();
+    const trackData = useSelector(state => state.data);
 
     async function loadPlaylist() {
-        const response = await api.get(`/playlists/${id}?market=br&fields=images%2Chref%2Cname%2Cowner(!href%2Cexternal_urls)%2Ctracks.items(added_by.id%2Ctrack(artists%2Cduration_ms%2Cname%2Chref%2Cpreview_url%2Calbum(images%2Cname%2Chref%2Cid)))`);
+        const response = await api.get(`/playlists/${id}?market=br&fields=images%2Chref%2Cname%2Cowner(!href%2Cexternal_urls)%2Ctracks.items(added_by.id%2Ctrack(artists%2Cduration_ms%2Cid%2Cname%2Chref%2Cpreview_url%2Calbum(images%2Cname%2Chref%2Cid)))`);
 
         setPlaylist(response.data);
         setPlaylistImage(response.data.images[0].url);
@@ -71,10 +73,6 @@ function Playlist() {
         }
     }
 
-    function previewPlayerData(track, albumImage, artists) {
-        dispatch({ type: 'PLAY_TRACK',  trackInfo: [track], trackImage: albumImage , trackArtists: artists})
-    }
-
     return(
         <>
         {load && <h2 className="loading">Carregando...</h2>} 
@@ -100,7 +98,7 @@ function Playlist() {
                 </div>
                 <div className="album-tracks tracks">
                     {tracks.map(data => (
-                        <div key={data.track.name} className="track">
+                        <div key={data.track.name} className={`track ${trackData != '' && trackData.track.name == data.track.name ? 'track-active' : ''}`}>
                         <div className="note-icon">
                             <MdMusicNote size="1em" />
                         </div>

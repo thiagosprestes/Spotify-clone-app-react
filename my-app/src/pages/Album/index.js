@@ -16,7 +16,9 @@ import defaultImage from '../../assets/default-image.jpg';
 
 import millisToMinutesAndSeconds from '../../utils/millisToMinutesAndSeconds';
 
-import { useDispatch } from 'react-redux';
+import previewPlayerData from '../../utils/previewPlayerData';
+
+import { useSelector } from 'react-redux';
 
 function Album() {
     const [ album, setAlbum ] = useState([]);
@@ -31,7 +33,7 @@ function Album() {
 
     const id = useParams().albumId;    
 
-    const dispatch = useDispatch();
+    const trackData = useSelector(state => state.data);
 
     async function loadAlbum() {
         const response = await api.get(`albums/${id}`);
@@ -78,10 +80,6 @@ function Album() {
         }
     }
 
-    function previewPlayerData(track, albumImage, artists) {
-        dispatch({ type: 'PLAY_TRACK',  trackInfo: [track], trackImage: albumImage , trackArtists: artists})
-    }
-
     return(
         <>
         {load && <h2 className="loading">Carregando...</h2>} 
@@ -90,7 +88,7 @@ function Album() {
             <div id="album" className="container">                    
                 <div className="album-info">
                     <div className="album-image cover" style={{backgroundImage: `url(${albumImage == null ? defaultImage : albumImage})`}}></div>
-                    <h2 className="album-title">{album.name}</h2>
+                    <h2 className="album-title">{album.name}</h2>                    
                     <div className="album-artists">
                         {artists.map(artist => (
                             <Link to={`/artist/id=${artist.id}`} key={artist.id}>
@@ -116,7 +114,12 @@ function Album() {
                 </div>
                 <div className="album-tracks tracks">
                     {tracks.map(data => (
-                        <div key={data.id} className="track">
+                        <div key={data.id} className={
+                                `track ${
+                                trackData != '' && 
+                                trackData.track.name == data.name ? 
+                                'track-active' : ''}`
+                            }>
                             <div className="note-icon">
                                 <MdMusicNote size="1em" />
                             </div>

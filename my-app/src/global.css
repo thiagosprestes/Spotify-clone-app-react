@@ -68,6 +68,14 @@ input {
     transition: .2s;
 }
 
+.track-active {
+    color: #1ED760;
+}
+
+.track-active:hover {
+    color: #1ED760;
+}
+
 .tracks .track .note-icon, .play-icon {
     margin-right: 15px;
 }
@@ -164,6 +172,10 @@ input {
     color: #fff;
 }
 
+.tracks-table tbody .track-active td:hover {
+    color: inherit;
+}
+
 .tracks-table .track-info {
     border-bottom: 1px solid #282828;
 }
@@ -182,7 +194,7 @@ input {
 @media (max-width: 500px) {
     .grid-template {
         display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
     }
 }

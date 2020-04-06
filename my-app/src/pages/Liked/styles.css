@@ -2,3 +2,7 @@
     margin-top: 50px;
     text-align: center;
 }
+
+#liked-tracks .tracks-list .tracks-table .track-info {
+    cursor: pointer;
+}

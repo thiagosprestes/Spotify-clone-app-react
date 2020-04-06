@@ -8,6 +8,8 @@ import api from '../../services/api';
 
 import millisToMinutesAndSeconds from '../../utils/millisToMinutesAndSeconds';
 
+import { useDispatch } from 'react-redux';
+
 import './styles.css';
 
 function Liked() {
@@ -16,6 +18,8 @@ function Liked() {
     const [ next, setNext ] = useState('');
 
     const [ load, setLoad ] = useState(true);
+
+    const dispatch = useDispatch();
 
     async function loadTracks() {
         const response = await api.get('/me/tracks?market=br&limit=50');
@@ -38,6 +42,10 @@ function Liked() {
         setTracks([...tracks, ...response.data.items]);            
     }
 
+    function previewPlayerData(track, albumImage, artists) {
+        dispatch({ type: 'PLAY_TRACK',  trackInfo: [track], trackImage: albumImage , trackArtists: artists})
+    }
+
     return (
         <>
             {load && <h2 className="loading">Carregando...</h2>}
@@ -58,10 +66,12 @@ function Liked() {
                             <tbody>
                                 {tracks.map(data => (
                                     <tr className="track-info" key={data.track.id}>
-                                        <td>
+                                        <td onClick={() => previewPlayerData(data.track, data.track.album.images[0].url, data.track.artists)}>
                                             <FaPlay />
                                         </td>
-                                        <td>{data.track.name}</td>
+                                        <td onClick={() => previewPlayerData(data.track, data.track.album.images[0].url, data.track.artists)}>
+                                            <span>{data.track.name}</span>
+                                        </td>
                                         <td>
                                             <Link to={`/artist/id=${data.track.artists[0].id}`}>{data.track.artists[0].name}</Link>
                                         </td>

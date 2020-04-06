@@ -23,6 +23,11 @@
     color: #FFF;
 }
 
+#recently-played table tr td span:hover {
+    color: #FFF;
+    cursor: pointer;
+}
+
 #recently-played table tr td a + a::before{
     content: ", ";
 }

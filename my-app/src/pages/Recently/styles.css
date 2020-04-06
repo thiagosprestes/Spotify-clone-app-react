@@ -13,6 +13,12 @@
 
 #recently .track .cover {
     margin-bottom: 10px;
+    transition: .2s;
+    cursor: pointer;
+}
+
+#recently .track .cover:hover {
+    filter: brightness(.3);
 }
 
 #recently .track .track-name {
@@ -24,6 +30,7 @@
     display: -webkit-box;
     -webkit-line-clamp: 2;
 }
+
 
 #recently .track .artist-and-album {
     margin-top: 5px;
@@ -40,4 +47,9 @@
     -webkit-box-orient: vertical;
     display: -webkit-box;
     -webkit-line-clamp: 2;
+}
+
+#recently .track .artist-and-album span:hover {
+    text-decoration: underline;
+    text-underline-offset: 2px;
 }

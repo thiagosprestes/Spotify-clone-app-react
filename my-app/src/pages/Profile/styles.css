@@ -5,6 +5,10 @@
     margin-bottom: 50px;
 }
 
+#profile h2 {
+    margin-bottom: 0;
+}
+
 #profile .header .user-picture {
     border-radius: 50%;
     margin-bottom: 10px;
@@ -22,6 +26,10 @@
     justify-content: space-between;
     align-items: center;
     margin-bottom: 20px;
+}
+
+#profile .tracks .tracks-list .tracks-table span {
+    cursor: pointer;
 }
 
 #profile .options-header .options span {

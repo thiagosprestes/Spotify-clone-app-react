@@ -12,6 +12,8 @@ import millisToMinutesAndSeconds from '../../utils/millisToMinutesAndSeconds';
 
 import { FaPlay, FaRegHeart, FaShareAlt } from 'react-icons/fa';
 
+import { useDispatch } from 'react-redux';
+
 function Profile() {
     const [ user, setUser ] = useState([]);
     const [ artists, setArtists ] = useState([]);
@@ -23,6 +25,8 @@ function Profile() {
     const [ artistsTerm, setArtistsTerm ] = useState('long_term');
 
     const [ load, setLoad ] = useState(true);
+
+    const dispatch = useDispatch();
 
     async function loadUser() {
         const response = await api.get(`/me`);
@@ -69,6 +73,10 @@ function Profile() {
         loadArtists();
     }, [artistsTerm]);
 
+    function previewPlayerData(track, albumImage, artists) {
+        dispatch({ type: 'PLAY_TRACK',  trackInfo: [track], trackImage: albumImage , trackArtists: artists})
+    }
+    
     return(
         <>
             {load && <h2 className="loading">Carregando...</h2>}
@@ -102,9 +110,15 @@ function Profile() {
                                     {tracks.map(track => (
                                         <tr className="track-info" key={track.id}>
                                             <td>
-                                                <FaPlay />
+                                                <span onClick={() => previewPlayerData(track, track.album.images[0].url, track.artists)}>
+                                                    <FaPlay />
+                                                </span>
                                             </td>
-                                            <td>{track.name}</td>
+                                            <td>
+                                                <span onClick={() => previewPlayerData(track, track.album.images[0].url, track.artists)}>
+                                                    {track.name}
+                                                </span>
+                                            </td>
                                             <td>
                                                 <Link to={`/artist/id=${track.artists[0].id}`}>{track.artists[0].name}</Link>
                                             </td>

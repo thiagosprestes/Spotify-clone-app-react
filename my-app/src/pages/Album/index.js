@@ -16,6 +16,8 @@ import defaultImage from '../../assets/default-image.jpg';
 
 import millisToMinutesAndSeconds from '../../utils/millisToMinutesAndSeconds';
 
+import { useDispatch } from 'react-redux';
+
 function Album() {
     const [ album, setAlbum ] = useState([]);
     const [ albumImage, setAlbumImage ] = useState([]);
@@ -28,6 +30,8 @@ function Album() {
     const [ load, setLoad ] = useState(true);
 
     const id = useParams().albumId;    
+
+    const dispatch = useDispatch();
 
     async function loadAlbum() {
         const response = await api.get(`albums/${id}`);
@@ -74,11 +78,16 @@ function Album() {
         }
     }
 
+    function previewPlayerData(track, albumImage, artists) {
+        dispatch({ type: 'PLAY_TRACK',  trackInfo: [track], trackImage: albumImage , trackArtists: artists})
+    }
+
     return(
         <>
         {load && <h2 className="loading">Carregando...</h2>} 
-        {!load &&             
-            <div id="album" className="container">       
+        {!load && 
+        <>            
+            <div id="album" className="container">                    
                 <div className="album-info">
                     <div className="album-image cover" style={{backgroundImage: `url(${albumImage == null ? defaultImage : albumImage})`}}></div>
                     <h2 className="album-title">{album.name}</h2>
@@ -112,7 +121,7 @@ function Album() {
                                 <MdMusicNote size="1em" />
                             </div>
 
-                            <div className="play-icon">
+                            <div className="play-icon" onClick={() => previewPlayerData(data, albumImage, artists)}>
                                 <FaPlay size="1em" />
                             </div>
                             <div className="track-info">                                    
@@ -137,6 +146,7 @@ function Album() {
                     </div>
                 </div>                        
             </div>
+            </>
         }
         </>
     )

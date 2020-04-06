@@ -16,6 +16,8 @@ import defaultImage from '../../assets/default-image.jpg';
 
 import millisToMinutesAndSeconds from '../../utils/millisToMinutesAndSeconds';
 
+import { useDispatch } from 'react-redux';
+
 function Artist() {
     const [ artist, setArtist ] = useState([]);
     const [ artistImage, setArtistImage ] = useState([]);
@@ -39,6 +41,8 @@ function Artist() {
     const appears_on = albums.filter(data => data.album_group == 'appears_on');
 
     const compilation = albums.filter(data => data.album_group == 'compilation');
+
+    const dispatch = useDispatch();
     
     const artistsFilter = relatedArtists.slice(0, 10);
 
@@ -115,6 +119,10 @@ function Artist() {
         setFollowing(false);
     }
 
+    function previewPlayerData(track, albumImage, artists) {
+        dispatch({ type: 'PLAY_TRACK',  trackInfo: [track], trackImage: albumImage , trackArtists: artists})
+    }
+
     return(
         <div id="artist">
             {load && <h1 className="loading">Carregando...</h1>}
@@ -156,7 +164,7 @@ function Artist() {
                                     <div className="note-icon">
                                         <MdMusicNote size="1em" />
                                     </div>
-                                    <div className="play-icon">
+                                    <div className="play-icon" onClick={() => previewPlayerData(data, data.album.images[0].url, data.artists)}>
                                         <FaPlay size="1em" />
                                     </div>
                                     <div className="track-image cover" style={{backgroundImage: `url(${data.album.images[0].url})`}}></div>
@@ -174,7 +182,7 @@ function Artist() {
                                 {artistsFilter.map(data => (
                                     <div className="related-artist" key={data.id}>
                                         <Link to={`/artist/id=${data.id}`}>
-                                            <div className="related-artist-cover" style={{backgroundImage: `url(${data.images[0].url})`}}></div>
+                                            <div className="related-artist-cover" style={{backgroundImage: `url(${data.images == '' ? defaultImage : data.images[0].url})`}}></div>
                                             <span className="related-artist-name">{data.name}</span>
                                         </Link>
                                     </div>

@@ -6,10 +6,14 @@ import './styles.css';
 
 import api from '../../services/api';
 
+import { useDispatch } from 'react-redux';
+
 function Recently() {
     const [ recently, setRecently ] = useState([]);
 
     const [ load, setLoad ] = useState(true);
+
+    const dispatch = useDispatch();
 
     async function loadRecently() {
         const response = await api.get('/me/player/recently-played?limit=50');
@@ -23,6 +27,10 @@ function Recently() {
         loadRecently();
     }, []);
 
+    function previewPlayerData(track, albumImage, artists) {
+        dispatch({ type: 'PLAY_TRACK',  trackInfo: [track], trackImage: albumImage , trackArtists: artists})
+    }
+
     return(
         <>
             {load && <h2 className="loading">Carregando...</h2>}
@@ -32,7 +40,7 @@ function Recently() {
                     <div className="grid-template">
                         {recently.map(data => (
                             <div className="track" key={data.played_at}>
-                                <div className="cover" style={{backgroundImage: `url(${data.track.album.images[0].url})`}}></div>
+                                <div className="cover" style={{backgroundImage: `url(${data.track.album.images[0].url})`}} onClick={() => previewPlayerData(data.track, data.track.album.images[0].url, data.track.artists)}></div>
                                 <span className="track-name">{data.track.name}</span>
                                 <div className="artist-and-album">
                                     <span>

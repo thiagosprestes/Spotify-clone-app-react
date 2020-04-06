@@ -14,6 +14,8 @@ import SpotifyButton from '../../components/SpotifyButton';
 
 import millisToMinutesAndSeconds from '../../utils/millisToMinutesAndSeconds';
 
+import { useDispatch } from 'react-redux';
+
 function Playlist() {
     const [ playlist, setPlaylist ] = useState([]);
     const [ playlistImage, setPlaylistImage ] = useState([]);
@@ -25,8 +27,10 @@ function Playlist() {
 
     const id = useParams().playlistId;
 
+    const dispatch = useDispatch();
+
     async function loadPlaylist() {
-        const response = await api.get(`/playlists/${id}?market=br&fields=images%2Chref%2Cname%2Cowner(!href%2Cexternal_urls)%2Ctracks.items(added_by.id%2Ctrack(artists%2Cduration_ms%2Cname%2Chref%2Calbum(name%2Chref%2Cid)))`);
+        const response = await api.get(`/playlists/${id}?market=br&fields=images%2Chref%2Cname%2Cowner(!href%2Cexternal_urls)%2Ctracks.items(added_by.id%2Ctrack(artists%2Cduration_ms%2Cname%2Chref%2Cpreview_url%2Calbum(images%2Cname%2Chref%2Cid)))`);
 
         setPlaylist(response.data);
         setPlaylistImage(response.data.images[0].url);
@@ -67,6 +71,10 @@ function Playlist() {
         }
     }
 
+    function previewPlayerData(track, albumImage, artists) {
+        dispatch({ type: 'PLAY_TRACK',  trackInfo: [track], trackImage: albumImage , trackArtists: artists})
+    }
+
     return(
         <>
         {load && <h2 className="loading">Carregando...</h2>} 
@@ -97,7 +105,7 @@ function Playlist() {
                             <MdMusicNote size="1em" />
                         </div>
 
-                        <div className="play-icon">
+                        <div className="play-icon" onClick={() => previewPlayerData(data.track, data.track.album.images[0].url, data.track.artists)}>
                             <FaPlay size="1em" />
                         </div>
                         <div className="track-info">                                    

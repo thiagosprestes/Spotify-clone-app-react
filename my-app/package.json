@@ -11,8 +11,10 @@
     "react-dom": "^16.13.0",
     "react-h5-audio-player": "^3.0.2",
     "react-icons": "^3.9.0",
+    "react-redux": "^7.2.0",
     "react-router-dom": "^5.1.2",
-    "react-scripts": "3.4.0"
+    "react-scripts": "3.4.0",
+    "redux": "^4.0.5"
   },
   "scripts": {
     "start": "react-scripts start",

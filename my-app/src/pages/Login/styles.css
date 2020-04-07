@@ -4,6 +4,7 @@
     flex-direction: column;
     align-content: center;
     justify-content: center;
+    background-color: #191414;
 }
 
 #login .header {

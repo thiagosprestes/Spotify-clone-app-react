@@ -50,11 +50,11 @@ const Routes = () => (
                 <PrivateRoute path="/collection/playlists" component={UserPlaylists} />
                 <PrivateRoute path="/collection/artists" component={UserArtists} />
                 <PrivateRoute path="/collection/albums" component={UserAlbums} />
-                <Route path="/album/id=:albumId" component={Album} />
-                <Route path="/playlist/id=:playlistId" component={Playlist} />
-                <Route path="/genre/id=:categoryId" component={Categories} />
-                <Route path="/artist/id=:artistId" component={Artist} />
-                <Route path="/user/:userId" component={User} />
+                <PrivateRoute path="/album/id=:albumId" component={Album} />
+                <PrivateRoute path="/playlist/id=:playlistId" component={Playlist} />
+                <PrivateRoute path="/genre/id=:categoryId" component={Categories} />
+                <PrivateRoute path="/artist/id=:artistId" component={Artist} />
+                <PrivateRoute path="/user/:userId" component={User} />
             </Body>
         </Switch>
     </BrowserRouter>

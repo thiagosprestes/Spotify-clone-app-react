@@ -2,7 +2,7 @@ import React from 'react';
 
 import './styles.css';
 
-import logo from '../../assets/spotify-clone-app-logo.png';
+import logo from '../../assets/spotify-clone-app-logo-white.png';
 
 function Login() {
     return (

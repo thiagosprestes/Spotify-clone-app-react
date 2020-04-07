@@ -4,7 +4,7 @@
     flex-direction: column;
     align-content: center;
     justify-content: center;
-    background-color: #191414;
+    background-color: #121212;
 }
 
 #login .header {
@@ -22,13 +22,17 @@
 }
 
 #login .content button {
-    background-color: #1db954;
+    background-color: transparent;
     color: #FFF;
-    transition: .3s;
+    transition: .1s;
+    border: 4px solid #FFF;
 }
 
 #login .content button:hover {
     background-color: #1ed760;
+    color: #000;
+    border-color: #1ed760;
+    transform: scale(1.06);
 }
 
 #login .content .login-info {

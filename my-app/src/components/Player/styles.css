@@ -142,3 +142,46 @@
 #player .track-slider .rhap_progress-container:hover .rhap_progress-filled {
     background-color: #1DB954;
 }
+
+#player .options .spotify-icon {
+    color: #FFF;
+    display: none;
+}
+
+#player .options .spotify-icon:hover {
+    color: #1DB954;
+}
+
+@media (max-width: 810px) {
+    #player .track-data .track-cover {
+        display: none;
+    }
+
+    #player .track-data .track-info {
+        margin: 15px;
+    }
+
+    #player .options .spotify {
+        display: none;
+    }
+
+    #player .track-slider {
+        width: 65% !important;
+    }
+
+    .rhap_stacked-reverse {
+        flex-direction: row !important;
+    }
+
+    .rhap_additional-controls, .rhap_rewind-button, .rhap_forward-button, .rhap_volume-controls {
+        display: none !important;
+    }
+
+    #player .track-data .track-info .track-artist {
+        display: none;
+    }
+
+    .rhap_stacked-reverse .rhap_controls-section {
+        margin-bottom: 0;
+    }
+}

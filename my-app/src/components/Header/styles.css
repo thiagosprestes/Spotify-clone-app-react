@@ -12,6 +12,10 @@
     z-index: 1000;
 }
 
+#header .sidebar-toggle {
+    display: none;
+}
+
 #header .user-menu .user {
     text-align: right;
 }
@@ -58,8 +62,13 @@
     padding: 10px 20px;
 }
 
-@media (max-width: 500px) {
+@media (max-width: 810px) {
     #header {
         left: 0;
+        justify-content: space-between;
+    }
+
+    #header .sidebar-toggle {
+        display: block;
     }
 }

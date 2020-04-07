@@ -135,3 +135,50 @@
     border-radius: 50%;
     margin-right: 10px;
 }
+
+@media (max-width: 810px) {
+    #artist .tracks-artists {
+        flex-direction: column;
+    }
+
+    #artist .related-artists {
+        width: 100%;
+        margin-left: 0px;
+    }
+
+    #artist .tracks-artists .top-tracks {
+        margin-bottom: 30px;
+    } 
+    
+    #artist .albums .album-info {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    #artist .albums .album-info .album-cover {
+        width: 9rem;
+        height: 9rem;
+    }
+
+    #artist .artist-info .artist-image {
+        margin-right: 0;
+    }
+
+    #artist .artist-info {
+        padding: 0;
+        padding-top: 15px;
+        flex-direction: column;
+    }
+
+    #artist .artist-info .artist-bio {
+        align-items: center;
+    }
+
+    #artist .options {
+        flex-direction: column;
+        margin-left: 0px;
+    }
+
+    #artist .options button {
+        margin-left: 0px;
+    }
+}

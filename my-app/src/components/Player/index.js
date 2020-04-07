@@ -56,6 +56,11 @@ export default function Player() {
                         <a className="spotify" href={`https://open.spotify.com/track/${trackData.track.id}`} target="_blank" rel="noopener noreferrer">
                             <FaSpotify size="1.5rem" />Ouvir no spotify
                         </a>
+                        <div className="spotify-icon">
+                            <a href={`https://open.spotify.com/track/${trackData.track.id}`} target="_blank" rel="noopener noreferrer">
+                                <FaSpotify size="2rem" />
+                            </a>
+                        </div>
                     </div>
                 </>
             )}
@@ -83,6 +88,11 @@ export default function Player() {
                         <a className="spotify" href={`https://open.spotify.com/track/${data.track.id}`} target="_blank" rel="noopener noreferrer">
                             <FaSpotify size="1.5rem" />Ouvir no spotify
                         </a>
+                        <div className="spotify-icon">
+                            <a href={`https://open.spotify.com/track/${data.track.id}`} target="_blank" rel="noopener noreferrer">
+                                <FaSpotify size="2rem" />
+                            </a>
+                        </div>
                     </div>
                 </React.Fragment>
             ))}

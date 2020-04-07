@@ -106,3 +106,38 @@
     height: 4rem;
     margin-right: 10px;
 }
+
+@media (max-width: 810px) {
+    #profile .tracks .tracks-list {
+        overflow-x: auto;
+    }
+
+    #profile .options-header {
+        flex-direction: column !important;
+    }
+
+    #profile .options-header .options {
+        margin-top: 20px;
+    }
+
+    #profile .options-header .options span {
+        margin-left: 0 !important;
+    }
+
+    #profile .options-header .options span + span {
+        margin-left: 10px !important;
+    }
+
+    #profile .artists-and-recently {
+        flex-direction: column;
+    }
+
+    #profile .artists-and-recently .artists {
+        margin-bottom: 30px;
+    }
+
+    #profile .artists-and-recently .recently-played {
+        margin-left: 0px;
+        width: 100%;
+    }
+}

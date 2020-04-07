@@ -4,6 +4,8 @@ import { Link, useHistory } from 'react-router-dom';
 
 import './styles.css';
 
+import { GiHamburgerMenu } from 'react-icons/gi';
+
 import api from '../../services/api';
 
 function Header() {
@@ -30,6 +32,9 @@ function Header() {
 
     return(
         <div id="header">
+            <div className="sidebar-toggle">
+                <GiHamburgerMenu />
+            </div>
             <div className="user-menu">
                 <div className="user">
                     {user}

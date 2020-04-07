@@ -58,3 +58,14 @@
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
 }
+
+@media (max-width: 810px) {
+    #categories .category{
+        grid-template-columns: repeat(2, 1fr);
+    }   
+
+    #categories .category-item .category-image {
+        width: 9rem;
+        height: 9rem;
+    }
+}

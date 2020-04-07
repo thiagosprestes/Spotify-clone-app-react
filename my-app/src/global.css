@@ -191,10 +191,22 @@ input {
     text-transform: capitalize;
 }
 
+table tbody tr td {
+    padding: 10px 30px 10px 0 !important;
+    white-space: nowrap;
+}
+
 @media (max-width: 500px) {
     .grid-template {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         gap: 20px;
+    }
+}
+
+@media (max-width: 810px) {
+    .cover {
+        height: 9rem;
+        width: 9rem;
     }
 }

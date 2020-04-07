@@ -6,3 +6,9 @@
 #liked-tracks .tracks-list .tracks-table .track-info {
     cursor: pointer;
 }
+
+@media (max-width: 810px) {
+    #liked-tracks .tracks-list {
+        overflow-x: auto;
+    }
+}

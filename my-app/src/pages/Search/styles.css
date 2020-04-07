@@ -58,3 +58,14 @@
 #search .search-results > div {
     margin-bottom: 50px;
 }
+
+@media (max-width: 810px) {
+    #search .search-input {
+        width: 100%;
+    }
+
+    #search .search-results .artists .artist-info .artist-cover, .album-info .album-cover {
+        width: 9rem;
+        height: 9rem;
+    }
+}

@@ -53,3 +53,10 @@
     text-decoration: underline;
     text-underline-offset: 2px;
 }
+
+@media (max-width: 810px) {
+    #recently .track .cover {
+        width: 9rem;
+        height: 9rem;
+    }
+}

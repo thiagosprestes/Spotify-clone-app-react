@@ -47,3 +47,10 @@
 #recently-played table .track-active td span:hover {
     color: #1ED760;
 }
+
+@media (max-width: 810px) {
+    #recently-played {
+        width: 100%;
+        overflow-x: auto;
+    }
+}

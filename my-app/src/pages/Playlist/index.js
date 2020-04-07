@@ -103,7 +103,7 @@ function Playlist() {
                             <MdMusicNote size="1em" />
                         </div>
 
-                        <div className="play-icon" onClick={() => previewPlayerData(data.track, data.track.album.images[0].url, data.track.artists)}>
+                        <div className="play-icon" onClick={() => previewPlayerData(data.track, data.track.album, data.track.artists)}>
                             <FaPlay size="1em" />
                         </div>
                         <div className="track-info">                                    

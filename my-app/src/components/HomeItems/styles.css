@@ -33,10 +33,3 @@
     color: #fff;
     text-decoration: underline;
 }
-
-@media (max-width: 810px) {
-    .items .item-info .item-cover {
-        height: 9rem;
-        width: 9rem;
-    }   
-}

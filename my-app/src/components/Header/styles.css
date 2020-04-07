@@ -66,6 +66,7 @@
     #header {
         left: 0;
         justify-content: space-between;
+        background-color: #000;
     }
 
     #header .sidebar-toggle {

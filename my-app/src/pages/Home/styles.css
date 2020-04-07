@@ -2,7 +2,7 @@
     display: flex;
 }
 
-@media (max-width: 500px) {
+@media (max-width: 1000px) {
     #home .user-top-lists {
         flex-direction: column;
     }

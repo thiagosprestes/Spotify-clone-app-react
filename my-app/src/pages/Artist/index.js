@@ -167,7 +167,7 @@ function Artist() {
                                     <div className="note-icon">
                                         <MdMusicNote size="1em" />
                                     </div>
-                                    <div className="play-icon" onClick={() => previewPlayerData(data, data.album.images[0].url, data.artists)}>
+                                    <div className="play-icon" onClick={() => previewPlayerData(data, data.album, data.artists)}>
                                         <FaPlay size="1em" />
                                     </div>
                                     <div className="track-image cover" style={{backgroundImage: `url(${data.album.images[0].url})`}}></div>

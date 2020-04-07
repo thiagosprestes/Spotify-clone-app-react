@@ -39,9 +39,13 @@ export default function Player() {
             {trackData != '' &&  (
                 <>
                     <div className="track-data">
-                        <div className="track-cover cover" style={{backgroundImage: `url(${trackData.image})`}}></div>
+                        <Link to={`/album/id=${trackData.album.id}`}>
+                            <div className="track-cover cover" style={{backgroundImage: `url(${trackData.album.image})`}}></div>
+                        </Link>
                         <div className="track-info">
-                            <span className="track-name">{trackData.track.name}</span>
+                            <Link to={`/album/id=${trackData.album.id}`}>
+                                <span className="track-name">{trackData.track.name}</span>
+                            </Link>
                             {trackData.artists.map(artist => (
                                 <Link to={`/artist/id=${artist.id}`} key={artist.id}>
                                     <span className="track-artist">{artist.name}</span>

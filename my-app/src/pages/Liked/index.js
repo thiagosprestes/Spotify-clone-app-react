@@ -70,7 +70,7 @@ function Liked() {
                                         trackData.track.name == data.track.name ? 
                                         'track-active' : ''}`
                                     } key={data.track.id}>
-                                        <td onClick={() => previewPlayerData(data.track, data.track.album.images[0].url, data.track.artists)}>
+                                        <td onClick={() => previewPlayerData(data.track, data.track.album, data.track.artists)}>
                                             <FaPlay />
                                         </td>
                                         <td onClick={() => previewPlayerData(data.track, data.track.album.images[0].url, data.track.artists)}>

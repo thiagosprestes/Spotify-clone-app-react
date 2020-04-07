@@ -114,6 +114,7 @@
 
     #profile .options-header {
         flex-direction: column !important;
+        align-items: flex-start !important;
     }
 
     #profile .options-header .options {

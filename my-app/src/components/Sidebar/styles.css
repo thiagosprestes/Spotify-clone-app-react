@@ -62,10 +62,6 @@
     margin: 15px 0;
 }
 
-#sidebar .user-playlists li {
-    margin: 10px 0;
-}
-
 #sidebar .user-playlists li:hover {
     color: #fff;
 }

@@ -7,7 +7,7 @@ const INITIAL_STATE = {
 function trackInfo(state = INITIAL_STATE, action) {
     switch (action.type) {
         case 'PLAY_TRACK':
-            return {data: {track: action.trackInfo, image: action.trackImage, artists: action.trackArtists}};
+            return {data: {track: action.trackInfo, album: action.trackAlbum, artists: action.trackArtists}};
         default:
             return state;
     }

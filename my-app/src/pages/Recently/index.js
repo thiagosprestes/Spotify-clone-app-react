@@ -34,7 +34,7 @@ function Recently() {
                     <div className="grid-template">
                         {recently.map(data => (
                             <div className="track" key={data.played_at}>
-                                <div className="cover" style={{backgroundImage: `url(${data.track.album.images[0].url})`}} onClick={() => previewPlayerData(data.track, data.track.album.images[0].url, data.track.artists)}></div>
+                                <div className="cover" style={{backgroundImage: `url(${data.track.album.images[0].url})`}} onClick={() => previewPlayerData(data.track, data.track.album, data.track.artists)}></div>
                                 <span className="track-name">{data.track.name}</span>
                                 <div className="artist-and-album">
                                     <span>

@@ -108,12 +108,12 @@ function Profile() {
                                     {tracks.map(track => (
                                         <tr className={`track-info ${trackData != '' && trackData.track.name == track.name ? 'track-active' : '' }`} key={track.id}>
                                             <td>
-                                                <span onClick={() => previewPlayerData(track, track.album.images[0].url, track.artists)}>
+                                                <span onClick={() => previewPlayerData(track, track.album, track.artists)}>
                                                     <FaPlay />
                                                 </span>
                                             </td>
                                             <td>
-                                                <span onClick={() => previewPlayerData(track, track.album.images[0].url, track.artists)}>
+                                                <span onClick={() => previewPlayerData(track, track.album, track.artists)}>
                                                     {track.name}
                                                 </span>
                                             </td>

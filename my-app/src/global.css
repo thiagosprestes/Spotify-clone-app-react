@@ -196,17 +196,35 @@ table tbody tr td {
     white-space: nowrap;
 }
 
-@media (max-width: 500px) {
+@media (max-width: 490px) {
+    .cover {
+        height: 9rem !important;
+        width: 9rem !important;
+    }
+}
+
+@media (max-width: 550px) {
     .grid-template {
         display: grid;
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(2, 1fr) !important;
         gap: 20px;
+    }
+
+    .cover {
+        height: 13rem;
+        width: 13rem;
     }
 }
 
 @media (max-width: 810px) {
     .cover {
-        height: 9rem;
-        width: 9rem;
+        height: 10rem;
+        width: 10rem;
+    }
+}
+
+@media (max-width: 900px) {
+    .grid-template {
+        grid-template-columns: repeat(3, 1fr);
     }
 }

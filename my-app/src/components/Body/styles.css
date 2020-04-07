@@ -39,10 +39,20 @@
 
 @media (max-width: 810px) {
     #app aside {
-        display: none;
+        position: absolute;
+        transition: .2s;
+        margin-top: 54px;
     }
 
     #app main {
         margin: 0;
+        transition: .2s;
+    }
+}
+
+@media (max-height: 450px) {
+    #app main {
+        width: 100%;
+        position: absolute !important;
     }
 }

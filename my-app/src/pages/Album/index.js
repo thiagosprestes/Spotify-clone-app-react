@@ -124,7 +124,7 @@ function Album() {
                                 <MdMusicNote size="1em" />
                             </div>
 
-                            <div className="play-icon" onClick={() => previewPlayerData(data, albumImage, artists)}>
+                            <div className="play-icon" onClick={() => previewPlayerData(data, album, artists)}>
                                 <FaPlay size="1em" />
                             </div>
                             <div className="track-info">                                    

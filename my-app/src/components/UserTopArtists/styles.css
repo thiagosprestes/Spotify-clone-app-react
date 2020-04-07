@@ -45,9 +45,15 @@
     color: #fff;
 }
 
-@media (max-width: 500px) {
+@media (max-width: 1000px) {
     #top-artists {
         margin: 20px 0;
         width: 100%;
+    }    
+}
+
+@media (max-width: 1280px) {
+    #top-artists {
+        width: auto;
     }    
 }

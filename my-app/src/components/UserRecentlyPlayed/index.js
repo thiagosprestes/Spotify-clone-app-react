@@ -37,12 +37,12 @@ function UserRecentlyPlayed() {
                     {recentlyPlayed.map(data => (
                         <tr key={data.played_at} className={trackData != '' && trackData.track.name == data.track.name ? 'track-active' : ''}>
                             <td>
-                                <span onClick={() => previewPlayerData(data.track, data.track.album.images[0].url, data.track.artists)}>
+                                <span onClick={() => previewPlayerData(data.track, data.track.album, data.track.artists)}>
                                     <FaPlay />
                                 </span>
                             </td>
                             <td>
-                                <span onClick={() => previewPlayerData(data.track, data.track.album.images[0].url, data.track.artists)}>
+                                <span onClick={() => previewPlayerData(data.track, data.track.album, data.track.artists)}>
                                     {data.track.name}
                                 </span>
                             </td>

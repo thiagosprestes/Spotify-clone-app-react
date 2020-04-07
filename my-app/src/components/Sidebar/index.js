@@ -12,88 +12,82 @@ import './styles.css';
 
 import logo from '../../assets/spotify-clone-app-logo-white.png';
 
-function Sidebar() {
+function Sidebar({ sidebarState }) {
+    const menuItems = [
+        {
+            label: 'Início',
+            path: '/',
+            icon: <MdHome size="2rem" />
+        },
+        {
+            label: 'Buscar',
+            path: '/search',
+            icon: <FiSearch size="2rem" />
+        },
+        {
+            label: 'Perfil',
+            path: '/profile',
+            icon: <MdPerson size="2rem" />
+        },
+    ]
+
+    const libraryItems = [
+        {
+            label: 'Recentes',
+            path: '/recently-played',
+            icon: <FiClock size="2rem" />
+        },
+        {
+            label: 'Músicas curtidas',
+            path: '/collection/tracks',
+            icon: <FaHeart size="2rem" />
+        },
+        {
+            label: 'Playlists',
+            path: '/collection/playlists',
+            icon: <MdPlaylistPlay size="2rem" />
+        },
+        {
+            label: 'Artistas',
+            path: '/collection/artists',
+            icon: <MdMusicNote size="2rem" />
+        },
+        {
+            label: 'Álbuns',
+            path: '/collection/albums',
+            icon: <MdAlbum size="2rem" />
+        },
+    ]
+
     return(
         <div id="sidebar">
             <img src={logo} alt="logo" />
             <ul>
-                <li className="menu-item">
-                    <NavLink exact className="item-link" to="/">
-                        <div className="item-icon">
-                            <MdHome size="2em" />
-                        </div>
-                        <div className="item-text">Início</div>
-                    </NavLink>
-                </li>
-                <li className="menu-item">
-                    <NavLink className="item-link" to="/search">
-                        <div className="item-icon">
-                            <FiSearch size="2em" />
-                        </div>
-                        <div className="item-text">
-                            Buscar
-                        </div>
-                    </NavLink>
-                </li>
-                <li className="menu-item">
-                    <NavLink className="item-link" to="/profile">
-                        <div className="item-icon">
-                            <MdPerson size="2em" />
-                        </div>
-                        <div className="item-text">
-                            Seu perfil
-                        </div>
-                    </NavLink>
-                </li>
+                {menuItems.map(data => (
+                    <li className="menu-item" onClick={window.innerWidth <= 810 ? sidebarState : null}>
+                        <NavLink exact className="item-link" to={data.path}>
+                            <div className="item-icon">
+                                {data.icon}
+                            </div>
+                            <div className="item-text">{data.label}</div>
+                        </NavLink>
+                    </li>
+                ))}
             </ul>
             <div className="user-playlists">
                 <span>Sua biblioteca</span>
                 <ul>
-                <li className="menu-item">
-                    <NavLink exact className="item-link" to="/recently-played">
-                        <div className="item-icon">
-                            <FiClock size="2em" />
-                        </div>
-                        <div className="item-text">Recentes</div>
-                    </NavLink>
-                </li>
-                <li className="menu-item">
-                    <NavLink exact className="item-link" to="/collection/tracks">
-                        <div className="item-icon">
-                            <FaHeart size="2em" />
-                        </div>
-                        <div className="item-text">Músicas curtidas</div>
-                    </NavLink>
-                </li>
-                <li className="menu-item">
-                    <NavLink exact className="item-link" to="/collection/playlists">
-                        <div className="item-icon">
-                            <MdPlaylistPlay size="2em" />
-                        </div>
-                        <div className="item-text">Playlists</div>
-                    </NavLink>
-                </li>
-                <li className="menu-item">
-                    <NavLink className="item-link" to="/collection/artists">
-                        <div className="item-icon">
-                            <MdMusicNote size="2em" />
-                        </div>
-                        <div className="item-text">
-                            Artistas
-                        </div>
-                    </NavLink>
-                </li>
-                <li className="menu-item">
-                    <NavLink className="item-link" to="/collection/albums">
-                        <div className="item-icon">
-                            <MdAlbum size="2em" />
-                        </div>
-                        <div className="item-text">
-                            Álbuns
-                        </div>
-                    </NavLink>
-                </li>
-            </ul>
+                {libraryItems.map(data => (
+                    <li className="menu-item" onClick={window.innerWidth <= 810 ? sidebarState : null}>
+                        <NavLink exact className="item-link" to={data.path}>
+                            <div className="item-icon">
+                                {data.icon}
+                            </div>
+                            <div className="item-text">{data.label}</div>
+                        </NavLink>
+                    </li>
+                ))}
+                </ul>
             </div>
         </div>
     )

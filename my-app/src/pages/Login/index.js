@@ -13,7 +13,7 @@ function Login() {
                 </div>
             </div>
             <div className="content">
-                <a href="http://localhost:8888/login">
+                <a href={process.env.AUTH_API_URL || 'http://localhost:8888/login'} rel="nooper noreferrer">
                     <button>
                         Fazer login no Spotify
                     </button>

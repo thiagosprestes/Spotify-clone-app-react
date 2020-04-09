@@ -218,6 +218,6 @@
     }
 
     .rhap_time {
-        display: none;
+        display: none !important;
     }
 }

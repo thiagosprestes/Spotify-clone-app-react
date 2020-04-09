@@ -165,10 +165,6 @@
         display: none;
     }
 
-    #player .track-slider {
-        width: 65% !important;
-    }
-
     .rhap_stacked-reverse {
         flex-direction: row !important;
     }
@@ -182,6 +178,46 @@
     }
 
     .rhap_stacked-reverse .rhap_controls-section {
-        margin-bottom: 0;
+        margin-bottom: 0 !important;
+        position: absolute !important;
+        top: 5px !important;
+        right: 0 !important;
+    }
+
+    #player {
+        flex-direction: column;
+    }
+
+    .rhap_container {
+        padding: 0 !important;
+    }
+
+    .rhap_controls-section {
+        flex: 0 !important;
+    }
+
+    #player .track-slider {
+        width: 100% !important;
+        margin-bottom: 0 !important;
+    }
+
+    #player .options {
+        display: none;
+    }
+
+    .rhap_progress-container {
+        height: 0 !important;
+        margin: 0 !important;
+        width: 100% !important;
+        top: 0 !important;
+        position: absolute !important;
+    }
+
+    .rhap_progress-bar {
+        border-radius: 0px !important;
+    }
+
+    .rhap_time {
+        display: none;
     }
 }

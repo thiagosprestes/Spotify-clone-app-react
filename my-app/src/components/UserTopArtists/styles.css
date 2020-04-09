@@ -57,3 +57,10 @@
         width: auto;
     }    
 }
+
+@media (max-width: 810px) {
+    #top-artists ul li .artist-image {
+        height: 60px;
+        width: 60px;
+    }    
+}

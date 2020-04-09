@@ -68,38 +68,6 @@ export default function Player() {
                     </div>
                 </>
             )}
-            {trackData == '' && lastPlayed.map(data => (
-                <React.Fragment key={data.track.id}>
-                    <div className="track-data">
-                        <Link to={`/album/id=${data.track.album.id}`}>
-                            <div className="track-cover cover" style={{backgroundImage: `url(${data.track.album.images[0].url})`}}></div>
-                        </Link>
-                        <div className="track-info">
-                            <Link to={`/album/id=${data.track.album.id}`}>
-                                <span className="track-name">{data.track.name}</span>
-                            </Link>
-                            {data.track.artists.map(artist => (
-                                <Link to={`/artist/id=${artist.id}`} key={artist.id}>
-                                    <span className="track-artist">{artist.name}</span>
-                                </Link>
-                            ))}
-                        </div>
-                    </div>
-                    <div className="track-slider">
-                        <AudioPlayer src={data.track.preview_url} customAdditionalControls={[]} layout="stacked-reverse" volume={0.5} showDownloadProgress={false} />
-                    </div>
-                    <div className="options">
-                        <a className="spotify" href={`https://open.spotify.com/track/${data.track.id}`} target="_blank" rel="noopener noreferrer">
-                            <FaSpotify size="1.5rem" />Ouvir no spotify
-                        </a>
-                        <div className="spotify-icon">
-                            <a href={`https://open.spotify.com/track/${data.track.id}`} target="_blank" rel="noopener noreferrer">
-                                <FaSpotify size="2rem" />
-                            </a>
-                        </div>
-                    </div>
-                </React.Fragment>
-            ))}
         </div>
     );
 }

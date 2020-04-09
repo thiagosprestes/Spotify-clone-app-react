@@ -155,8 +155,8 @@
     }
 
     #artist .albums .album-info .album-cover {
-        width: 9rem;
-        height: 9rem;
+        width: 9rem !important;
+        height: 9rem !important;
     }
 
     #artist .artist-info .artist-image {
@@ -180,5 +180,10 @@
 
     #artist .options button {
         margin-left: 0px;
+    }
+
+    #artist .related-artists .related-artist .related-artist-cover {
+        height: 4rem;
+        width: 4rem;
     }
 }

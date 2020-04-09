@@ -227,4 +227,9 @@ table tbody tr td {
     .grid-template {
         grid-template-columns: repeat(3, 1fr);
     }
+
+    .tracks .track-image {
+        height: 3rem !important;
+        width: 3rem !important;
+    }
 }

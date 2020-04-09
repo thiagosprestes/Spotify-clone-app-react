@@ -6,9 +6,9 @@ Link da aplicação rodando no netlify: https://tsprestes-spotifycloneapp.netlif
 
 ## Sobre o projeto
 
-Um clone do spotify com algumas modificações visuais pequenas que em minha opinião melhoras a usabilidade.
+Um clone do spotify com algumas modificações visuais pequenas que em minha opinião melhoram a usabilidade.
 
-Este projeto faz parte do meu potfólio pessoal, qualquer feedback sobre estrutura, código ou funcionalidades que podem melhorar o projeto seram bem vindos.
+Este projeto faz parte do meu potfólio pessoal, qualquer feedback sobre estrutura, código ou funcionalidades que podem melhorar o projeto serão bem vindos.
 
 Sinta-se livre para dar um fork, ou enviar um pull request, você pode usar este projeto para estudar ou fazer melhorias!
 

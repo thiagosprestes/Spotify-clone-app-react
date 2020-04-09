@@ -65,3 +65,9 @@
 #sidebar .user-playlists li:hover {
     color: #fff;
 }
+
+@media (max-width: 800px) {
+    #sidebar {
+        overflow-x: auto;
+    }
+}

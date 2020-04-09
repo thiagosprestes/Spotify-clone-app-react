@@ -141,4 +141,14 @@
         margin-left: 0px;
         width: 100%;
     }
+
+    #profile .artists-and-recently .artists .artists-list .artist .artist-cover {
+        height: 4rem !important;
+        width: 4rem !important;
+    }
+
+    #profile .artists-and-recently .recently-played .recently-list .track .track-cover {
+        width: 4rem !important;
+        height: 4rem !important;
+    }
 }

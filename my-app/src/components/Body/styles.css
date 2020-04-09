@@ -20,7 +20,7 @@
 
 #app main > div {
     margin-top: 55px;
-    margin-bottom: 100px;
+    margin-bottom: 50px;
 }
 
 #app footer {
@@ -50,7 +50,7 @@
     }
 }
 
-@media (max-height: 450px) {
+@media (max-width: 800px) and (max-height: 450px) {
     #app main {
         width: 100%;
         position: absolute !important;

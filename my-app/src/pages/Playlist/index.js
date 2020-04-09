@@ -4,6 +4,8 @@ import { Link, useParams } from 'react-router-dom';
 
 import './styles.css';
 
+import defaultImage from '../../assets/default-image.jpg';
+
 import api from '../../services/api';
 
 import { FaPlay, FaHeart, FaRegHeart, FaShareAlt } from 'react-icons/fa';
@@ -35,9 +37,14 @@ function Playlist() {
         const response = await api.get(`/playlists/${id}?market=br&fields=images%2Chref%2Cname%2Cowner(!href%2Cexternal_urls)%2Ctracks.items(added_by.id%2Ctrack(artists%2Cduration_ms%2Cid%2Cname%2Chref%2Cpreview_url%2Calbum(images%2Cname%2Chref%2Cid)))`);
 
         setPlaylist(response.data);
-        setPlaylistImage(response.data.images[0].url);
         setOwner(response.data.owner);                
         setTracks(response.data.tracks.items);
+        
+        if (response.data.images == 0) {
+            setPlaylistImage(defaultImage)
+        } else {
+            setPlaylistImage(response.data.images[0].url);
+        }
         
         setLoad(false);
     }

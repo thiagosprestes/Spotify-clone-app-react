@@ -39,10 +39,15 @@ function Album() {
         const response = await api.get(`albums/${id}`);
         
         setAlbum(response.data);
-        setAlbumImage(response.data.images[0].url);
         setArtists(response.data.artists);
         setTracks(response.data.tracks.items);
         setCopyrights(response.data.copyrights);
+
+        if (response.data.images == 0) {
+            setAlbumImage(defaultImage);
+        } else {
+            setAlbumImage(response.data.images[0].url);
+        }
         
         setLoad(false);
     }

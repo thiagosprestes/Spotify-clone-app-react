@@ -152,6 +152,14 @@
     color: #1DB954;
 }
 
+#player .track-data .close-player {
+    margin-left: 15px;
+}
+
+#player .track-data .close-player:hover {
+    cursor: pointer;
+}
+
 @media (max-width: 810px) {
     #player {
         flex-direction: column;
@@ -188,7 +196,7 @@
         left: 0;
         margin-left: 10px;
     }
-
+    
     #player .track-data .track-info .track-name {
         font-weight: bold;
     }

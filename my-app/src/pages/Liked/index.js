@@ -88,9 +88,11 @@ function Liked() {
                             </tbody>
                         </table>
                     </div>     
-                    <div className="load-more">
-                        <button onClick={loadMore}>Carregar mais</button> 
-                    </div>
+                    {next != null &&
+                        <div className="load-more">
+                            <button onClick={loadMore}>Carregar mais</button> 
+                        </div>
+                    }
                 </div>
             }
         </>

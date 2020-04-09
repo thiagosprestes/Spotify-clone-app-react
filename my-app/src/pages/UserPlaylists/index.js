@@ -46,7 +46,7 @@ function UserPlaylists() {
                         {playlists.map((playlist) => (
                             <div className="item" key={playlist.id}>
                                 <Link to={`/playlist/id=${playlist.id}`}>
-                                    <div className="cover" style={{backgroundImage: `url(${playlist.images === 0 ? defaultImage : playlist.images[0].url})`}}></div>                                
+                                    <div className="cover" style={{backgroundImage: `url(${playlist.images == 0 ? defaultImage : playlist.images[0].url})`}}></div>                                
                                     <div className="name-and-description">
                                         <span className="name">{playlist.name}</span>
                                     </div>

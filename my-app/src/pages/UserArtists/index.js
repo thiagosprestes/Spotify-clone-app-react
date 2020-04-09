@@ -46,7 +46,7 @@ function UserArtists() {
                         {artists.map((artist) => (
                             <div className="item" key={artist.id}>
                                 <Link to={`/artist/id=${artist.id}`}>
-                                    <div className="artist-cover cover" style={{backgroundImage: `url(${artist.images === 0 ? defaultImage : artist.images[0].url})`}}></div>                                
+                                    <div className="artist-cover cover" style={{backgroundImage: `url(${artist.images == 0 ? defaultImage : artist.images[0].url})`}}></div>                                
                                     <div className="name-and-description">
                                         <span className="name">{artist.name}</span>
                                     </div>

@@ -46,7 +46,7 @@ function UserAlbums() {
                         {albums.map((data) => (
                             <div className="item" key={data.album.id}>
                                 <Link to={`/album/id=${data.album.id}`}>
-                                    <div className="album-cover cover" style={{backgroundImage: `url(${data.album.images === 0 ? defaultImage : data.album.images[0].url})`}}></div>    
+                                    <div className="album-cover cover" style={{backgroundImage: `url(${data.album.images == 0 ? defaultImage : data.album.images[0].url})`}}></div>    
                                     <span className="name">{data.album.name}</span>      
                                 </Link>     
                                 <Link to={`/artist/id=${data.album.artists[0].id}`}>                 

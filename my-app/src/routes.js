@@ -27,12 +27,7 @@ const token = getHashParams().access_token;
 function PrivateRoute({ component: Component, ...rest }) {
     return(
         <Route {...rest} 
-            render={props => 
-                    token !== undefined ? (<Component {...props} />
-                ) : (
-                    <Redirect to={{ pathname: '/login', state: { from: props.location } }} />
-                )
-            } 
+            render={props => token !== undefined ? (<Component {...props} />) : (<Redirect to={{ pathname: '/login', state: { from: props.location } }} />)}
         />
     )
 }

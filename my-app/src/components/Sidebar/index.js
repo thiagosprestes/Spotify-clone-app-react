@@ -64,7 +64,7 @@ function Sidebar({ sidebarState }) {
             <img src={logo} alt="logo" />
             <ul>
                 {menuItems.map(data => (
-                    <li className="menu-item" onClick={window.innerWidth <= 810 ? sidebarState : null}>
+                    <li key={data.path} className="menu-item" onClick={window.innerWidth <= 810 ? sidebarState : null}>
                         <NavLink exact className="item-link" to={data.path}>
                             <div className="item-icon">
                                 {data.icon}
@@ -78,7 +78,7 @@ function Sidebar({ sidebarState }) {
                 <span>Sua biblioteca</span>
                 <ul>
                 {libraryItems.map(data => (
-                    <li className="menu-item" onClick={window.innerWidth <= 810 ? sidebarState : null}>
+                    <li key={data.path} className="menu-item" onClick={window.innerWidth <= 810 ? sidebarState : null}>
                         <NavLink exact className="item-link" to={data.path}>
                             <div className="item-icon">
                                 {data.icon}

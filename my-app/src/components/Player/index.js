@@ -10,39 +10,33 @@ import api from '../../services/api';
 
 import { FaSpotify } from 'react-icons/fa';
 
+import { IoMdCloseCircleOutline } from 'react-icons/io';
+
 import AudioPlayer from 'react-h5-audio-player';
 
 import 'react-h5-audio-player/lib/styles.css';
 
 export default function Player() {
+    const [ togglePlayer, setTogglePlayer] = useState(false);
 
-    const trackData = useSelector(state => state.data)
-
-    const [ lastPlayed, setLastPlayed ] = useState([]);
-    
-    const [ load, setLoad ] = useState(true);
-
-    async function loadLastPlayed() {
-        const response = await api.get(`https://api.spotify.com/v1/me/player/recently-played?limit=1`);
-        
-        setLastPlayed(response.data.items);
-
-        setLoad(false);
-    }
+    const trackData = useSelector(state => state.data);
     
     useEffect(() => {
-        loadLastPlayed();
-    }, []);
-    
+        setTogglePlayer(true);
+    }, [trackData]);
+
     return(
-        <div id="player">
+        <div id="player" style={togglePlayer ? {display: 'flex'} : {display: 'none'}}>
             {trackData != '' &&  (
                 <>
                     <div className="track-data">
+                        <div className="close-player" onClick={() => setTogglePlayer(false)}>
+                            <IoMdCloseCircleOutline size="1.5rem" />
+                        </div>
                         <Link to={`/album/id=${trackData.album.id}`}>
                             <div className="track-cover cover" style={{backgroundImage: `url(${trackData.album.image})`}}></div>
                         </Link>
-                        <div className="track-info">
+                        <div className="track-info">                            
                             <Link to={`/album/id=${trackData.album.id}`}>
                                 <span className="track-name">{trackData.track.name}</span>
                             </Link>

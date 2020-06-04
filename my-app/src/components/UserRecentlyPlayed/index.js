@@ -6,18 +6,17 @@ import './styles.css';
 
 import { FaPlay } from 'react-icons/fa';
 
+import { useSelector } from 'react-redux';
 import api from '../../services/api';
 
 import millisToMinutesAndSeconds from '../../utils/millisToMinutesAndSeconds';
 
 import previewPlayerData from '../../utils/previewPlayerData';
 
-import { useSelector } from 'react-redux';
-
 function UserRecentlyPlayed() {
-    const [ recentlyPlayed, setRecentlyPlayed ] = useState([]);
+    const [recentlyPlayed, setRecentlyPlayed] = useState([]);
 
-    const trackData = useSelector(state => state.data);
+    const trackData = useSelector((state) => state.data);
 
     async function handleLoad() {
         const response = await api.get('/me/player/recently-played?limit=10');
@@ -34,34 +33,65 @@ function UserRecentlyPlayed() {
             <h2>Tocadas recentemente</h2>
             <table>
                 <tbody>
-                    {recentlyPlayed.map(data => (
-                        <tr key={data.played_at} className={trackData != '' && trackData.track.name == data.track.name ? 'track-active' : ''}>
+                    {recentlyPlayed.map((data) => (
+                        <tr
+                            key={data.played_at}
+                            className={
+                                trackData.length !== 0 &&
+                                trackData.track.name === data.track.name
+                                    ? 'track-active'
+                                    : ''
+                            }
+                        >
                             <td>
-                                <span onClick={() => previewPlayerData(data.track, data.track.album, data.track.artists)}>
+                                <span
+                                    onClick={() =>
+                                        previewPlayerData(
+                                            data.track,
+                                            data.track.album,
+                                            data.track.artists
+                                        )
+                                    }
+                                >
                                     <FaPlay />
                                 </span>
                             </td>
                             <td>
-                                <span onClick={() => previewPlayerData(data.track, data.track.album, data.track.artists)}>
+                                <span
+                                    onClick={() =>
+                                        previewPlayerData(
+                                            data.track,
+                                            data.track.album,
+                                            data.track.artists
+                                        )
+                                    }
+                                >
                                     {data.track.name}
                                 </span>
                             </td>
                             <td>
-                                {data.track.artists.map(artist => (    
-                                    <Link to={`/artist/id=${artist.id}`} key={artist.id}>                        
-                                        <span>{artist.name}</span>    
-                                    </Link>                        
+                                {data.track.artists.map((artist) => (
+                                    <Link
+                                        to={`/artist/id=${artist.id}`}
+                                        key={artist.id}
+                                    >
+                                        <span>{artist.name}</span>
+                                    </Link>
                                 ))}
                             </td>
                             <td>
-                                <span>{millisToMinutesAndSeconds(data.track.duration_ms)}</span>
+                                <span>
+                                    {millisToMinutesAndSeconds(
+                                        data.track.duration_ms
+                                    )}
+                                </span>
                             </td>
-                        </tr>      
+                        </tr>
                     ))}
                 </tbody>
             </table>
         </div>
-    )
+    );
 }
 
 export default UserRecentlyPlayed;

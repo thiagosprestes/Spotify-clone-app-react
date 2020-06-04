@@ -4,11 +4,10 @@ import { Link, useParams } from 'react-router-dom';
 
 import './styles.css';
 
-import api from '../../services/api';
-
 import { FaPlay, FaRegHeart, FaShareAlt, FaHeart } from 'react-icons/fa';
-
 import { MdMusicNote } from 'react-icons/md';
+import { useSelector } from 'react-redux';
+import api from '../../services/api';
 
 import SpotifyButton from '../../components/SpotifyButton';
 
@@ -18,60 +17,45 @@ import millisToMinutesAndSeconds from '../../utils/millisToMinutesAndSeconds';
 
 import previewPlayerData from '../../utils/previewPlayerData';
 
-import { useSelector } from 'react-redux';
-
 function Album() {
-    const [ album, setAlbum ] = useState([]);
-    const [ albumImage, setAlbumImage ] = useState([]);
-    const [ artists, setArtists ] = useState([]);
-    const [ tracks, setTracks ] = useState([]);
-    const [ copyrights, setCopyrights ] = useState([]);
+    const [album, setAlbum] = useState([]);
 
-    const [ save, setSave ] = useState('');
+    const [save, setSave] = useState('');
 
-    const [ load, setLoad ] = useState(true);
+    const [load, setLoad] = useState(true);
 
-    const id = useParams().albumId;    
+    const id = useParams().albumId;
 
-    const trackData = useSelector(state => state.data);
+    const trackData = useSelector((state) => state.data);
 
-    async function loadAlbum() {
-        const response = await api.get(`albums/${id}`);
-        
-        setAlbum(response.data);
-        setArtists(response.data.artists);
-        setTracks(response.data.tracks.items);
-        setCopyrights(response.data.copyrights);
+    useEffect(() => {
+        async function loadAlbum() {
+            const response = await api.get(`albums/${id}`);
 
-        if (response.data.images == 0) {
-            setAlbumImage(defaultImage);
-        } else {
-            setAlbumImage(response.data.images[0].url);
+            setAlbum(response.data);
+
+            setLoad(false);
         }
-        
-        setLoad(false);
-    }
 
-    async function verifySaved() {
-        const response = await api.get(`/me/albums/contains?ids=${id}`);
+        async function verifySaved() {
+            const response = await api.get(`/me/albums/contains?ids=${id}`);
 
-        setSave(response.data[0]);
-    }
+            setSave(response.data[0]);
+        }
 
-    useEffect(() => {        
         loadAlbum();
         verifySaved();
-    }, []);
+    }, [id]);
 
     const date = new Date(album.release_date);
 
     async function saveAlbum() {
         try {
             await api.put(`/me/albums?ids=${id}`);
-    
+
             setSave(true);
         } catch (error) {
-            alert("Ocorreu um erro ao salvar o àlbum.");
+            alert('Ocorreu um erro ao salvar o àlbum.');
         }
     }
 
@@ -81,83 +65,129 @@ function Album() {
 
             setSave(false);
         } catch (error) {
-            alert("Ocorreu um erro ao remover o àlbum da sua biblioteca");
+            alert('Ocorreu um erro ao remover o àlbum da sua biblioteca');
         }
     }
 
-    return(
+    return (
         <>
-        {load && <h2 className="loading">Carregando...</h2>} 
-        {!load && 
-        <>            
-            <div id="album" className="container">                    
-                <div className="album-info">
-                    <div className="album-image cover" style={{backgroundImage: `url(${albumImage == null ? defaultImage : albumImage})`}}></div>
-                    <h2 className="album-title">{album.name}</h2>                    
-                    <div className="album-artists">
-                        {artists.map(artist => (
-                            <Link to={`/artist/id=${artist.id}`} key={artist.id}>
-                                <span>{artist.name}</span>
-                            </Link>
-                        ))}
-                    </div>
-                    <SpotifyButton id={album.id} type="album" />
-                    <div className="album-options">
-                        {!save && <FaRegHeart onClick={saveAlbum} size="1.8em" />}
-                        {save && <FaHeart onClick={removeAlbum} size="1.8em" color="#1DB954" />}
-                        <FaShareAlt size="1.8em" />
-                    </div>
-                    <div className="album-year">
-                        <span>{String(date.getFullYear())}</span>
-                        {album.total_tracks == 1 && 
-                            <span>{album.total_tracks} música</span>
-                        }
-                        {album.total_tracks > 1 && 
-                            <span>{album.total_tracks} músicas</span>
-                        }
-                    </div>
-                </div>
-                <div className="album-tracks tracks">
-                    {tracks.map(data => (
-                        <div key={data.id} className={
-                                `track ${
-                                trackData != '' && 
-                                trackData.track.name == data.name ? 
-                                'track-active' : ''}`
-                            }>
-                            <div className="note-icon">
-                                <MdMusicNote size="1em" />
+            {load ? (
+                <h2 className="loading">Carregando...</h2>
+            ) : (
+                <>
+                    <div id="album" className="container">
+                        <div className="album-info">
+                            <div
+                                className="album-image cover"
+                                style={{
+                                    backgroundImage: `url(${
+                                        album.images.length > 0 &&
+                                        album.images[0].url !== ''
+                                            ? album.images[0].url
+                                            : defaultImage
+                                    })`,
+                                }}
+                            />
+                            <h2 className="album-title">{album.name}</h2>
+                            <div className="album-artists">
+                                {album.artists.map((artist) => (
+                                    <Link
+                                        to={`/artist/id=${artist.id}`}
+                                        key={artist.id}
+                                    >
+                                        <span>{artist.name}</span>
+                                    </Link>
+                                ))}
                             </div>
-
-                            <div className="play-icon" onClick={() => previewPlayerData(data, album, artists)}>
-                                <FaPlay size="1em" />
+                            <SpotifyButton id={album.id} type="album" />
+                            <div className="album-options">
+                                {!save && (
+                                    <FaRegHeart
+                                        onClick={saveAlbum}
+                                        size="1.8em"
+                                    />
+                                )}
+                                {save && (
+                                    <FaHeart
+                                        onClick={removeAlbum}
+                                        size="1.8em"
+                                        color="#1DB954"
+                                    />
+                                )}
+                                <FaShareAlt size="1.8em" />
                             </div>
-                            <div className="track-info">                                    
-                                <span className="track-name">{data.name}</span>
-                                <div className="track-artists">                                    
-                                    {data.artists.map(artist => (
-                                        <Link to={`/artist/id=${artist.id}`} key={artist.id}>
-                                            <span>{artist.name}</span>
-                                        </Link>
-                                    ))}
-                                </div> 
+                            <div className="album-year">
+                                <span>{String(date.getFullYear())}</span>
+                                {album.total_tracks === 1 && (
+                                    <span>{album.total_tracks} música</span>
+                                )}
+                                {album.total_tracks > 1 && (
+                                    <span>{album.total_tracks} músicas</span>
+                                )}
                             </div>
-                            <div className="track-duration">
-                                {millisToMinutesAndSeconds(data.duration_ms)}
-                            </div>                           
                         </div>
-                    ))}
-                    <div className="copyright">
-                        {copyrights.map(copyright => (
-                            <span key={copyright.text}>{copyright.text}</span>
-                        ))}
+                        <div className="album-tracks tracks">
+                            {album.tracks.items.map((data) => (
+                                <div
+                                    key={data.id}
+                                    className={`track ${
+                                        trackData.length !== 0 &&
+                                        trackData.track.name === data.name
+                                            ? 'track-active'
+                                            : ''
+                                    }`}
+                                >
+                                    <div className="note-icon">
+                                        <MdMusicNote size="1em" />
+                                    </div>
+
+                                    <div
+                                        className="play-icon"
+                                        onClick={() =>
+                                            previewPlayerData(
+                                                data,
+                                                album,
+                                                album.artists
+                                            )
+                                        }
+                                    >
+                                        <FaPlay size="1em" />
+                                    </div>
+                                    <div className="track-info">
+                                        <span className="track-name">
+                                            {data.name}
+                                        </span>
+                                        <div className="track-artists">
+                                            {data.artists.map((artist) => (
+                                                <Link
+                                                    to={`/artist/id=${artist.id}`}
+                                                    key={artist.id}
+                                                >
+                                                    <span>{artist.name}</span>
+                                                </Link>
+                                            ))}
+                                        </div>
+                                    </div>
+                                    <div className="track-duration">
+                                        {millisToMinutesAndSeconds(
+                                            data.duration_ms
+                                        )}
+                                    </div>
+                                </div>
+                            ))}
+                            <div className="copyright">
+                                {album.copyrights.map((copyright) => (
+                                    <span key={copyright.text}>
+                                        {copyright.text}
+                                    </span>
+                                ))}
+                            </div>
+                        </div>
                     </div>
-                </div>                        
-            </div>
-            </>
-        }
+                </>
+            )}
         </>
-    )
+    );
 }
 
 export default Album;

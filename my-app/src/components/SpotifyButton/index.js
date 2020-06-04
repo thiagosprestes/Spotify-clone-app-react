@@ -7,12 +7,16 @@ import { FaSpotify } from 'react-icons/fa';
 function SpotifyButton({ type, id }) {
     return (
         <div className="spotify-link">
-            <a href={`https://open.spotify.com/${type}/${id}`} target="_blank">
+            <a
+                href={`https://open.spotify.com/${type}/${id}`}
+                target="_blank"
+                rel="noreferrer"
+            >
                 <FaSpotify size="1.5em" />
                 Spotify
             </a>
-        </div>  
-    )
+        </div>
+    );
 }
 
 export default SpotifyButton;

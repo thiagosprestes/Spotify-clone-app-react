@@ -8,22 +8,22 @@ import api from '../../services/api';
 
 import defaultImage from '../../assets/default-image.jpg';
 
-function UserPlaylists() {
-    const [ playlists, setPlaylists ] = useState([]);
-    const [ next, setNext ] = useState('');
+export default function UserPlaylists() {
+    const [playlists, setPlaylists] = useState([]);
+    const [next, setNext] = useState('');
 
-    const [ load, setLoad ] = useState(true);
+    const [load, setLoad] = useState(true);
 
-    async function loadPlaylists() {
-        const response = await api.get('/me/playlists?limit=50');
-
-        setPlaylists([...playlists, ...response.data.items]);
-        setNext(response.data.next);
-
-        setLoad(false);
-    }
-    
     useEffect(() => {
+        async function loadPlaylists() {
+            const response = await api.get('/me/playlists?limit=50');
+
+            setPlaylists((oldValue) => [...oldValue, ...response.data.items]);
+            setNext(response.data.next);
+
+            setLoad(false);
+        }
+
         loadPlaylists();
     }, []);
 
@@ -36,33 +36,45 @@ function UserPlaylists() {
         setNext(response.data.next);
     }
 
-    return(
+    return (
         <>
-            {load && <h2 className="loading">Carregando...</h2>}
-            {!load && 
+            {load ? (
+                <h2 className="loading">Carregando...</h2>
+            ) : (
                 <div id="playlists" className="container">
                     <h2>Suas playlists</h2>
                     <div className="grid-template">
                         {playlists.map((playlist) => (
                             <div className="item" key={playlist.id}>
                                 <Link to={`/playlist/id=${playlist.id}`}>
-                                    <div className="cover" style={{backgroundImage: `url(${playlist.images == 0 ? defaultImage : playlist.images[0].url})`}}></div>                                
+                                    <div
+                                        className="cover"
+                                        style={{
+                                            backgroundImage: `url(${
+                                                playlist.images.length === 0
+                                                    ? defaultImage
+                                                    : playlist.images[0].url
+                                            })`,
+                                        }}
+                                    />
                                     <div className="name-and-description">
-                                        <span className="name">{playlist.name}</span>
+                                        <span className="name">
+                                            {playlist.name}
+                                        </span>
                                     </div>
                                 </Link>
                             </div>
                         ))}
                     </div>
-                    {next && 
+                    {next && (
                         <div className="load-more">
-                            <button onClick={loadMore}>Carregar mais</button> 
+                            <button type="button" onClick={loadMore}>
+                                Carregar mais
+                            </button>
                         </div>
-                    }
+                    )}
                 </div>
-            }
+            )}
         </>
-    )
+    );
 }
-
-export default UserPlaylists;

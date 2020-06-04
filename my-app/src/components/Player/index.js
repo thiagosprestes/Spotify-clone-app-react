@@ -6,56 +6,90 @@ import { Link } from 'react-router-dom';
 
 import './styles.css';
 
-import api from '../../services/api';
-
 import { FaSpotify } from 'react-icons/fa';
 
 import { IoMdCloseCircleOutline } from 'react-icons/io';
 
 import AudioPlayer from 'react-h5-audio-player';
+import api from '../../services/api';
 
 import 'react-h5-audio-player/lib/styles.css';
 
 export default function Player() {
-    const [ togglePlayer, setTogglePlayer] = useState(false);
+    const [togglePlayer, setTogglePlayer] = useState(false);
 
-    const trackData = useSelector(state => state.data);
-    
+    const trackData = useSelector((state) => state.data);
+
     useEffect(() => {
         setTogglePlayer(true);
     }, [trackData]);
 
-    return(
-        <div id="player" style={togglePlayer ? {display: 'flex'} : {display: 'none'}}>
-            {trackData != '' &&  (
+    return (
+        <div
+            id="player"
+            style={togglePlayer ? { display: 'flex' } : { display: 'none' }}
+        >
+            {trackData.length !== 0 && (
                 <>
                     <div className="track-data">
-                        <div className="close-player" onClick={() => setTogglePlayer(false)}>
+                        <div
+                            className="close-player"
+                            onClick={() => setTogglePlayer(false)}
+                        >
                             <IoMdCloseCircleOutline size="1.5rem" />
                         </div>
                         <Link to={`/album/id=${trackData.album.id}`}>
-                            <div className="track-cover cover" style={{backgroundImage: `url(${trackData.album.image})`}}></div>
+                            <div
+                                className="track-cover cover"
+                                style={{
+                                    backgroundImage: `url(${trackData.album.image})`,
+                                }}
+                            />
                         </Link>
-                        <div className="track-info">                            
+                        <div className="track-info">
                             <Link to={`/album/id=${trackData.album.id}`}>
-                                <span className="track-name">{trackData.track.name}</span>
+                                <span className="track-name">
+                                    {trackData.track.name}
+                                </span>
                             </Link>
-                            {trackData.artists.map(artist => (
-                                <Link to={`/artist/id=${artist.id}`} key={artist.id}>
-                                    <span className="track-artist">{artist.name}</span>
+                            {trackData.artists.map((artist) => (
+                                <Link
+                                    to={`/artist/id=${artist.id}`}
+                                    key={artist.id}
+                                >
+                                    <span className="track-artist">
+                                        {artist.name}
+                                    </span>
                                 </Link>
                             ))}
                         </div>
                     </div>
                     <div className="track-slider">
-                        <AudioPlayer src={trackData.track.preview} customAdditionalControls={[]} layout="stacked-reverse" autoPlay volume={0.5} showDownloadProgress={false} />
+                        <AudioPlayer
+                            src={trackData.track.preview}
+                            customAdditionalControls={[]}
+                            layout="stacked-reverse"
+                            autoPlay
+                            volume={0.5}
+                            showDownloadProgress={false}
+                        />
                     </div>
                     <div className="options">
-                        <a className="spotify" href={`https://open.spotify.com/track/${trackData.track.id}`} target="_blank" rel="noopener noreferrer">
-                            <FaSpotify size="1.5rem" />Ouvir no spotify
+                        <a
+                            className="spotify"
+                            href={`https://open.spotify.com/track/${trackData.track.id}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            <FaSpotify size="1.5rem" />
+                            Ouvir no spotify
                         </a>
                         <div className="spotify-icon">
-                            <a href={`https://open.spotify.com/track/${trackData.track.id}`} target="_blank" rel="noopener noreferrer">
+                            <a
+                                href={`https://open.spotify.com/track/${trackData.track.id}`}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
                                 <FaSpotify size="2rem" />
                             </a>
                         </div>

@@ -11,14 +11,16 @@ import UserRecentlyPlayed from '../../components/UserRecentlyPlayed';
 import UserTopArtists from '../../components/UserTopArtists';
 
 function Home() {
-    const [ newReleases, setNewReleases ] = useState([]);
-    const [ categories, setCategories ] = useState([]);
-    const [ playlists, setPlaylists ] = useState([]);
+    const [newReleases, setNewReleases] = useState([]);
+    const [categories, setCategories] = useState([]);
+    const [playlists, setPlaylists] = useState([]);
 
-    const [ load, setLoad ] = useState(true);
+    const [load, setLoad] = useState(true);
 
     async function loadReleases() {
-        const response = await api.get('/browse/new-releases?country=BR&limit=5');
+        const response = await api.get(
+            '/browse/new-releases?country=BR&limit=5'
+        );
 
         setNewReleases(response.data.albums.items);
 
@@ -34,9 +36,11 @@ function Home() {
     }
 
     async function loadPlaylists() {
-        const response = await api.get('browse/featured-playlists?country=br&limit=5');
+        const response = await api.get(
+            'browse/featured-playlists?country=br&limit=5'
+        );
 
-        setPlaylists(response.data.playlists.items); 
+        setPlaylists(response.data.playlists.items);
 
         setLoad(false);
     }
@@ -49,20 +53,33 @@ function Home() {
 
     return (
         <div id="home" className="container">
-            {load && <h1 className="loading">Carregando...</h1>}
-            {!load && (
+            {load ? (
+                <h1 className="loading">Carregando...</h1>
+            ) : (
                 <>
-                    <HomeItems itemType="album" itemTitle="Novos lançamentos" itemData={newReleases} />
-                    <HomeItems itemType="category" itemTitle="Gêneros em alta" itemDataCategories={categories} />
-                    <HomeItems itemType="playlist" itemTitle="Playlists em alta" itemData={playlists} />
+                    <HomeItems
+                        itemType="album"
+                        itemTitle="Novos lançamentos"
+                        itemData={newReleases}
+                    />
+                    <HomeItems
+                        itemType="category"
+                        itemTitle="Gêneros em alta"
+                        itemDataCategories={categories}
+                    />
+                    <HomeItems
+                        itemType="playlist"
+                        itemTitle="Playlists em alta"
+                        itemData={playlists}
+                    />
                     <div className="user-top-lists">
                         <UserRecentlyPlayed />
                         <UserTopArtists />
-                    </div>                    
+                    </div>
                 </>
             )}
         </div>
-    )
+    );
 }
 
 export default Home;

@@ -18,22 +18,22 @@ function Categories() {
 
     const id = useParams().categoryId;
 
-    async function loadCategory() {
-        const response = await api.get(
-            `/browse/categories/${id}/playlists?country=br&limit=50`
-        );
-
-        setCategory(response.data.playlists.items);
-
-        setPrev(response.data.playlists.previous);
-        setNext(response.data.playlists.next);
-
-        setLoad(false);
-    }
-
     useEffect(() => {
+        async function loadCategory() {
+            const response = await api.get(
+                `/browse/categories/${id}/playlists?country=br&limit=50`
+            );
+
+            setCategory(response.data.playlists.items);
+
+            setPrev(response.data.playlists.previous);
+            setNext(response.data.playlists.next);
+
+            setLoad(false);
+        }
+
         loadCategory();
-    }, []);
+    }, [id]);
 
     async function loadPrevious() {
         const replacedEndpointURL = prev.replace(

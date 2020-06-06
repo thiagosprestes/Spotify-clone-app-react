@@ -4,11 +4,14 @@ import { Link } from 'react-router-dom';
 
 import './styles.css';
 
+import { useDispatch } from 'react-redux';
+
 import api from '../../services/api';
 
-import previewPlayerData from '../../utils/previewPlayerData';
+import * as Player from '../../store/modules/player/actions';
 
 export default function Recently() {
+    const dispatch = useDispatch();
     const [recently, setRecently] = useState([]);
 
     const [load, setLoad] = useState(true);
@@ -41,11 +44,7 @@ export default function Recently() {
                                         backgroundImage: `url(${data.track.album.images[0].url})`,
                                     }}
                                     onClick={() =>
-                                        previewPlayerData(
-                                            data.track,
-                                            data.track.album,
-                                            data.track.artists
-                                        )
+                                        dispatch(Player.playTrack(data.track))
                                     }
                                 />
                                 <span className="track-name">

@@ -4,14 +4,15 @@ import { Link } from 'react-router-dom';
 
 import { FaPlay } from 'react-icons/fa';
 
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+
 import api from '../../services/api';
 
 import millisToMinutesAndSeconds from '../../utils/millisToMinutesAndSeconds';
 
-import previewPlayerData from '../../utils/previewPlayerData';
-
 import './styles.css';
+
+import * as Player from '../../store/modules/player/actions';
 
 function Liked() {
     const [tracks, setTracks] = useState([]);
@@ -20,7 +21,9 @@ function Liked() {
 
     const [load, setLoad] = useState(true);
 
-    const trackData = useSelector((state) => state.data);
+    const dispatch = useDispatch();
+
+    const trackData = useSelector((state) => state.player.data);
 
     async function loadTracks() {
         const response = await api.get('/me/tracks?market=br&limit=50');
@@ -69,8 +72,7 @@ function Liked() {
                                     <tr
                                         className={`track-info ${
                                             trackData.length !== 0 &&
-                                            trackData.track.name ===
-                                                data.track.name
+                                            trackData.name === data.track.name
                                                 ? 'track-active'
                                                 : ''
                                         }`}
@@ -78,10 +80,8 @@ function Liked() {
                                     >
                                         <td
                                             onClick={() =>
-                                                previewPlayerData(
-                                                    data.track,
-                                                    data.track.album,
-                                                    data.track.artists
+                                                dispatch(
+                                                    Player.playTrack(data.track)
                                                 )
                                             }
                                         >
@@ -89,11 +89,8 @@ function Liked() {
                                         </td>
                                         <td
                                             onClick={() =>
-                                                previewPlayerData(
-                                                    data.track,
-                                                    data.track.album.images[0]
-                                                        .url,
-                                                    data.track.artists
+                                                dispatch(
+                                                    Player.playTrack(data.track)
                                                 )
                                             }
                                         >

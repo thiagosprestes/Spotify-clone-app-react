@@ -5,8 +5,11 @@ import { Link, useParams } from 'react-router-dom';
 import './styles.css';
 
 import { FaPlay, FaHeart, FaRegHeart, FaShareAlt } from 'react-icons/fa';
+
 import { MdMusicNote } from 'react-icons/md';
-import { useSelector } from 'react-redux';
+
+import { useSelector, useDispatch } from 'react-redux';
+
 import defaultImage from '../../assets/default-image.jpg';
 
 import api from '../../services/api';
@@ -15,7 +18,7 @@ import SpotifyButton from '../../components/SpotifyButton';
 
 import millisToMinutesAndSeconds from '../../utils/millisToMinutesAndSeconds';
 
-import previewPlayerData from '../../utils/previewPlayerData';
+import * as Player from '../../store/modules/player/actions';
 
 function Playlist() {
     const [playlist, setPlaylist] = useState([]);
@@ -25,7 +28,9 @@ function Playlist() {
 
     const id = useParams().playlistId;
 
-    const trackData = useSelector((state) => state.data);
+    const dispatch = useDispatch();
+
+    const trackData = useSelector((state) => state.player.data);
 
     useEffect(() => {
         async function loadPlaylist() {
@@ -122,7 +127,7 @@ function Playlist() {
                                 key={data.track.name}
                                 className={`track ${
                                     trackData.length !== 0 &&
-                                    trackData.track.name === data.track.name
+                                    trackData.name === data.track.name
                                         ? 'track-active'
                                         : ''
                                 }`}
@@ -134,11 +139,7 @@ function Playlist() {
                                 <div
                                     className="play-icon"
                                     onClick={() =>
-                                        previewPlayerData(
-                                            data.track,
-                                            data.track.album,
-                                            data.track.artists
-                                        )
+                                        dispatch(Player.playTrack(data.track))
                                     }
                                 >
                                     <FaPlay size="1em" />

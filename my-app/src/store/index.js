@@ -1,24 +1,7 @@
 import { createStore } from 'redux';
 
-const INITIAL_STATE = {
-    data: [],
-};
+import rootReducer from './modules/rootReducer';
 
-function trackInfo(state = INITIAL_STATE, action) {
-    switch (action.type) {
-        case 'PLAY_TRACK':
-            return {
-                data: {
-                    track: action.trackInfo,
-                    album: action.trackAlbum,
-                    artists: action.trackArtists,
-                },
-            };
-        default:
-            return state;
-    }
-}
-
-const store = createStore(trackInfo);
+const store = createStore(rootReducer);
 
 export default store;

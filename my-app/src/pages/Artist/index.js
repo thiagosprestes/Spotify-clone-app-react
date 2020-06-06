@@ -5,8 +5,11 @@ import { Link, useParams } from 'react-router-dom';
 import './styles.css';
 
 import { FaPlay } from 'react-icons/fa';
+
 import { MdMusicNote } from 'react-icons/md';
-import { useSelector } from 'react-redux';
+
+import { useSelector, useDispatch } from 'react-redux';
+
 import SpotifyButton from '../../components/SpotifyButton';
 
 import api from '../../services/api';
@@ -15,7 +18,7 @@ import defaultImage from '../../assets/default-image.jpg';
 
 import millisToMinutesAndSeconds from '../../utils/millisToMinutesAndSeconds';
 
-import previewPlayerData from '../../utils/previewPlayerData';
+import * as Player from '../../store/modules/player/actions';
 
 function Artist() {
     const [artist, setArtist] = useState([]);
@@ -40,12 +43,14 @@ function Artist() {
     );
 
     const compilation = albums.filter(
-        (data) => data.album_group == 'compilation'
+        (data) => data.album_group === 'compilation'
     );
 
     const artistsFilter = relatedArtists.slice(0, 10);
 
-    const trackData = useSelector((state) => state.data);
+    const dispatch = useDispatch();
+
+    const trackData = useSelector((state) => state.player.data);
 
     useEffect(() => {
         async function loadArtist() {
@@ -188,7 +193,7 @@ function Artist() {
                                         key={data.id}
                                         className={`track top-tracks-item ${
                                             trackData.length !== 0 &&
-                                            trackData.track.name === data.name
+                                            trackData.name === data.name
                                                 ? 'track-active'
                                                 : ''
                                         }`}
@@ -199,11 +204,7 @@ function Artist() {
                                         <div
                                             className="play-icon"
                                             onClick={() =>
-                                                previewPlayerData(
-                                                    data,
-                                                    data.album,
-                                                    data.artists
-                                                )
+                                                dispatch(Player.playTrack(data))
                                             }
                                         >
                                             <FaPlay size="1em" />

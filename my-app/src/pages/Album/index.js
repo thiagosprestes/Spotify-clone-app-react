@@ -5,8 +5,11 @@ import { Link, useParams } from 'react-router-dom';
 import './styles.css';
 
 import { FaPlay, FaRegHeart, FaShareAlt, FaHeart } from 'react-icons/fa';
+
 import { MdMusicNote } from 'react-icons/md';
-import { useSelector } from 'react-redux';
+
+import { useSelector, useDispatch } from 'react-redux';
+
 import api from '../../services/api';
 
 import SpotifyButton from '../../components/SpotifyButton';
@@ -15,7 +18,7 @@ import defaultImage from '../../assets/default-image.jpg';
 
 import millisToMinutesAndSeconds from '../../utils/millisToMinutesAndSeconds';
 
-import previewPlayerData from '../../utils/previewPlayerData';
+import * as Player from '../../store/modules/player/actions';
 
 function Album() {
     const [album, setAlbum] = useState([]);
@@ -26,13 +29,17 @@ function Album() {
 
     const id = useParams().albumId;
 
-    const trackData = useSelector((state) => state.data);
+    const dispatch = useDispatch();
+
+    const trackData = useSelector((state) => state.player.data);
 
     useEffect(() => {
         async function loadAlbum() {
             const response = await api.get(`albums/${id}`);
 
             setAlbum(response.data);
+
+            console.log(response.data);
 
             setLoad(false);
         }
@@ -132,7 +139,7 @@ function Album() {
                                     key={data.id}
                                     className={`track ${
                                         trackData.length !== 0 &&
-                                        trackData.track.name === data.name
+                                        trackData.name === data.name
                                             ? 'track-active'
                                             : ''
                                     }`}
@@ -144,10 +151,18 @@ function Album() {
                                     <div
                                         className="play-icon"
                                         onClick={() =>
-                                            previewPlayerData(
-                                                data,
-                                                album,
-                                                album.artists
+                                            dispatch(
+                                                Player.playTrack({
+                                                    id: data.id,
+                                                    name: data.name,
+                                                    preview_url:
+                                                        data.preview_url,
+                                                    album: {
+                                                        id: album.id,
+                                                        images: album.images,
+                                                    },
+                                                    artists: album.artists,
+                                                })
                                             )
                                         }
                                     >

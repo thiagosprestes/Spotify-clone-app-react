@@ -60,9 +60,7 @@ function Header({ sidebarState }) {
                         <li>
                             <Link to="/profile">Perfil</Link>
                         </li>
-                        <li onClick={logout}>
-                            <a href="#">Sair</a>
-                        </li>
+                        <li onClick={logout}>Sair</li>
                     </ul>
                 </div>
             </div>

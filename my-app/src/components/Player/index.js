@@ -11,14 +11,13 @@ import { FaSpotify } from 'react-icons/fa';
 import { IoMdCloseCircleOutline } from 'react-icons/io';
 
 import AudioPlayer from 'react-h5-audio-player';
-import api from '../../services/api';
 
 import 'react-h5-audio-player/lib/styles.css';
 
 export default function Player() {
     const [togglePlayer, setTogglePlayer] = useState(false);
 
-    const trackData = useSelector((state) => state.data);
+    const trackData = useSelector((state) => state.player.data);
 
     useEffect(() => {
         setTogglePlayer(true);
@@ -42,14 +41,14 @@ export default function Player() {
                             <div
                                 className="track-cover cover"
                                 style={{
-                                    backgroundImage: `url(${trackData.album.image})`,
+                                    backgroundImage: `url(${trackData.album.images[0].url})`,
                                 }}
                             />
                         </Link>
                         <div className="track-info">
                             <Link to={`/album/id=${trackData.album.id}`}>
                                 <span className="track-name">
-                                    {trackData.track.name}
+                                    {trackData.name}
                                 </span>
                             </Link>
                             {trackData.artists.map((artist) => (
@@ -66,7 +65,7 @@ export default function Player() {
                     </div>
                     <div className="track-slider">
                         <AudioPlayer
-                            src={trackData.track.preview}
+                            src={trackData.preview_url}
                             customAdditionalControls={[]}
                             layout="stacked-reverse"
                             autoPlay
@@ -77,7 +76,7 @@ export default function Player() {
                     <div className="options">
                         <a
                             className="spotify"
-                            href={`https://open.spotify.com/track/${trackData.track.id}`}
+                            href={`https://open.spotify.com/track/${trackData.id}`}
                             target="_blank"
                             rel="noopener noreferrer"
                         >
@@ -86,7 +85,7 @@ export default function Player() {
                         </a>
                         <div className="spotify-icon">
                             <a
-                                href={`https://open.spotify.com/track/${trackData.track.id}`}
+                                href={`https://open.spotify.com/track/${trackData.id}`}
                                 target="_blank"
                                 rel="noopener noreferrer"
                             >

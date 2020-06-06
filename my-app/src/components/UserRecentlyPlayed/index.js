@@ -6,17 +6,19 @@ import './styles.css';
 
 import { FaPlay } from 'react-icons/fa';
 
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+
 import api from '../../services/api';
 
 import millisToMinutesAndSeconds from '../../utils/millisToMinutesAndSeconds';
 
-import previewPlayerData from '../../utils/previewPlayerData';
+import * as Player from '../../store/modules/player/actions';
 
 function UserRecentlyPlayed() {
+    const dispatch = useDispatch();
     const [recentlyPlayed, setRecentlyPlayed] = useState([]);
 
-    const trackData = useSelector((state) => state.data);
+    const trackData = useSelector((state) => state.player.data);
 
     async function handleLoad() {
         const response = await api.get('/me/player/recently-played?limit=10');
@@ -38,7 +40,7 @@ function UserRecentlyPlayed() {
                             key={data.played_at}
                             className={
                                 trackData.length !== 0 &&
-                                trackData.track.name === data.track.name
+                                trackData.name === data.track.name
                                     ? 'track-active'
                                     : ''
                             }
@@ -46,11 +48,7 @@ function UserRecentlyPlayed() {
                             <td>
                                 <span
                                     onClick={() =>
-                                        previewPlayerData(
-                                            data.track,
-                                            data.track.album,
-                                            data.track.artists
-                                        )
+                                        dispatch(Player.playTrack(data.track))
                                     }
                                 >
                                     <FaPlay />
@@ -59,11 +57,7 @@ function UserRecentlyPlayed() {
                             <td>
                                 <span
                                     onClick={() =>
-                                        previewPlayerData(
-                                            data.track,
-                                            data.track.album,
-                                            data.track.artists
-                                        )
+                                        dispatch(Player.playTrack(data.track))
                                     }
                                 >
                                     {data.track.name}

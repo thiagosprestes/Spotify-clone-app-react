@@ -10,7 +10,7 @@ function SpotifyButton({ type, id }) {
             <a
                 href={`https://open.spotify.com/${type}/${id}`}
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
             >
                 <FaSpotify size="1.5em" />
                 Spotify

@@ -5,14 +5,16 @@ import { Link } from 'react-router-dom';
 import './styles.css';
 
 import { FaPlay } from 'react-icons/fa';
-import { useSelector } from 'react-redux';
+
+import { useSelector, useDispatch } from 'react-redux';
+
 import api from '../../services/api';
 
 import defaultImage from '../../assets/default-image.jpg';
 
 import millisToMinutesAndSeconds from '../../utils/millisToMinutesAndSeconds';
 
-import previewPlayerData from '../../utils/previewPlayerData';
+import * as Player from '../../store/modules/player/actions';
 
 function Profile() {
     const [user, setUser] = useState([]);
@@ -26,9 +28,9 @@ function Profile() {
 
     const [load, setLoad] = useState(true);
 
-    const trackData = useSelector((state) => state.data);
+    const dispatch = useDispatch();
 
-    useEffect(() => console.log(trackData.length), [trackData]);
+    const trackData = useSelector((state) => state.player.data);
 
     async function loadUser() {
         const response = await api.get(`/me`);
@@ -153,8 +155,7 @@ function Profile() {
                                         <tr
                                             className={`track-info ${
                                                 trackData.length !== 0 &&
-                                                trackData.track.name ===
-                                                    track.name
+                                                trackData.name === track.name
                                                     ? 'track-active'
                                                     : ''
                                             }`}
@@ -163,10 +164,10 @@ function Profile() {
                                             <td>
                                                 <span
                                                     onClick={() =>
-                                                        previewPlayerData(
-                                                            track,
-                                                            track.album,
-                                                            track.artists
+                                                        dispatch(
+                                                            Player.playTrack(
+                                                                track
+                                                            )
                                                         )
                                                     }
                                                 >
@@ -176,10 +177,10 @@ function Profile() {
                                             <td>
                                                 <span
                                                     onClick={() =>
-                                                        previewPlayerData(
-                                                            track,
-                                                            track.album,
-                                                            track.artists
+                                                        dispatch(
+                                                            Player.playTrack(
+                                                                track
+                                                            )
                                                         )
                                                     }
                                                 >

@@ -1,13 +1,13 @@
 <h1 align="center">
 <br>
-  <img src="logo.png" width="auto" height="40" alt="spotify-clone-app">
+  <img src="spotify-clone-app-logo.png" width="auto" height="40" alt="spotify-clone-app">
 <br>
 <br>
 Spotify clone app
 </h1>
 JS
 <p align="center">Um web app clone do spotify feito em ReactJS, utiliza a API do Spotify para obtenção e manipulação de dados como playlists, músicas e artistas favoritas do usuário
-<br/><br/><a align="center" href="https://tsprestes-spotifycloneapp.netlify.com">Aplicação rodando no Netlify</a>
+<br/><br/><a align="center" href="https://tsprestes-spotifycloneapp.netlify.com" target="_blank">Aplicação rodando no Netlify</a>
 </p>
 
 # 📋 Índice
@@ -23,7 +23,7 @@ JS
 
 ## 🎨 Telas
 
-<img src="cover.png" alt="spotify-clone-app">
+<img src="spotify-clone-app-screenshots.jpg" alt="spotify-clone-app">
 
 ## 📃 Sobre o projeto
 

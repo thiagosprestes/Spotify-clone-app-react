@@ -6,9 +6,8 @@
 Spotify clone app
 </h1>
 JS
-<p align="center">Um web app clone do spotify feito em ReactJS, utiliza a API do Spotify para obtenção e manipulação de dados como playlists, músicas e artistas favoritas do usuário.
-
-<a align="center" href="https://tsprestes-spotifycloneapp.netlify.com">Aplicação rodando no Netlify</a>
+<p align="center">Um web app clone do spotify feito em ReactJS, utiliza a API do Spotify para obtenção e manipulação de dados como playlists, músicas e artistas favoritas do usuário
+<br/><br/><a align="center" href="https://tsprestes-spotifycloneapp.netlify.com">Aplicação rodando no Netlify</a>
 </p>
 
 # 📋 Índice

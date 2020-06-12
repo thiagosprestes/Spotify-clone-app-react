@@ -8,10 +8,6 @@ Spotify clone app
 JS
 <p align="center">Um web app clone do spotify feito em ReactJS, utiliza a API do Spotify para obtenção e manipulação de dados como playlists, músicas e artistas favoritas do usuário.</p>
 
-<div>
-  <img src="cover.png" alt="spotify-clone-app">
-</div>
-
 # 📋 Índice
 
 - [Telas](#-Telas)
@@ -24,6 +20,8 @@ JS
   - [Rodando o front-end](#-Rodando-o-front-end)
 
 ## 🎨 Telas
+
+<img src="cover.png" alt="spotify-clone-app">
 
 ## 📃 Sobre o projeto
 
@@ -84,6 +82,14 @@ Navegue até a pasta do projeto clonado e execute os comandos abaixo
 
 # Entra na pasta da auth-api
 cd auth-api
+
+# Instala as dependências
+npm install
+
+```
+Após instalar as dependências
+
+```bash
 
 # Inicia a auth-api
 npm run dev

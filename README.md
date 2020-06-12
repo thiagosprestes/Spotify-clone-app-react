@@ -127,4 +127,6 @@ Após concluir a instalação das dependências, ainda no terminal da pasta do f
 # Inicia a aplicação
 yarn start
 
+# Após isso a aplicação pode ser utilizada acessando o endereço http://localhost:3000
+
 ```

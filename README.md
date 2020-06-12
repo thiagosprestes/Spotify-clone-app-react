@@ -1,66 +1,122 @@
-![Spotify clone with react](spotify-clone-app-screenshots.jpg)
+<h1 align="center">
+<br>
+  <img src="logo.png" width="auto" height="40" alt="spotify-clone-app">
+<br>
+<br>
+Spotify clone app
+</h1>
+JS
+<p align="center">Um web app clone do spotify feito em ReactJS, utiliza a API do Spotify para obtenção e manipulação de dados como playlists, músicas e artistas favoritas do usuário.</p>
 
-## Spotify clone app
+<div>
+  <img src="cover.png" alt="spotify-clone-app">
+</div>
 
-Link da aplicação rodando no netlify: https://tsprestes-spotifycloneapp.netlify.com
+# 📋 Índice
 
-## Sobre o projeto
+- [Telas](#-Telas)
+- [Sobre o projeto](#-Sobre-o-projeto)
+  - [Funcionalidades](#-Funcionalidades)
+- [Tecnologias utilizadas](#-Tecnologias-utilizadas)
+- [Rodando o projeto](#-Rodando-o-projeto)
+  - [Pré-requisitos](#-Pré-requisitos)
+  - [Rodando a auth-api](#-Rodando-a-auth-api)
+  - [Rodando o front-end](#-Rodando-o-front-end)
 
-Um clone do spotify com algumas modificações visuais pequenas que em minha opinião melhoram a usabilidade.
+## 🎨 Telas
+
+## 📃 Sobre o projeto
+
+Um clone do spotify com algumas modificações visuais pequenas que em minha opinião melhoram um pouco a usabilidade.
+
+Desenvolvido para práticar ReactJS e API Rest
 
 Este projeto faz parte do meu potfólio pessoal, qualquer feedback sobre estrutura, código ou funcionalidades que podem melhorar o projeto serão bem vindos.
 
 Sinta-se livre para dar um fork, ou enviar um pull request, você pode usar este projeto para estudar ou fazer melhorias!
 
-### Observações
-
-1 - Existem algums pequenos detalhes em relação a responsividade que ainda não foram corrigidos, mas que não atrapalham em nada a experiênica do usuário.
-
-2 - Por enquanto só é possível escutar um preview de apenas 30 segundos das músicas, já que a API disponibilizada pelo Spotify só permite que usuários premium tenham total acesso as informações do player.
-
 ### Funcionalidades
 
-* Consultar as ultimas músicas escutadas por você
+- Consultar as ultimas músicas escutadas por você
+- Consultar as músicas e artistas mais escutadas por você em todos os tempos ou nos últimos 6 meses ou 4 semanas
+- Consultar seus artistas favoritos
+- Realizar buscas por artistas, álbuns ou playlists
+- Consultar as músicas que você curtiu
+- Consultar suas playlists
+- Consultar seus artistas e álbuns salvos
+- Adicionar ou remover músicas, artistas, playlists, e álbuns da sua biblioteca
 
-* Consultar as músicas e artistas mais escutadas por você em todos os tempos ou nos últimos 6 meses ou 4 semanas
+## 🛠 Tecnologias utilizadas
 
-* Consultar seus artistas favoritos
+- ⚛ **React** - Single page application
+- ⚛ **React Router** - Controle de rotas
+- ⚛ **Redux** - Controle de estado da track atual
+- ⚛ **React redux** - Controle de estado da track atual
+- 🎵 **React audio** player - Player de áudio
+- 🤙 **React icons** - Ícones da aplicação
+- 📡 **Axios** - Comunicação com a API do Spotify
 
-* Realizar buscas por artistas, álbuns ou playlists
+## 🚀 Rodando o projeto
 
-* Consultar as músicas que você curtiu
+A aplicação é dividida em duas partes, my-app, que é o front-end e auth-api, que é a comunicação com a API do Spotify no login, para conseguir logar é necessário que a auth-api esteja sendo executada.
 
-* Consultar suas playlists
+### Pré-requisitos
 
-* Consultar seus artistas e álbuns salvos
+- Git
+- NodeJS
+- Yarn
+- Uma conta no Spotify
 
-* Adicionar ou remover músicas, artistas, playlists, e álbuns da sua biblioteca
+### 💻 Rodando a auth-api
 
-### Desenvolvido utilizando
+Clone o repositório
 
-* [React](https://pt-br.reactjs.org/) - Single page application
-* [React Router](https://reacttraining.com/react-router/web/guides/quick-start) - Controle de rotas
-* [Redux](https://redux.js.org/) - Controle de estado da track atual
-* [React redux](https://react-redux.js.org/) - Controle de estado da track atual
-* [React audio player](https://www.npmjs.com/package/react-h5-audio-player) - Player de áudio
-* [React icons](https://react-icons.netlify.com/#/) - Ícones da aplicação
-* [Axios](https://github.com/axios/axios) - Comunicação com a API do Spotify
+```bash
 
-### Rodando app localmente
+# Clona o repositório
+git clone https://github.com/thiagosprestes/Spotify-clone-app-react.git
 
-```javascript
+```
 
-//Frontend
+Navegue até a pasta do projeto clonado e execute os comandos abaixo
 
+```bash
+
+# Entra na pasta da auth-api
+cd auth-api
+
+# Inicia a auth-api
+npm run dev
+
+```
+
+### 🖥 Rodando o front-end
+
+Caso já tenha clonado o repositório basta pular a primeira etapa
+
+```bash
+
+# Clona o repositório
+git clone https://github.com/thiagosprestes/Spotify-clone-app-react.git
+
+```
+
+Navegue até a pasta do projeto clonado e execute os comandos abaixo
+
+```bash
+
+# Entra na pasta do front-end
 cd my-app
+
+# Instala as dependências
+yarn
+
+```
+Após concluir a instalação das dependências, ainda no terminal da pasta do front-end execute o comando abaixo
+
+```bash
+
+# Inicia a aplicação
 yarn start
 
-//Backend
-
-//Renomeie o arquivo .env-example como .env e preencha as váriaveis client_id e client_secret com as chaves fornecidas pelo spotify após criar um app em: https://developer.spotify.com/dashboard/applications 
-//Após isso dentro da dashboard do spotify clique em "Edit settings" em redirect URIs adicione o seguinte link: http://localhost:8888/callback
-//Após isso execute os seguintes comandos
-
-cd auth-api
-npm run dev
 ```
